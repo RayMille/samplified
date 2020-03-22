@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FILTERGRAPH>
+  <FILTER uid="6" x="0.5" y="0.1">
+    <PLUGIN name="Audio Input" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uid="246006c0" isInstrument="0"
+            fileTime="0" infoUpdateTime="0" numInputs="0" numOutputs="2"
+            isShell="0"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="disabled"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="7" x="0.25" y="0.1">
+    <PLUGIN name="Midi Input" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uid="cb5fde0b" isInstrument="0"
+            fileTime="0" infoUpdateTime="0" numInputs="0" numOutputs="0"
+            isShell="0"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="disabled"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="disabled"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="8" x="0.5" y="0.9">
+    <PLUGIN name="Audio Output" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uid="724248cb" isInstrument="0"
+            fileTime="0" infoUpdateTime="0" numInputs="2" numOutputs="0"
+            isShell="0"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="disabled"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="9" x="0.80375" y="0.856682769726248">
+    <PLUGIN name="Midi Output" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uid="ab3d5ae0" isInstrument="0"
+            fileTime="0" infoUpdateTime="0" numInputs="0" numOutputs="0"
+            isShell="0"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="disabled"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="disabled"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="10" x="0.475" y="0.4299516908212561">
+    <PLUGIN name="PluginSynthWithFileUpload" format="AudioUnit" category="Synth"
+            manufacturer="jocako" version="1.0.0" file="AudioUnit:Synths/aumu,Odv7,Joca"
+            uid="647e7823" isInstrument="1" fileTime="0" infoUpdateTime="170d52a8ef0"
+            numInputs="0" numOutputs="32" isShell="0"/>
+    <STATE>478.hAGaoMGcv.y0AHv.DTfAGfPBJvRKt7BWsEla0YVXiQWcxUlbTQVXzEFWkwVYsUlaz0hag0VYWMWchQWdvU1U1Ulbyk1atQEc4AWYT4VXsUlDJ81XgATzKvPTx7MDPzvBN7.DQHwDTTgEWfQFZrAGc3wGfDhHiPRIlbBJonxJRECLRESMQMiTwDSTzDUMREiLQYiTwLST2DELQgiTwPSTwDUNZ8TczAWczAxHwDSVOUGcvUGcfLxLZ8TczAWczAxHwXSVOUGcvUGcfLBMZ8TczAWczAxHwHSVOUGcvUGcfLRMY8TczAWczAxH1n0S0QGb0QGHiDyLY8TczAWczAxH2n0S0QGb0QGHiDCMY8TczAWczAxH3j0S0QGb0QGHiDSVOUGcvUGcfLRNZ8TczAWczAxHwTSVOUGcvUGcfLhLZ8TczAWczAxHw.iDOQlc2.A.RDVcsUGVU4FcoQGakQF.H.vE.PB.o.fM.3C.FAvR..E.UAfU.jE.aAfe.DH.DBfg.jH.KBPi..I.RBPk.bI.YBvl.3I.fBfn.zJ.2Bfv.vL.WCP3.rN.1G..ArP.UDvGAjR.zDfOAjT.NE.TATE.......f.A..........L..................P.dA</STATE>
+    <LAYOUT>
+      <INPUTS/>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+        <BUS index="1" layout="L R"/>
+        <BUS index="2" layout="L R"/>
+        <BUS index="3" layout="L R"/>
+        <BUS index="4" layout="L R"/>
+        <BUS index="5" layout="L R"/>
+        <BUS index="6" layout="L R"/>
+        <BUS index="7" layout="L R"/>
+        <BUS index="8" layout="L R"/>
+        <BUS index="9" layout="L R"/>
+        <BUS index="10" layout="L R"/>
+        <BUS index="11" layout="L R"/>
+        <BUS index="12" layout="L R"/>
+        <BUS index="13" layout="L R"/>
+        <BUS index="14" layout="L R"/>
+        <BUS index="15" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <CONNECTION srcFilter="7" srcChannel="4096" dstFilter="10" dstChannel="4096"/>
+  <CONNECTION srcFilter="10" srcChannel="0" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="1" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="2" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="3" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="4" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="5" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="6" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="7" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="8" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="9" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="10" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="11" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="12" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="13" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="14" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="15" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="16" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="17" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="18" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="19" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="20" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="21" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="22" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="23" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="24" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="25" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="26" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="27" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="28" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="29" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="30" dstFilter="8" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="31" dstFilter="8" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="4096" dstFilter="9" dstChannel="4096"/>
+</FILTERGRAPH>
