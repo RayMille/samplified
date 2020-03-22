@@ -16,6 +16,8 @@
 //==============================================================================
 /**
 */
+class GLComponent;
+
 class PluginSynthWithFileUploadAudioProcessorEditor  : public AudioProcessorEditor, public FileBrowserListener
 {
 public:
@@ -41,6 +43,8 @@ private:
     AudioFormatManager formatManager;
     std::unique_ptr<AudioFormatReaderSource> readerSource;
     AudioTransportSource transportSource;
+    
+    ScopedPointer<GLComponent> glComponent;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginSynthWithFileUploadAudioProcessorEditor)
