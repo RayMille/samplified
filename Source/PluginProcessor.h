@@ -15,12 +15,12 @@
 //==============================================================================
 /**
 */
-class PluginSynthWithFileUploadAudioProcessor  : public AudioProcessor
+class Samplified  : public AudioProcessor
 {
 public:
     //==============================================================================
-    PluginSynthWithFileUploadAudioProcessor();
-    ~PluginSynthWithFileUploadAudioProcessor();
+    Samplified();
+    ~Samplified();
     
     //==============================================================================
     enum
@@ -81,5 +81,5 @@ private:
     WildcardFileFilter* m_wcFileFilter;
     
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginSynthWithFileUploadAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Samplified)
 };

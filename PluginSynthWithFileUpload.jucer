@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Odv7zV" name="PluginSynthWithFileUpload" projectType="audioplug"
-              jucerVersion="5.4.7" pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut"
+<JUCERPROJECT id="Odv7zV" name="Samplified" projectType="audioplug" jucerVersion="5.4.7"
+              pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut"
               pluginManufacturer="jocako" pluginManufacturerCode="Joca" aaxIdentifier="com.jocako.PluginSynthWithFileUpload"
               pluginAUMainType="'aumu'" companyName="jocako">
-  <MAINGROUP id="RshfAF" name="PluginSynthWithFileUpload">
+  <MAINGROUP id="RshfAF" name="Samplified">
     <GROUP id="{D8A5AC6D-11F0-3876-68A3-49531089B9CF}" name="Source">
-      <FILE id="JGb26L" name="WavefrontObjParser.h" compile="0" resource="0"
-            file="Source/WavefrontObjParser.h"/>
       <FILE id="EpjnBM" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="TehZQL" name="PluginProcessor.h" compile="0" resource="0"

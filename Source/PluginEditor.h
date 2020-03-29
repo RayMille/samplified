@@ -21,7 +21,7 @@ class GLComponent;
 class PluginSynthWithFileUploadAudioProcessorEditor  : public AudioProcessorEditor, public FileBrowserListener
 {
 public:
-    PluginSynthWithFileUploadAudioProcessorEditor (PluginSynthWithFileUploadAudioProcessor&);
+    PluginSynthWithFileUploadAudioProcessorEditor (Samplified&);
     ~PluginSynthWithFileUploadAudioProcessorEditor();
 
     //==============================================================================
@@ -37,7 +37,7 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    PluginSynthWithFileUploadAudioProcessor& processor;
+    Samplified& processor;
     
     //==============================================================================
     AudioFormatManager formatManager;

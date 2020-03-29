@@ -730,7 +730,7 @@ private:
 
 
 //==============================================================================
-PluginSynthWithFileUploadAudioProcessorEditor::PluginSynthWithFileUploadAudioProcessorEditor (PluginSynthWithFileUploadAudioProcessor& p)
+PluginSynthWithFileUploadAudioProcessorEditor::PluginSynthWithFileUploadAudioProcessorEditor (Samplified& p)
     : AudioProcessorEditor (&p), processor (p)
 {
     // Make sure that before the constructor has finished, you've set the

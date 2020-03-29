@@ -12,7 +12,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-PluginSynthWithFileUploadAudioProcessor::PluginSynthWithFileUploadAudioProcessor()
+Samplified::Samplified()
 //#ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor (BusesProperties()
                     // #if ! JucePlugin_IsMidiEffect
@@ -71,19 +71,19 @@ PluginSynthWithFileUploadAudioProcessor::PluginSynthWithFileUploadAudioProcessor
     
 }
 
-PluginSynthWithFileUploadAudioProcessor::~PluginSynthWithFileUploadAudioProcessor()
+Samplified::~Samplified()
 {
     m_fileBrowser->~FileBrowserComponent();
     delete (m_wcFileFilter);
 }
 
 //==============================================================================
-const String PluginSynthWithFileUploadAudioProcessor::getName() const
+const String Samplified::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool PluginSynthWithFileUploadAudioProcessor::acceptsMidi() const
+bool Samplified::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -92,7 +92,7 @@ bool PluginSynthWithFileUploadAudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool PluginSynthWithFileUploadAudioProcessor::producesMidi() const
+bool Samplified::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -101,7 +101,7 @@ bool PluginSynthWithFileUploadAudioProcessor::producesMidi() const
    #endif
 }
 
-bool PluginSynthWithFileUploadAudioProcessor::isMidiEffect() const
+bool Samplified::isMidiEffect() const
 {
    #if JucePlugin_IsMidiEffect
     return true;
@@ -110,37 +110,37 @@ bool PluginSynthWithFileUploadAudioProcessor::isMidiEffect() const
    #endif
 }
 
-double PluginSynthWithFileUploadAudioProcessor::getTailLengthSeconds() const
+double Samplified::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int PluginSynthWithFileUploadAudioProcessor::getNumPrograms()
+int Samplified::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int PluginSynthWithFileUploadAudioProcessor::getCurrentProgram()
+int Samplified::getCurrentProgram()
 {
     return 0;
 }
 
-void PluginSynthWithFileUploadAudioProcessor::setCurrentProgram (int index)
+void Samplified::setCurrentProgram (int index)
 {
 }
 
-const String PluginSynthWithFileUploadAudioProcessor::getProgramName (int index)
+const String Samplified::getProgramName (int index)
 {
     return {};
 }
 
-void PluginSynthWithFileUploadAudioProcessor::changeProgramName (int index, const String& newName)
+void Samplified::changeProgramName (int index, const String& newName)
 {
 }
 
 //==============================================================================
-void PluginSynthWithFileUploadAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void Samplified::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
@@ -150,14 +150,14 @@ void PluginSynthWithFileUploadAudioProcessor::prepareToPlay (double sampleRate, 
         synth[midiChannel]->setCurrentPlaybackSampleRate (sampleRate);
 }
 
-void PluginSynthWithFileUploadAudioProcessor::releaseResources()
+void Samplified::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool PluginSynthWithFileUploadAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool Samplified::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
   #if JucePlugin_IsMidiEffect
     ignoreUnused (layouts);
@@ -180,7 +180,7 @@ bool PluginSynthWithFileUploadAudioProcessor::isBusesLayoutSupported (const Buse
 }
 #endif
 
-void PluginSynthWithFileUploadAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
+void Samplified::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
 //    ScopedNoDenormals noDenormals;
 //    auto totalNumInputChannels  = getTotalNumInputChannels();
@@ -222,25 +222,25 @@ void PluginSynthWithFileUploadAudioProcessor::processBlock (AudioBuffer<float>& 
 }
 
 //==============================================================================
-bool PluginSynthWithFileUploadAudioProcessor::hasEditor() const
+bool Samplified::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-AudioProcessorEditor* PluginSynthWithFileUploadAudioProcessor::createEditor()
+AudioProcessorEditor* Samplified::createEditor()
 {
     return new PluginSynthWithFileUploadAudioProcessorEditor (*this);
 }
 
 //==============================================================================
-void PluginSynthWithFileUploadAudioProcessor::getStateInformation (MemoryBlock& destData)
+void Samplified::getStateInformation (MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void PluginSynthWithFileUploadAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void Samplified::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
@@ -250,11 +250,11 @@ void PluginSynthWithFileUploadAudioProcessor::setStateInformation (const void* d
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new PluginSynthWithFileUploadAudioProcessor();
+    return new Samplified();
 }
 
 //==============================================================================
-MidiBuffer PluginSynthWithFileUploadAudioProcessor::filterMidiMessagesForChannel (const MidiBuffer& input, int channel)
+MidiBuffer Samplified::filterMidiMessagesForChannel (const MidiBuffer& input, int channel)
 {
     MidiMessage msg;
     int samplePosition;
@@ -266,7 +266,7 @@ MidiBuffer PluginSynthWithFileUploadAudioProcessor::filterMidiMessagesForChannel
     return output;
 }
 
-void PluginSynthWithFileUploadAudioProcessor::loadNewSample (const File& sampleFile)
+void Samplified::loadNewSample (const File& sampleFile)
    {
        auto* soundBuffer = sampleFile.createInputStream();
        String format = sampleFile.getFileExtension();

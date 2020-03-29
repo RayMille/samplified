@@ -8,11 +8,11 @@
     <key>CFBundleIconFile</key>
     <string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.jocako.PluginSynthWithFileUpload</string>
+    <string>com.jocako.Samplified</string>
     <key>CFBundleName</key>
-    <string>PluginSynthWithFileUpload</string>
+    <string>Samplified</string>
     <key>CFBundleDisplayName</key>
-    <string>PluginSynthWithFileUpload</string>
+    <string>Samplified</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleSignature</key>
