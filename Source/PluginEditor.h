@@ -11,18 +11,42 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "PluginProcessor.h"
+#include "WavefrontObjFile.h"
+#include "TeapotComponent.h"
+
+
 
 //==============================================================================
-/**
-*/
-class GLComponent;
-
-class PluginSynthWithFileUploadAudioProcessorEditor  : public AudioProcessorEditor, public FileBrowserListener
+class TeapotWrapperComponent    : public Component
 {
 public:
-    PluginSynthWithFileUploadAudioProcessorEditor (Samplified&);
-    ~PluginSynthWithFileUploadAudioProcessorEditor();
+    TeapotWrapperComponent()
+    {
+       addAndMakeVisible (teapotComponent);
+    }
+
+    void paint (Graphics& g) override
+    {
+    }
+
+    void resized() override
+    {
+        teapotComponent.setBounds(0,0,getWidth(),getHeight());
+    }
+
+private:
+    TeapotComponent teapotComponent;
+
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TeapotWrapperComponent)
+};
+
+
+class SamplifiedEditor  : public AudioProcessorEditor, public FileBrowserListener
+{
+public:
+    SamplifiedEditor (SamplifiedPluginProcessor&);
+    ~SamplifiedEditor();
 
     //==============================================================================
     void paint (Graphics&) override;
@@ -37,15 +61,16 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    Samplified& processor;
+    SamplifiedPluginProcessor& processor;
     
     //==============================================================================
     AudioFormatManager formatManager;
     std::unique_ptr<AudioFormatReaderSource> readerSource;
     AudioTransportSource transportSource;
     
-    ScopedPointer<GLComponent> glComponent;
+    ScopedPointer<TeapotComponent> glComponent;
+    TeapotWrapperComponent teapot;
 
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginSynthWithFileUploadAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SamplifiedEditor)
 };

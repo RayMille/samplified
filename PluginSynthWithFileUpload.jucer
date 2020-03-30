@@ -6,6 +6,10 @@
               pluginAUMainType="'aumu'" companyName="jocako">
   <MAINGROUP id="RshfAF" name="Samplified">
     <GROUP id="{D8A5AC6D-11F0-3876-68A3-49531089B9CF}" name="Source">
+      <FILE id="xrks1P" name="TeapotComponent.h" compile="0" resource="0"
+            file="Source/TeapotComponent.h"/>
+      <FILE id="BxfdoY" name="WavefrontObjFile.h" compile="0" resource="0"
+            file="Source/WavefrontObjFile.h"/>
       <FILE id="EpjnBM" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="TehZQL" name="PluginProcessor.h" compile="0" resource="0"
@@ -57,7 +61,7 @@
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
   <LIVE_SETTINGS>
-    <OSX/>
+    <OSX buildEnabled="1"/>
   </LIVE_SETTINGS>
   <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
 </JUCERPROJECT>

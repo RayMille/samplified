@@ -15,12 +15,14 @@
 //==============================================================================
 /**
 */
-class Samplified  : public AudioProcessor
+
+
+class SamplifiedPluginProcessor  : public AudioProcessor
 {
 public:
     //==============================================================================
-    Samplified();
-    ~Samplified();
+    SamplifiedPluginProcessor();
+    ~SamplifiedPluginProcessor();
     
     //==============================================================================
     enum
@@ -81,5 +83,5 @@ private:
     WildcardFileFilter* m_wcFileFilter;
     
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Samplified)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SamplifiedPluginProcessor)
 };

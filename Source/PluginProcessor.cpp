@@ -12,7 +12,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-Samplified::Samplified()
+SamplifiedPluginProcessor::SamplifiedPluginProcessor()
 //#ifndef JucePlugin_PreferredChannelConfigurations
      : AudioProcessor (BusesProperties()
                     // #if ! JucePlugin_IsMidiEffect
@@ -71,19 +71,19 @@ Samplified::Samplified()
     
 }
 
-Samplified::~Samplified()
+SamplifiedPluginProcessor::~SamplifiedPluginProcessor()
 {
     m_fileBrowser->~FileBrowserComponent();
     delete (m_wcFileFilter);
 }
 
 //==============================================================================
-const String Samplified::getName() const
+const String SamplifiedPluginProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool Samplified::acceptsMidi() const
+bool SamplifiedPluginProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -92,7 +92,7 @@ bool Samplified::acceptsMidi() const
    #endif
 }
 
-bool Samplified::producesMidi() const
+bool SamplifiedPluginProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -101,7 +101,7 @@ bool Samplified::producesMidi() const
    #endif
 }
 
-bool Samplified::isMidiEffect() const
+bool SamplifiedPluginProcessor::isMidiEffect() const
 {
    #if JucePlugin_IsMidiEffect
     return true;
@@ -110,37 +110,37 @@ bool Samplified::isMidiEffect() const
    #endif
 }
 
-double Samplified::getTailLengthSeconds() const
+double SamplifiedPluginProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int Samplified::getNumPrograms()
+int SamplifiedPluginProcessor::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int Samplified::getCurrentProgram()
+int SamplifiedPluginProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void Samplified::setCurrentProgram (int index)
+void SamplifiedPluginProcessor::setCurrentProgram (int index)
 {
 }
 
-const String Samplified::getProgramName (int index)
+const String SamplifiedPluginProcessor::getProgramName (int index)
 {
     return {};
 }
 
-void Samplified::changeProgramName (int index, const String& newName)
+void SamplifiedPluginProcessor::changeProgramName (int index, const String& newName)
 {
 }
 
 //==============================================================================
-void Samplified::prepareToPlay (double sampleRate, int samplesPerBlock)
+void SamplifiedPluginProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
@@ -150,14 +150,14 @@ void Samplified::prepareToPlay (double sampleRate, int samplesPerBlock)
         synth[midiChannel]->setCurrentPlaybackSampleRate (sampleRate);
 }
 
-void Samplified::releaseResources()
+void SamplifiedPluginProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool Samplified::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool SamplifiedPluginProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
   #if JucePlugin_IsMidiEffect
     ignoreUnused (layouts);
@@ -180,7 +180,7 @@ bool Samplified::isBusesLayoutSupported (const BusesLayout& layouts) const
 }
 #endif
 
-void Samplified::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
+void SamplifiedPluginProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
 //    ScopedNoDenormals noDenormals;
 //    auto totalNumInputChannels  = getTotalNumInputChannels();
@@ -222,25 +222,25 @@ void Samplified::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessa
 }
 
 //==============================================================================
-bool Samplified::hasEditor() const
+bool SamplifiedPluginProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-AudioProcessorEditor* Samplified::createEditor()
+AudioProcessorEditor* SamplifiedPluginProcessor::createEditor()
 {
-    return new PluginSynthWithFileUploadAudioProcessorEditor (*this);
+    return new SamplifiedEditor (*this);
 }
 
 //==============================================================================
-void Samplified::getStateInformation (MemoryBlock& destData)
+void SamplifiedPluginProcessor::getStateInformation (MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void Samplified::setStateInformation (const void* data, int sizeInBytes)
+void SamplifiedPluginProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
@@ -250,11 +250,11 @@ void Samplified::setStateInformation (const void* data, int sizeInBytes)
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new Samplified();
+    return new SamplifiedPluginProcessor();
 }
 
 //==============================================================================
-MidiBuffer Samplified::filterMidiMessagesForChannel (const MidiBuffer& input, int channel)
+MidiBuffer SamplifiedPluginProcessor::filterMidiMessagesForChannel (const MidiBuffer& input, int channel)
 {
     MidiMessage msg;
     int samplePosition;
@@ -266,7 +266,7 @@ MidiBuffer Samplified::filterMidiMessagesForChannel (const MidiBuffer& input, in
     return output;
 }
 
-void Samplified::loadNewSample (const File& sampleFile)
+void SamplifiedPluginProcessor::loadNewSample (const File& sampleFile)
    {
        auto* soundBuffer = sampleFile.createInputStream();
        String format = sampleFile.getFileExtension();
