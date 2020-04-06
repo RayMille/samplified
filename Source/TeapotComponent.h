@@ -47,30 +47,33 @@ public:
 
     Matrix3D<float> getProjectionMatrix() const
     {
-        auto w = 1.0f / (0.5f + 0.1f);
-        auto h = w * getLocalBounds().toFloat().getAspectRatio (false);
+        auto w = 20; // fov effect, je gößer desto mehr platz für object
+        auto h = w * getLocalBounds().toFloat().getAspectRatio (false); // AspectRatio
 
-        return Matrix3D<float>::fromFrustum (-w, w, -h, h, 4.0f, 30.0f);
+        return Matrix3D<float>::fromFrustum (w, -w, -h, h, 5.0f, 70.0f); // near distance, far distance has to be fit to window size to avoid unwanted scaling
     }
 
     Matrix3D<float> getViewMatrix() const
     {
-        Matrix3D<float> viewMatrix ({ 0.0f, 0.0f, -5.0f });
-        //Matrix3D<float> rotationMatrix = viewMatrix.rotation ({ -0.3f, 5.0f * std::sin (0.01f), 0.0f });
-
-        return viewMatrix;
+        Matrix3D<float> viewMatrix ({ 0.0f, 0.0f, -20.0f }); // x groß rechts klein links, y groß hoch klein runter , z je größer desto näher
+        Matrix3D<float> rotationMatrix = viewMatrix.rotation ({ 0.0f, 3.14159f, 5.0f * std::sin(getFrameCounter() *0.01f)}); //getFrameCounter() * //3.14159f
+        return rotationMatrix * viewMatrix;
     }
 
     void render() override
     {
         jassert (OpenGLHelpers::isContextActive());
+        
+        auto desktopScale = (float) openGLContext.getRenderingScale();
+        Colour c = Colour(0.0f,1.0f,0.0f, 0.0f);
 
-        OpenGLHelpers::clear (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
+        OpenGLHelpers::clear (c);//(getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
 
         glEnable (GL_BLEND);
         glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        glViewport (0, 0, getWidth(), getHeight());
+        int b = 2;//roundToInt (desktopScale * getWidth());
+        glViewport (0, 0, getWidth()*b,getHeight()*b);//getWidth(), getHeight()); ///this sets window used to render GL Object --> better is symetric
 
         shader->use();
 
@@ -92,6 +95,8 @@ public:
     {
     }
 
+    // Create shader, and link them to program. Shader are small code sniplets that run on GPU and therefore
+    // are far more efficient. VertexShader are run less often than fragmentShader
     void createShaders()
     {
         vertexShader =
@@ -173,6 +178,7 @@ private:
     // This class just manages the attributes that the shaders use.
     struct Attributes
     {
+        // Setting results from shader programs as member variables.
         Attributes (OpenGLContext& context, OpenGLShaderProgram& shaderProgram)
         {
             position      .reset (createAttribute (context, shaderProgram, "position"));
@@ -181,6 +187,7 @@ private:
             textureCoordIn.reset (createAttribute (context, shaderProgram, "textureCoordIn"));
         }
 
+        // VertexAttributeArrays tell openGL which attributes (type of objects) we are working with.
         void enable (OpenGLContext& context)
         {
             if (position.get() != nullptr)
@@ -219,6 +226,7 @@ private:
         std::unique_ptr<OpenGLShaderProgram::Attribute> position, normal, sourceColour, textureCoordIn;
 
     private:
+        // Combines Vertex Attributes with shader programm.
         static OpenGLShaderProgram::Attribute* createAttribute (OpenGLContext& context,
                                                                 OpenGLShaderProgram& shader,
                                                                 const String& attributeName)
@@ -232,6 +240,8 @@ private:
 
     //==============================================================================
     // This class just manages the uniform values that the demo shaders use.
+    // Uniforms are defined once and not for every vertice --> Save space.
+    // Data is send to shader.
     struct Uniforms
     {
         Uniforms (OpenGLContext& context, OpenGLShaderProgram& shaderProgram)
@@ -274,6 +284,7 @@ private:
                     vertexBuffers.add (new VertexBuffer (context, *s));
         }
 
+        // Actually draws elements with GL_TRIANGLES
         void draw (OpenGLContext& context, Attributes& glAttributes)
         {
             for (auto* vertexBuffer : vertexBuffers)
@@ -303,6 +314,8 @@ private:
                                                        static_cast<GLsizeiptr> (static_cast<size_t> (vertices.size()) * sizeof (Vertex)),
                                                        vertices.getRawDataPointer(), GL_STATIC_DRAW);
 
+                // Index buffer is used, to tell how vertices are supposed to be connected.
+                // This avoids unnecessary memory by doubling vertices --> Ex. two trinagles to suqare.
                 openGLContext.extensions.glGenBuffers (1, &indexBuffer);
                 openGLContext.extensions.glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
                 openGLContext.extensions.glBufferData (GL_ELEMENT_ARRAY_BUFFER,

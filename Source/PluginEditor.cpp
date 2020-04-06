@@ -33,7 +33,7 @@ void SamplifiedEditor::paint (Graphics& g)
     g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
     
     addAndMakeVisible(teapot);
-    teapot.setSize(100, 100);
+    teapot.setSize(300, 300);
     teapot.setTopLeftPosition(500, 0);
     addAndMakeVisible(processor.m_fileBrowser);
     processor.m_fileBrowser->setSize(300, 300);
@@ -45,7 +45,6 @@ void SamplifiedEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
-    teapot.setBounds (0, 0, getWidth(), getHeight());
 }
 
 //==============================================================================
