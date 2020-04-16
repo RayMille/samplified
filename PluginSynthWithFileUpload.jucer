@@ -5,6 +5,10 @@
               pluginManufacturer="jocako" pluginManufacturerCode="Joca" aaxIdentifier="com.jocako.PluginSynthWithFileUpload"
               pluginAUMainType="'aumu'" companyName="jocako">
   <MAINGROUP id="RshfAF" name="Samplified">
+    <GROUP id="{98C0FE94-40ED-FFB2-904F-FFD448D5A57D}" name="Resources ">
+      <FILE id="o3WHKE" name="SimplifierBackground.jpeg" compile="0" resource="1"
+            file="../../../../Downloads/SimplifierBackground.jpeg"/>
+    </GROUP>
     <GROUP id="{D8A5AC6D-11F0-3876-68A3-49531089B9CF}" name="Source">
       <FILE id="xrks1P" name="TeapotComponent.h" compile="0" resource="0"
             file="Source/TeapotComponent.h"/>
@@ -61,7 +65,7 @@
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
   <LIVE_SETTINGS>
-    <OSX buildEnabled="1"/>
+    <OSX buildEnabled="0"/>
   </LIVE_SETTINGS>
   <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
 </JUCERPROJECT>

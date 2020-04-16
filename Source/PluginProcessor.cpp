@@ -58,15 +58,15 @@ SamplifiedPluginProcessor::SamplifiedPluginProcessor()
        }
     
 
-       auto dir = File::getSpecialLocation(File::SpecialLocationType::userHomeDirectory);
-
-       int numTries = 0;
-
-       while (! dir.getChildFile ("Resources").exists() && numTries++ < 15)
-           dir = dir.getParentDirectory();
-    
-       loadNewSample (dir.getChildFile ("Resources").getChildFile ("singing.ogg"));
-    
+//       auto dir = File::getSpecialLocation(File::SpecialLocationType::userHomeDirectory);
+//
+//       int numTries = 0;
+//
+//       while (! dir.getChildFile ("Resources").exists() && numTries++ < 15)
+//           dir = dir.getParentDirectory();
+//    
+//       loadNewSample (dir.getChildFile ("Resources").getChildFile ("singing.ogg"));
+//    
     
     
 }

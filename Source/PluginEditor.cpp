@@ -30,8 +30,10 @@ SamplifiedEditor::~SamplifiedEditor()
 void SamplifiedEditor::paint (Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
     
+    image.setBounds(0,0,getWidth(),getHeight());
+    addAndMakeVisible(image);
+
     addAndMakeVisible(teapot);
     teapot.setSize(300, 300);
     teapot.setTopLeftPosition(500, 0);

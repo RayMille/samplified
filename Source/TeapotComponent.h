@@ -16,6 +16,8 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
+
+
 class TeapotComponent   : public OpenGLAppComponent
 {
 public:
