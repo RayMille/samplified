@@ -12,36 +12,31 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "ADSRComponent.h"
+#include "BackgroundComponent.h"
+#include "DisplayComponent.h"
 
 //==============================================================================
 /**
 */
-class PluginSynthWithFileUploadAudioProcessorEditor  : public AudioProcessorEditor, public FileBrowserListener
+class SamplifiedAudioProcessorEditor  : public AudioProcessorEditor,
+                                        public Timer
 {
 public:
-    PluginSynthWithFileUploadAudioProcessorEditor (PluginSynthWithFileUploadAudioProcessor&);
-    ~PluginSynthWithFileUploadAudioProcessorEditor();
+    SamplifiedAudioProcessorEditor (SamplifiedAudioProcessor&);
+    ~SamplifiedAudioProcessorEditor();
 
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
+    void timerCallback() override;
     
-    //==============================================================================
-    void selectionChanged () override;
-    void fileClicked (const File& file, const MouseEvent& e) override;
-    void fileDoubleClicked (const File& file) override;
-    void browserRootChanged (const File& newRoot) override;
-
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
-    PluginSynthWithFileUploadAudioProcessor& processor;
+    DisplayComponent mDisplayComponent;
+    ADSRComponent mADSR;
+    BackgroundComponent mBackground;
     
-    //==============================================================================
-    AudioFormatManager formatManager;
-    std::unique_ptr<AudioFormatReaderSource> readerSource;
-    AudioTransportSource transportSource;
+    SamplifiedAudioProcessor& processor;
 
-
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginSynthWithFileUploadAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SamplifiedAudioProcessorEditor)
 };
