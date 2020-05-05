@@ -5,8 +5,7 @@
               pluginManufacturer="KoendersAudio">
   <MAINGROUP id="znyszf" name="SAMPLIFIED">
     <GROUP id="{74764556-3F6E-B772-6924-AFE76362A71B}" name="Resources">
-      <FILE id="lg92pq" name="PLUGIN12.png" compile="1" resource="1" file="../PLUGIN/PHOTOSHOP/MOCKUPS/PLUGIN12.png"
-            xcodeResource="1"/>
+      <FILE id="mpDfrG" name="PLUGIN12.png" compile="0" resource="1" file="../../../PLUGIN12.png"/>
     </GROUP>
     <GROUP id="{28348884-7ABC-0066-1C4A-C5E010E47CD6}" name="Source">
       <FILE id="FtEjXq" name="FileWindowComponent.h" compile="0" resource="0"

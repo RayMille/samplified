@@ -77,10 +77,6 @@
 			isa = PBXBuildFile;
 			fileRef = CEB8C9B280D6D9C7E3E664D1;
 		};
-		5C1CAC077400CC282CE04328 = {
-			isa = PBXBuildFile;
-			fileRef = F85FC82BF8C494AAB1B58FE8;
-		};
 		C2C97715ACEA70F400597BCA = {
 			isa = PBXBuildFile;
 			fileRef = 34309C5BCD6CD0092DE714D3;
@@ -193,26 +189,12 @@
 			isa = PBXBuildFile;
 			fileRef = 5894CA4C9893BD5D93D1C6E3;
 		};
-		000058105D45815CDBF7EB67 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_core";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_core";
-			sourceTree = "<absolute>";
-		};
 		04BF3060D9434A38D978850D = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_plugin_client_AU_1.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU_1.mm";
 			sourceTree = "SOURCE_ROOT";
-		};
-		06BBF1273E361A98BACE8F9E = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_gui_extra";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_gui_extra";
-			sourceTree = "<absolute>";
 		};
 		07D7BB0EC41AACC672CFF2D0 = {
 			isa = PBXFileReference;
@@ -234,13 +216,6 @@
 			name = JuceHeader.h;
 			path = ../../JuceLibraryCode/JuceHeader.h;
 			sourceTree = "SOURCE_ROOT";
-		};
-		1540BDAADB5108F1482E63D8 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_processors";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_audio_processors";
-			sourceTree = "<absolute>";
 		};
 		161D9A4340672A0216E2C7AF = {
 			isa = PBXFileReference;
@@ -270,12 +245,12 @@
 			path = "../../JuceLibraryCode/include_juce_audio_devices.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		269437C33D6DE11CD53260F4 = {
+		27A01FB6AC257AE864568A05 = {
 			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_opengl";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_opengl";
-			sourceTree = "<absolute>";
+			lastKnownFileType = image.png;
+			name = PLUGIN12.png;
+			path = ../../../../../PLUGIN12.png;
+			sourceTree = "SOURCE_ROOT";
 		};
 		34309C5BCD6CD0092DE714D3 = {
 			isa = PBXFileReference;
@@ -284,11 +259,11 @@
 			path = ../../Source/DirectoryComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
-		3BB85A8388A94BD3607F5BD0 = {
+		377D855E38A38BFDC3C4AC29 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_graphics";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_graphics";
+			name = "juce_cryptography";
+			path = "/Applications/JUCE/modules/juce_cryptography";
 			sourceTree = "<absolute>";
 		};
 		3D2A51DEFDE16E010B4D2A92 = {
@@ -305,11 +280,11 @@
 			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
-		483C8651BC1A345FACFFBA52 = {
+		46E9B039FE800D481F756767 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_audio_plugin_client";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_audio_plugin_client";
+			name = "juce_audio_utils";
+			path = "/Applications/JUCE/modules/juce_audio_utils";
 			sourceTree = "<absolute>";
 		};
 		484A8E2F884196F301D8DD56 = {
@@ -326,6 +301,20 @@
 			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		4B8728D8A6E838274FDD2FDB = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_devices";
+			path = "/Applications/JUCE/modules/juce_audio_devices";
+			sourceTree = "<absolute>";
+		};
+		52C65EB1BB913C6E2974752D = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_basics";
+			path = "/Applications/JUCE/modules/juce_audio_basics";
+			sourceTree = "<absolute>";
+		};
 		53C58EF7EB4EB81F19140145 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -340,6 +329,20 @@
 			path = System/Library/Frameworks/OpenGL.framework;
 			sourceTree = SDKROOT;
 		};
+		5675712DA438C1B9DED834AF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_audio_formats.mm";
+			path = "../../JuceLibraryCode/include_juce_audio_formats.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		645601E7ED58AF7F16C01746 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_processors";
+			path = "/Applications/JUCE/modules/juce_audio_processors";
+			sourceTree = "<absolute>";
+		};
 		670D8E3DFEC80CCC46500BE7 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -353,20 +356,6 @@
 			name = BackgroundComponent.h;
 			path = ../../Source/BackgroundComponent.h;
 			sourceTree = "SOURCE_ROOT";
-		};
-		7C606533F393F50487C9BABD = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = FileWindowComponent.h;
-			path = ../../Source/FileWindowComponent.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		83D77011E340D95C4362C341 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_formats";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_audio_formats";
-			sourceTree = "<absolute>";
 		};
 		C7D6C34C84899BC4E9F4920C = {
 			isa = PBXFileReference;
@@ -402,13 +391,6 @@
 			name = Carbon.framework;
 			path = System/Library/Frameworks/Carbon.framework;
 			sourceTree = SDKROOT;
-		};
-		5675712DA438C1B9DED834AF = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_audio_formats.mm";
-			path = "../../JuceLibraryCode/include_juce_audio_formats.mm";
-			sourceTree = "SOURCE_ROOT";
 		};
 		576119114402F684B87A1239 = {
 			isa = PBXFileReference;
@@ -452,12 +434,19 @@
 			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU_2.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		7BB2C393FA5025CF7E46C9D1 = {
+		758C6D590E8B4FD5C64403F4 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
 			name = "juce_gui_basics";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_gui_basics";
+			path = "/Applications/JUCE/modules/juce_gui_basics";
 			sourceTree = "<absolute>";
+		};
+		7C606533F393F50487C9BABD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = FileWindowComponent.h;
+			path = ../../Source/FileWindowComponent.h;
+			sourceTree = "SOURCE_ROOT";
 		};
 		7C85EE64D948446BF572073F = {
 			isa = PBXFileReference;
@@ -472,13 +461,6 @@
 			name = WebKit.framework;
 			path = System/Library/Frameworks/WebKit.framework;
 			sourceTree = SDKROOT;
-		};
-		7F95F3750A0CAD665F83B84B = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_cryptography";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_cryptography";
-			sourceTree = "<absolute>";
 		};
 		818ED4F7B434E4F1D0ECC87B = {
 			isa = PBXFileReference;
@@ -501,6 +483,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU.r";
 			sourceTree = "SOURCE_ROOT";
 		};
+		8CBBE3BCFCA57C6E6D342B2D = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_formats";
+			path = "/Applications/JUCE/modules/juce_audio_formats";
+			sourceTree = "<absolute>";
+		};
 		91A22B14AADEABEDE7B0D424 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -521,6 +510,13 @@
 			name = ADSRComponent.h;
 			path = ../../Source/ADSRComponent.h;
 			sourceTree = "SOURCE_ROOT";
+		};
+		95C1C1F21BF1153FC2B75319 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_graphics";
+			path = "/Applications/JUCE/modules/juce_graphics";
+			sourceTree = "<absolute>";
 		};
 		95D65CF02F0BAC37E3B273B7 = {
 			isa = PBXFileReference;
@@ -543,13 +539,6 @@
 			path = System/Library/Frameworks/CoreMIDI.framework;
 			sourceTree = SDKROOT;
 		};
-		9D04F300C7920AFBCB31E4BA = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_basics";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_audio_basics";
-			sourceTree = "<absolute>";
-		};
 		9E5051F45C6BB6FFB685FD26 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -564,6 +553,13 @@
 			path = ../../Source/ADSRComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		AAAF3027699F0ECC218B4F4E = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_events";
+			path = "/Applications/JUCE/modules/juce_events";
+			sourceTree = "<absolute>";
+		};
 		AAB7CB5951D4E4996706307F = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -577,13 +573,6 @@
 			includeInIndex = 0;
 			path = libSAMPLIFIED.a;
 			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		AB8DB49DE7052E7893C09F3D = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_devices";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_audio_devices";
-			sourceTree = "<absolute>";
 		};
 		B1B48E99E7A7159DD1EB7E76 = {
 			isa = PBXFileReference;
@@ -627,6 +616,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_Standalone.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
+		CACB3FD6B4210245DC310592 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_core";
+			path = "/Applications/JUCE/modules/juce_core";
+			sourceTree = "<absolute>";
+		};
 		CBB734BE4B13ACF7534729CE = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -648,6 +644,13 @@
 			path = RecentFilesMenuTemplate.nib;
 			sourceTree = "SOURCE_ROOT";
 		};
+		CEBD2EE31DE9B315A64895E0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_gui_extra";
+			path = "/Applications/JUCE/modules/juce_gui_extra";
+			sourceTree = "<absolute>";
+		};
 		D24AF83CDCD2219C4334EDB5 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -655,11 +658,11 @@
 			path = "../../JuceLibraryCode/include_juce_events.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		DD160FDD3A07888458E3F412 = {
+		D6A562AC691D99F8C9BE3337 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_audio_utils";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_audio_utils";
+			name = "juce_audio_plugin_client";
+			path = "/Applications/JUCE/modules/juce_audio_plugin_client";
 			sourceTree = "<absolute>";
 		};
 		DE5BFBDFC4C2493AF9ABD91F = {
@@ -676,11 +679,11 @@
 			path = ../../Source/SamplifiedLookAndFeel.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		E1DE3E30A367B2066CF57C56 = {
+		EB6336CA1FF383114B5033FB = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_events";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_events";
+			name = "juce_opengl";
+			path = "/Applications/JUCE/modules/juce_opengl";
 			sourceTree = "<absolute>";
 		};
 		EB7789AFDA6239A03AD390D4 = {
@@ -697,12 +700,12 @@
 			path = ../../Source/WaveThumbnail.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
-		F85FC82BF8C494AAB1B58FE8 = {
+		F62F7E097E12D086FD4654EB = {
 			isa = PBXFileReference;
-			lastKnownFileType = image.png;
-			name = PLUGIN12.png;
-			path = ../../../PLUGIN/PHOTOSHOP/MOCKUPS/PLUGIN12.png;
-			sourceTree = "SOURCE_ROOT";
+			lastKnownFileType = file;
+			name = "juce_data_structures";
+			path = "/Applications/JUCE/modules/juce_data_structures";
+			sourceTree = "<absolute>";
 		};
 		F9ABA7B71F2594AC2F6A483F = {
 			isa = PBXFileReference;
@@ -711,19 +714,20 @@
 			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		FCB9165D68480080D2EED611 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_data_structures";
-			path = "/Volumes/My Passport SSD/JUCE/modules/juce_data_structures";
-			sourceTree = "<absolute>";
-		};
 		FEB4B4993D2C3E04C4DC9FFE = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = IOKit.framework;
 			path = System/Library/Frameworks/IOKit.framework;
 			sourceTree = SDKROOT;
+		};
+		162A4D8DA866D45C6DE6CB98 = {
+			isa = PBXGroup;
+			children = (
+				27A01FB6AC257AE864568A05,
+			);
+			name = Resources;
+			sourceTree = "<group>";
 		};
 		CB1C22FCBB39272F44C04430 = {
 			isa = PBXGroup;
@@ -751,6 +755,7 @@
 		6D4962944924D898F56A15CB = {
 			isa = PBXGroup;
 			children = (
+				162A4D8DA866D45C6DE6CB98,
 				CB1C22FCBB39272F44C04430,
 			);
 			name = SAMPLIFIED;
@@ -759,20 +764,20 @@
 		347D2678C42C2D2EB792E3D9 = {
 			isa = PBXGroup;
 			children = (
-				9D04F300C7920AFBCB31E4BA,
-				AB8DB49DE7052E7893C09F3D,
-				83D77011E340D95C4362C341,
-				483C8651BC1A345FACFFBA52,
-				1540BDAADB5108F1482E63D8,
-				DD160FDD3A07888458E3F412,
-				000058105D45815CDBF7EB67,
-				7F95F3750A0CAD665F83B84B,
-				FCB9165D68480080D2EED611,
-				E1DE3E30A367B2066CF57C56,
-				3BB85A8388A94BD3607F5BD0,
-				7BB2C393FA5025CF7E46C9D1,
-				06BBF1273E361A98BACE8F9E,
-				269437C33D6DE11CD53260F4,
+				52C65EB1BB913C6E2974752D,
+				4B8728D8A6E838274FDD2FDB,
+				8CBBE3BCFCA57C6E6D342B2D,
+				D6A562AC691D99F8C9BE3337,
+				645601E7ED58AF7F16C01746,
+				46E9B039FE800D481F756767,
+				CACB3FD6B4210245DC310592,
+				377D855E38A38BFDC3C4AC29,
+				F62F7E097E12D086FD4654EB,
+				AAAF3027699F0ECC218B4F4E,
+				95C1C1F21BF1153FC2B75319,
+				758C6D590E8B4FD5C64403F4,
+				CEBD2EE31DE9B315A64895E0,
+				EB6336CA1FF383114B5033FB,
 			);
 			name = "JUCE Modules";
 			sourceTree = "<group>";
@@ -911,10 +916,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_processors/format_types/VST3_SDK\"",
+					"/Applications/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"\"/Volumes/My Passport SSD/JUCE/modules\"",
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_plugin_client\"",
+					"/Applications/JUCE/modules",
+					"/Applications/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-VST3.plist;
@@ -963,10 +968,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_processors/format_types/VST3_SDK\"",
+					"/Applications/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"\"/Volumes/My Passport SSD/JUCE/modules\"",
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_plugin_client\"",
+					"/Applications/JUCE/modules",
+					"/Applications/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-VST3.plist;
@@ -1015,10 +1020,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_processors/format_types/VST3_SDK\"",
+					"/Applications/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"\"/Volumes/My Passport SSD/JUCE/modules\"",
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_plugin_client\"",
+					"/Applications/JUCE/modules",
+					"/Applications/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-AU.plist;
@@ -1068,10 +1073,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_processors/format_types/VST3_SDK\"",
+					"/Applications/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"\"/Volumes/My Passport SSD/JUCE/modules\"",
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_plugin_client\"",
+					"/Applications/JUCE/modules",
+					"/Applications/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-AU.plist;
@@ -1118,10 +1123,10 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_processors/format_types/VST3_SDK\"",
+					"/Applications/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"\"/Volumes/My Passport SSD/JUCE/modules\"",
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_plugin_client\"",
+					"/Applications/JUCE/modules",
+					"/Applications/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-Standalone_Plugin.plist;
@@ -1164,10 +1169,10 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_processors/format_types/VST3_SDK\"",
+					"/Applications/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"\"/Volumes/My Passport SSD/JUCE/modules\"",
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_plugin_client\"",
+					"/Applications/JUCE/modules",
+					"/Applications/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-Standalone_Plugin.plist;
@@ -1211,10 +1216,10 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_processors/format_types/VST3_SDK\"",
+					"/Applications/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"\"/Volumes/My Passport SSD/JUCE/modules\"",
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_plugin_client\"",
+					"/Applications/JUCE/modules",
+					"/Applications/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INSTALL_PATH = "@executable_path/../Frameworks";
@@ -1257,10 +1262,10 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_processors/format_types/VST3_SDK\"",
+					"/Applications/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../JuceLibraryCode",
-					"\"/Volumes/My Passport SSD/JUCE/modules\"",
-					"\"/Volumes/My Passport SSD/JUCE/modules/juce_audio_plugin_client\"",
+					"/Applications/JUCE/modules",
+					"/Applications/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
 				INSTALL_PATH = "@executable_path/../Frameworks";
@@ -1622,7 +1627,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C1CAC077400CC282CE04328,
 				C2C97715ACEA70F400597BCA,
 				232FCB2CB8727A7D6B8853D2,
 				DD3A217904044993EA16A567,

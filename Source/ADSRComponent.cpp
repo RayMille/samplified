@@ -15,6 +15,7 @@
 ADSRComponent::ADSRComponent (SamplifiedAudioProcessor& p) : processor (p)
 {
     //AttackSlider
+    //lalal
     mAttackSlider.setSliderStyle (Slider::SliderStyle::RotaryVerticalDrag);
   
     mAttackSlider.setTextBoxStyle (Slider::TextBoxBelow, true, 50, 14);
