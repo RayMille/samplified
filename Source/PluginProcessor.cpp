@@ -26,15 +26,7 @@ SamplifiedAudioProcessor::SamplifiedAudioProcessor()
 {
     LookAndFeel::setDefaultLookAndFeel(&samplifiedLookAndFeel);
     
-    ///// Directory Component Stuff /////
     mFormatManager.registerBasicFormats();
-    
-    fileFolder = File::getSpecialLocation(File::userHomeDirectory);
-    int flags = FileBrowserComponent::openMode |
-    FileBrowserComponent::canSelectFiles | FileBrowserComponent::useTreeView;
-    m_wcFileFilter = new WildcardFileFilter("*.wav", "*", "Wav files");
-    m_fileBrowser = new FileBrowserComponent(flags,fileFolder,m_wcFileFilter, NULL);
-    /////////////////////////////////////
     
     mAPVTS.state.addListener (this);
     
@@ -47,9 +39,6 @@ SamplifiedAudioProcessor::SamplifiedAudioProcessor()
 SamplifiedAudioProcessor::~SamplifiedAudioProcessor()
 {
     mFormatReader = nullptr;
-    
-    m_fileBrowser->~FileBrowserComponent();
-    delete (m_wcFileFilter);
 }
 
 //==============================================================================

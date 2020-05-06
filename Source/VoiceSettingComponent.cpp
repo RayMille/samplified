@@ -26,7 +26,15 @@ VoiceSettingComponent::~VoiceSettingComponent()
 // This function draws the wave in the screen
 void VoiceSettingComponent::paint (Graphics& g)
 {
+    float lineThickness = 0.6f;
+    float lineTopBottomMargin = 0.05f;
+    float marginLeftRight = 3;
+    
     g.fillAll(Colours::transparentBlack.darker());
+    
+    g.setColour (Colours::white);
+    g.drawLine(marginLeftRight, getHeight()*lineTopBottomMargin, marginLeftRight, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
+    g.drawLine(getWidth()-marginLeftRight, getHeight()*lineTopBottomMargin, getWidth()-marginLeftRight, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
     
 }
 

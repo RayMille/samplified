@@ -73,8 +73,7 @@ public:
     std::atomic<int>& getSampleCount() { return mSampleCount; }
     
     
-    //==============================================================================
-    FileBrowserComponent* m_fileBrowser;
+   
 
     //==============================================================================
     void loadNewSample(const File& sampleFile);
@@ -102,10 +101,6 @@ private:
     //==========================Directory Component Stuff===========================
     OwnedArray<Synthesiser> synth;
     SynthesiserSound::Ptr sound;
-    
-    //==============================================================================
-    File fileFolder;
-    WildcardFileFilter* m_wcFileFilter;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SamplifiedAudioProcessor)

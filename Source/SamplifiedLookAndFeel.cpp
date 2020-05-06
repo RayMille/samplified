@@ -180,7 +180,6 @@ void SamplifiedLookAndFeel::layoutFileBrowserComponent (FileBrowserComponent& br
 
     const int controlsHeight = 22;
     const int upButtonWidth = 30;
-    auto bottomSectionHeight = controlsHeight + 8;
 
     currentPathBox->setBounds (x, y, w - upButtonWidth - 6, controlsHeight);
     currentPathBox->hidePopup();

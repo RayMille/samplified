@@ -13,12 +13,14 @@
 
 //==============================================================================
 DisplayComponent::DisplayComponent (SamplifiedAudioProcessor& p) : processor (p),
-mWaveThumbnail(p),mDirectoryComponent(p)
+mWaveThumbnail(p),mDirectoryComponent(p), mVoiceSetting(p)
 {
-     addAndMakeVisible(mDirectoryComponent);
-     processor.m_fileBrowser->addListener(this);
+    addAndMakeVisible(mDirectoryComponent);
+    mDirectoryComponent.m_fileBrowser->addListener(this);
+    
+    addAndMakeVisible(mVoiceSetting);
      
-     addAndMakeVisible(mWaveThumbnail);
+    addAndMakeVisible(mWaveThumbnail);
 }
 
 DisplayComponent::~DisplayComponent()
@@ -28,8 +30,16 @@ DisplayComponent::~DisplayComponent()
 // This function draws the wave in the screen
 void DisplayComponent::paint (Graphics& g)
 {
-    mDirectoryComponent.setBounds(0, 0, getWidth()/3, getHeight());
-    mWaveThumbnail.setBounds(getWidth()/3, 0, getWidth()-(getWidth()/3), getHeight());
+    // Width of screen components in percentage
+    // Adjust these values to change porpotions of elements
+    // Should add up to 1.0f
+    float wDir = 0.34f;
+    float wVoice = 0.17f;
+    float wWave= 0.49f;
+    
+    mDirectoryComponent.setBounds(0, 0, getWidth()*wDir, getHeight());
+    mVoiceSetting.setBounds(getWidth()*wDir, 0, getWidth()*wVoice, getHeight());
+    mWaveThumbnail.setBounds(getWidth()-getWidth()*wWave, 0, getWidth()*wWave, getHeight());
 }
 
 void DisplayComponent::resized()
@@ -74,7 +84,7 @@ void DisplayComponent::selectionChanged ()
 
 void DisplayComponent::fileClicked (const File& file, const MouseEvent& e)
 {
-    if(processor.m_fileBrowser->currentFileIsValid()){
+    if(mDirectoryComponent.m_fileBrowser->currentFileIsValid()){
         
   
         auto myFile = std::make_unique<File>(file);
