@@ -8,8 +8,8 @@
       <FILE id="L632JX" name="PLUGIN12.png" compile="0" resource="1" file="Resources/PLUGIN12.png"/>
     </GROUP>
     <GROUP id="{28348884-7ABC-0066-1C4A-C5E010E47CD6}" name="Source">
-      <FILE id="FtEjXq" name="FileWindowComponent.h" compile="0" resource="0"
-            file="Source/FileWindowComponent.h"/>
+      <FILE id="FtEjXq" name="FileGradientComponent.h" compile="0" resource="0"
+            file="Source/FileGradientComponent.h"/>
       <FILE id="Bv4g1h" name="DirectoryComponent.cpp" compile="1" resource="0"
             file="Source/DirectoryComponent.cpp"/>
       <FILE id="znvdaS" name="DirectoryComponent.h" compile="0" resource="0"
@@ -32,6 +32,10 @@
       <FILE id="hzoecO" name="WaveThumbnail.cpp" compile="1" resource="0"
             file="Source/WaveThumbnail.cpp"/>
       <FILE id="zJFAZ4" name="WaveThumbnail.h" compile="0" resource="0" file="Source/WaveThumbnail.h"/>
+      <FILE id="UqvnuW" name="VoiceSettingComponent.cpp" compile="1" resource="0"
+            file="Source/VoiceSettingComponent.cpp"/>
+      <FILE id="Pojuw5" name="VoiceSettingComponent.h" compile="0" resource="0"
+            file="Source/VoiceSettingComponent.h"/>
       <FILE id="ZpshXc" name="ADSRComponent.cpp" compile="1" resource="0"
             file="Source/ADSRComponent.cpp"/>
       <FILE id="Ptoscj" name="ADSRComponent.h" compile="0" resource="0" file="Source/ADSRComponent.h"/>

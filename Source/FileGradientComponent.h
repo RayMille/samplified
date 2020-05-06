@@ -11,10 +11,10 @@
 #pragma once
 
 //==============================================================================
-class FileWindowComponent    : public Component
+class FileGradientComponent    : public Component
 {
 public:
-    FileWindowComponent()
+    FileGradientComponent()
     {
         
     }
@@ -44,5 +44,5 @@ public:
 private:
     
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FileWindowComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FileGradientComponent)
 };

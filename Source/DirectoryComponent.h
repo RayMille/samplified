@@ -12,7 +12,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "FileWindowComponent.h"
+#include "FileGradientComponent.h"
 
 //==============================================================================
 /*
@@ -35,7 +35,7 @@ private:
 //
     SamplifiedAudioProcessor& processor;
     
-    FileWindowComponent m_FileWindow;
+    FileGradientComponent m_FileWindow;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DirectoryComponent)
 };
