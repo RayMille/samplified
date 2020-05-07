@@ -16,6 +16,7 @@ VoiceSettingComponent::VoiceSettingComponent (SamplifiedAudioProcessor& p)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+    addAndMakeVisible(fileLabel);
 
 }
 
@@ -36,6 +37,13 @@ void VoiceSettingComponent::paint (Graphics& g)
     g.drawLine(marginLeftRight, getHeight()*lineTopBottomMargin, marginLeftRight, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
     g.drawLine(getWidth()-marginLeftRight, getHeight()*lineTopBottomMargin, getWidth()-marginLeftRight, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
     
+    fileLabel.setColour (Label::textColourId, Colours::white);
+    fileLabel.setJustificationType (Justification::centred);
+    fileLabel.setText(this->fileName, dontSendNotification);
+    fileLabel.setMinimumHorizontalScale(0.0f);
+ 
+    fileLabel.setBounds(marginLeftRight+2, getHeight()*lineTopBottomMargin, getWidth()-(marginLeftRight+2)*2, getHeight()/4);
+    
 }
 
 void VoiceSettingComponent::resized()
@@ -44,4 +52,11 @@ void VoiceSettingComponent::resized()
     // components that your component contains..
 
 }
+
+void VoiceSettingComponent::setFileName(const String& name)
+{
+    fileName = name;
+}
+
+
 

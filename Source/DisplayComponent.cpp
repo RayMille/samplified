@@ -85,11 +85,10 @@ void DisplayComponent::selectionChanged ()
 void DisplayComponent::fileClicked (const File& file, const MouseEvent& e)
 {
     if(mDirectoryComponent.m_fileBrowser->currentFileIsValid()){
-        
-  
         auto myFile = std::make_unique<File>(file);
         mFileName = myFile->getFileNameWithoutExtension();
         processor.LoadFile (file);
+        mVoiceSetting.setFileName(mFileName);
     }
 
     repaint();
