@@ -28,10 +28,23 @@ public:
     
     void setFileName(const String& name);
     
-    String fileName = "Hi";
+    String fileName = "";
+    
+    const Drawable* getDefaultDocumentFileImage();
     
 private:
     Label fileLabel;
+    
+    Label voiceLabel;
+    Slider voiceInput;
+    
+    Label transpLabel;
+    Slider transpInput;
+    
+    Label fineLabel;
+    Slider fineInput;
+    
+    std::unique_ptr<Drawable> documentImage;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VoiceSettingComponent)
 };

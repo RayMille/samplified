@@ -313,16 +313,43 @@ Slider::SliderLayout SamplifiedLookAndFeel::getSliderLayout (Slider& slider)
     return layout;
 }
 
-Label* SamplifiedLookAndFeel::createSliderTextBox (Slider& slider)
-{
+Label* SamplifiedLookAndFeel::createSliderTextBox (Slider& slider){
+
     auto* l = LookAndFeel_V2::createSliderTextBox (slider);
-    
-//    if (getCurrentColourScheme() == LookAndFeel_V4::getGreyColourScheme() && (slider.getSliderStyle() == Slider::LinearBar
-//                                                                              || slider.getSliderStyle() == Slider::LinearBarVertical))
-//    {
-        l->setColour (Label::textColourId, Colours::lightgrey);
-        l->setColour (Label::outlineColourId, Colours::transparentWhite);
-//    }
-    
+
+    if (getCurrentColourScheme() == LookAndFeel_V4::getGreyColourScheme() && (slider.getSliderStyle() == Slider::LinearBar
+                                                                               || slider.getSliderStyle() == Slider::LinearBarVertical))
+    {
+        l->setColour (Label::textColourId, Colours::black.withAlpha (0.7f));
+    }
+
     return l;
+}
+
+void SamplifiedLookAndFeel::drawLabel (Graphics& g, Label& label)
+{
+    g.fillAll (label.findColour (Label::backgroundColourId));
+
+    if (! label.isBeingEdited())
+    {
+        auto alpha = label.isEnabled() ? 1.0f : 0.5f;
+        const Font font (getLabelFont (label));
+
+        g.setColour (label.findColour (Label::textColourId).withMultipliedAlpha (alpha));
+        g.setFont (font);
+
+        auto textArea = getLabelBorderSize (label).subtractedFrom (label.getLocalBounds());
+
+        g.drawFittedText (label.getText(), textArea, label.getJustificationType(),
+                          jmax (1, (int) (textArea.getHeight() / font.getHeight())),
+                          label.getMinimumHorizontalScale());
+
+        g.setColour (label.findColour (Label::outlineColourId).withMultipliedAlpha (alpha));
+    }
+    else if (label.isEnabled())
+    {
+        g.setColour (label.findColour (Label::outlineColourId));
+    }
+
+    g.drawRoundedRectangle( 0, 0, label.getWidth(), label.getHeight(), 7, 1  );
 }
