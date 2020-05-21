@@ -1,0 +1,152 @@
+/*
+  ==============================================================================
+
+    VoiceSettingComponent.cpp
+    Created: 6 May 2020 5:01:08pm
+    Author:  Camille Koenders
+
+  ==============================================================================
+*/
+
+#include <JuceHeader.h>
+#include "VoiceSettingComponent.h"
+
+//==============================================================================
+VoiceSettingComponent::VoiceSettingComponent (SamplifiedAudioProcessor& p)
+{
+    // In your constructor, you should add any child components, and
+    // initialise any special settings that your component needs.
+    addAndMakeVisible(fileLabel);
+    addAndMakeVisible(voiceLabel);
+    addAndMakeVisible(voiceInput);
+    addAndMakeVisible(transpLabel);
+    addAndMakeVisible(transpInput);
+    addAndMakeVisible(fineLabel);
+    addAndMakeVisible(fineInput);
+
+}
+
+VoiceSettingComponent::~VoiceSettingComponent()
+{
+}
+
+static std::unique_ptr<Drawable> createDrawableFromSVG (const char* data)
+{
+    auto xml = parseXML (data);
+    jassert (xml != nullptr);
+    return Drawable::createFromSVG (*xml);
+}
+
+const Drawable* VoiceSettingComponent::getDefaultDocumentFileImage()
+{
+    if (documentImage == nullptr)
+        documentImage = createDrawableFromSVG (R"svgdata(
+                                               <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.81 85.88"><defs><style>.cls-1{fill:#ff0019;}</style></defs><title>WAVE</title><path class="cls-1" d="M48,105c3.95,0,8.69.8,12.53-.23,2.56-.68,3.62-2.44,4.52-4.75.82-2.1,2.65-5.5,2.66-7.71,0-.24.4-.74.32-1-.29-.84-2.51-.83-2.85,0-.14.34.4,1.42.51,1.78l2.13,7.54L71.3,113c.64,2.28,4.29,2.49,4.82,0L83.6,77.69H78.77L89.8,126c.68,3,4.6,1.93,4.91-.67l7.79-64.93-4.91.67,11.1,81c.33,2.4,4.47,2.38,4.82,0l9.69-66.49h-4.82l12.47,40.76c.57,1.87,3.64,2.67,4.57.6,1.39-3.1,2.48-6.8,4.32-9.63,2.09-3.2,5.7-2.28,9.24-2.28,3.22,0,3.22-5,0-5-4.4,0-9.95-1-12.75,3.18-2.21,3.32-3.49,7.56-5.13,11.2l4.57.6L123.2,74.24c-.66-2.15-4.45-2.59-4.82,0l-9.69,66.49h4.82l-11.1-80.95c-.42-3-4.61-1.86-4.91.66l-7.79,64.93,4.91-.66-11-48.35c-.54-2.36-4.32-2.41-4.83,0L71.3,111.68h4.82L72.37,98.42c-.78-2.73-1.38-9.81-4.7-11-4.88-1.68-6,7.53-7.1,10.24s-2.17,2.31-5,2.31H48c-3.21,0-3.22,5,0,5Z" transform="translate(-45.58 -57.97)"/></svg>
+                                               //<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" baseProfile="full" width="480px" height="360px" viewBox="0 0 480 360" preserveAspectRatio="xMidYMid meet" id="svg_document" style="zoom: 1;"><!-- Created with macSVG - https://macsvg.org/ - https://github.com/dsward2/macsvg/ --><title id="svg_document_title">Untitled.svg</title><defs id="svg_document_defs"></defs><g id="main_group"></g><path stroke="#a40006" id="path2" stroke-width="10px" d="M187,180 C187,58 204,321 207,204 C210,87 214,270 224,194 C234,118 240,150 240,205 C240,260 257,166 257,166 " fill="none" transform=""></path></svg>
+                                               )svgdata");
+
+    return documentImage.get();
+}
+
+
+
+
+
+// This function draws the wave in the screen
+void VoiceSettingComponent::paint (Graphics& g)
+{
+    float lineThickness = 0.6f;
+    float lineTopBottomMargin = 0.05f;
+    float lineSideMargin = 3;
+    
+    float fileLableTopMargin = getHeight()/10;
+    float fileLableHeight = getHeight()/4;
+    
+    float otherLableSideMargin = getWidth()/7;
+    float otherLableHeight = getHeight()/8;
+    float otherLableWidth = getWidth()/3;
+    
+    float imageHeight = getHeight()/5;
+    
+    auto area = getLocalBounds();
+    
+    auto leftColoumn = getLocalBounds();
+    leftColoumn.removeFromRight(getWidth()/2);
+    leftColoumn.removeFromTop(fileLableHeight + fileLableTopMargin);
+    
+    auto rightColoumn = getLocalBounds();
+    rightColoumn.removeFromLeft(getWidth()/2+3);
+    rightColoumn.removeFromRight(otherLableSideMargin);
+    rightColoumn.removeFromTop(fileLableHeight + fileLableTopMargin);
+    
+//    auto imageArea = getLocalBounds();
+//    imageArea.removeFromBottom(imageHeight);//.reduce(20, 0);
+    
+    g.fillAll(Colours::transparentBlack.darker());
+    
+    g.setColour (Colours::white);
+    g.drawLine(lineSideMargin, getHeight()*lineTopBottomMargin, lineSideMargin, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
+    g.drawLine(getWidth()-lineSideMargin, getHeight()*lineTopBottomMargin, getWidth()-lineSideMargin, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
+    
+    fileLabel.setColour (Label::textColourId, Colours::white);
+    fileLabel.setJustificationType (Justification::centred);
+    fileLabel.setText(this->fileName, dontSendNotification);
+
+    
+    voiceInput.setSliderStyle(juce::Slider::LinearBarVertical);
+    voiceInput.setRange(1, 32,1);
+    voiceInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
+    
+    voiceLabel.setColour (Label::textColourId, Colours::white);
+    voiceLabel.setJustificationType (Justification::right);
+    voiceLabel.setText("Voices", dontSendNotification);
+    
+    transpInput.setSliderStyle(juce::Slider::LinearBarVertical);
+    transpInput.setRange(0, 100,1);
+    transpInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
+    
+    transpLabel.setColour (Label::textColourId, Colours::white);
+    transpLabel.setJustificationType (Justification::right);
+    transpLabel.setText("Transp", dontSendNotification);
+    
+    fineInput.setSliderStyle(juce::Slider::LinearBarVertical);
+    fineInput.setRange(-20, 20,1);
+    fineInput.setTextValueSuffix("c");
+    fineInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
+      
+    fineLabel.setColour (Label::textColourId, Colours::white);
+    fineLabel.setJustificationType (Justification::right);
+    fineLabel.setText("Fine", dontSendNotification);
+    
+    fileLabel.setBounds(area.removeFromTop(fileLableHeight + fileLableTopMargin));
+    
+    voiceLabel.setBounds(leftColoumn.removeFromTop(otherLableHeight));
+    voiceInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,2));
+    
+    transpLabel.setBounds(leftColoumn.removeFromTop(otherLableHeight));
+    transpInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,2));
+    
+    fineLabel.setBounds(leftColoumn.removeFromTop(otherLableHeight));
+    fineInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,2));
+    
+    
+    auto* d = getDefaultDocumentFileImage();
+    d->drawWithin (g, Rectangle<float> (2*getWidth()/5,getHeight()-getHeight()/5,getWidth()/5,getHeight()/5),
+                       RectanglePlacement::centred | RectanglePlacement::onlyReduceInSize, 1.0f);
+    
+
+    
+}
+
+void VoiceSettingComponent::resized()
+{
+    // This method is where you should set the bounds of any child
+    // components that your component contains..
+
+}
+
+void VoiceSettingComponent::setFileName(const String& name)
+{
+    fileName = name;
+}
+

@@ -46,6 +46,7 @@ void WaveThumbnail::paint (Graphics& g)
             mAudiopoints.push_back (buffer[sample]);
         }
         
+
         g.setColour(Colours::orange);
         p.startNewSubPath (0, getHeight() / 2);
         

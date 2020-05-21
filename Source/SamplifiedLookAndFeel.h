@@ -38,6 +38,9 @@ public:
     
     Colour treeviewPlusMinusBoxColour;
     
+    void drawLabel (Graphics& g, Label& label) override;
+    
+
 private:
     std::unique_ptr<Drawable> folderImage, documentImage;
     

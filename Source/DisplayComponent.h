@@ -14,6 +14,7 @@
 #include "PluginProcessor.h"
 #include "DirectoryComponent.h"
 #include "WaveThumbnail.h"
+#include "VoiceSettingComponent.h"
 
 //==============================================================================
 /*
@@ -51,6 +52,8 @@ private:
     
     WaveThumbnail mWaveThumbnail;
     DirectoryComponent mDirectoryComponent;
+    
+    VoiceSettingComponent mVoiceSetting;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DisplayComponent)
 };

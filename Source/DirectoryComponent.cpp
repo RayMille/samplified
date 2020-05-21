@@ -14,20 +14,26 @@
 //==============================================================================
 DirectoryComponent::DirectoryComponent (SamplifiedAudioProcessor& p) : processor (p)
 {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
+       
+    fileFolder = File::getSpecialLocation(File::userHomeDirectory);
+    int flags = FileBrowserComponent::openMode |
+    FileBrowserComponent::canSelectFiles | FileBrowserComponent::useTreeView;
+    m_wcFileFilter = new WildcardFileFilter("*.wav", "*", "Wav files");
+    m_fileBrowser = new FileBrowserComponent(flags,fileFolder,m_wcFileFilter, NULL);
 
 }
 
 DirectoryComponent::~DirectoryComponent()
 {
+    m_fileBrowser->~FileBrowserComponent();
+    delete (m_wcFileFilter);
 }
 
 // This function draws the wave in the screen
 void DirectoryComponent::paint (Graphics& g)
 {
-    addAndMakeVisible(processor.m_fileBrowser);
-    processor.m_fileBrowser->setBounds(0,0,getWidth(), getHeight());
+    addAndMakeVisible(m_fileBrowser);
+    m_fileBrowser->setBounds(0,0,getWidth(), getHeight());
     
     addAndMakeVisible(m_FileWindow);
     m_FileWindow.setBounds(0, getHeight()/8, getWidth(), getHeight());

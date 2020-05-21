@@ -55,6 +55,7 @@ const Drawable* SamplifiedLookAndFeel::getDefaultFolderImage()
     if (folderImage == nullptr)
         folderImage = createDrawableFromSVG (R"svgdata(
                                              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 78.21 55.59"><defs><style>.cls-1{fill:url(#linear-gradient);}.cls-2{fill:#ffa300;}</style><linearGradient id="linear-gradient" y1="29.53" x2="78.21" y2="29.53" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f39200"/><stop offset="1" stop-color="#e94e1b"/></linearGradient></defs><g id="Layer_2" data-name="Layer 2"><rect class="cls-1" y="3.48" width="78.21" height="52.11" rx="9"/><path class="cls-2" d="M132,129.63H68a7.12,7.12,0,0,1-7.1-7.09v-28A7.12,7.12,0,0,1,68,87.44H94.13c2.78,0,5.43-2.71,7.35-4.73l5.34-5.6A9.84,9.84,0,0,1,114,74h18a7.13,7.13,0,0,1,7.1,7.1v41.4A7.12,7.12,0,0,1,132,129.63Z" transform="translate(-60.89 -74.04)"/></g></svg>
+
                                              //<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" baseProfile="full" width="480px" height="360px" viewBox="0 0 480 360" preserveAspectRatio="xMidYMid meet" id="svg_document" style="zoom: 1;"><!-- Created with macSVG - https://macsvg.org/ - https://github.com/dsward2/macsvg/ --><title id="svg_document_title">Untitled.svg</title><defs id="svg_document_defs"></defs><g id="main_group"><polyline points="111,135 111,254 111,254 111,254 342,255 341,103 246,104 206,136 " stroke="none" id="polyline3" stroke-width="3px" fill="#cc0004" transform=""></polyline></g><polyline points="165,415 167,416 29,352" stroke="none" id="polyline2" stroke-width="3px" fill="#cc0004" transform=""></polyline></svg>
 )svgdata");
 
@@ -180,7 +181,6 @@ void SamplifiedLookAndFeel::layoutFileBrowserComponent (FileBrowserComponent& br
 
     const int controlsHeight = 22;
     const int upButtonWidth = 30;
-    auto bottomSectionHeight = controlsHeight + 8;
 
     currentPathBox->setBounds (x, y, w - upButtonWidth - 6, controlsHeight);
     currentPathBox->hidePopup();
@@ -314,16 +314,46 @@ Slider::SliderLayout SamplifiedLookAndFeel::getSliderLayout (Slider& slider)
     return layout;
 }
 
-Label* SamplifiedLookAndFeel::createSliderTextBox (Slider& slider)
-{
+
+Label* SamplifiedLookAndFeel::createSliderTextBox (Slider& slider){
+
     auto* l = LookAndFeel_V2::createSliderTextBox (slider);
-    
-//    if (getCurrentColourScheme() == LookAndFeel_V4::getGreyColourScheme() && (slider.getSliderStyle() == Slider::LinearBar
-//                                                                              || slider.getSliderStyle() == Slider::LinearBarVertical))
-//    {
-        l->setColour (Label::textColourId, Colours::lightgrey);
-        l->setColour (Label::outlineColourId, Colours::transparentWhite);
-//    }
-    
+
+    if (getCurrentColourScheme() == LookAndFeel_V4::getGreyColourScheme() && (slider.getSliderStyle() == Slider::LinearBar
+                                                                               || slider.getSliderStyle() == Slider::LinearBarVertical))
+    {
+        l->setColour (Label::textColourId, Colours::black.withAlpha (0.7f));
+        //l->setColour (Label::textColourId, Colours::lightgrey);
+        //l->setColour (Label::outlineColourId, Colours::transparentWhite);
+    }
+
     return l;
+}
+
+void SamplifiedLookAndFeel::drawLabel (Graphics& g, Label& label)
+{
+    g.fillAll (label.findColour (Label::backgroundColourId));
+
+    if (! label.isBeingEdited())
+    {
+        auto alpha = label.isEnabled() ? 1.0f : 0.5f;
+        const Font font (getLabelFont (label));
+
+        g.setColour (label.findColour (Label::textColourId).withMultipliedAlpha (alpha));
+        g.setFont (font);
+
+        auto textArea = getLabelBorderSize (label).subtractedFrom (label.getLocalBounds());
+
+        g.drawFittedText (label.getText(), textArea, label.getJustificationType(),
+                          jmax (1, (int) (textArea.getHeight() / font.getHeight())),
+                          label.getMinimumHorizontalScale());
+
+        g.setColour (label.findColour (Label::outlineColourId).withMultipliedAlpha (alpha));
+    }
+    else if (label.isEnabled())
+    {
+        g.setColour (label.findColour (Label::outlineColourId));
+    }
+
+    g.drawRoundedRectangle( 0, 0, label.getWidth(), label.getHeight(), 7, 1  );
 }
