@@ -26,7 +26,7 @@ WaveThumbnail::~WaveThumbnail()
 // This function draws the wave in the screen
 void WaveThumbnail::paint (Graphics& g)
 {
-    g.fillAll(Colours::black.brighter());
+    g.fillAll(Colours::transparentBlack.darker());
     
     auto waveform = processor.getWaveForm();
     
@@ -56,18 +56,27 @@ void WaveThumbnail::paint (Graphics& g)
             p.lineTo (sample, point);
         }
         
-        g.strokePath(p, PathStrokeType(2));
+        g.strokePath(p, PathStrokeType(1));
         
         g.setColour(Colours::white);
         g.setFont(15.0f);
         auto textBounds = getLocalBounds().reduced (10, 10);
         g.drawFittedText(mFileName, textBounds, Justification::topRight, 1);
+        
+        auto playHeadPosition = jmap <int> (processor.getSampleCount(), 0,
+                                            processor.getWaveForm().getNumSamples(), 0, getWidth());
+        
+        g.setColour(Colours::white);
+        g.drawLine(playHeadPosition, 0, playHeadPosition, getHeight(), 2.0f);
+        
+        g.setColour(Colours::white.withAlpha(0.1f));
+        g.fillRect(0, 0, playHeadPosition, getHeight());
     }
     else
     {
         g.setColour(Colours::white);
-        g.setFont(30.0f);
-        g.drawFittedText("DROP FILE HERE", getLocalBounds(), Justification::centred, 1);
+        g.setFont(20.0f);
+        g.drawFittedText("SELECT OR DROP FILE", getLocalBounds(), Justification::centred, 1);
     }
 }
 
@@ -76,47 +85,4 @@ void WaveThumbnail::resized()
     // This method is where you should set the bounds of any child
     // components that your component contains..
 
-}
-
-bool WaveThumbnail::isInterestedInFileDrag (const StringArray& files)
-{
-    for (auto file : files)
-    {
-        if (file.contains(".wav") || file.contains(".mp3") || file.contains(".aif"))
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-void WaveThumbnail::filesDropped(const StringArray &files, int x, int y)
-{
-    for (auto file : files)
-    {
-        if (isInterestedInFileDrag (file))
-        {
-            auto myFile = std::make_unique<File>(file);
-            mFileName = myFile->getFileNameWithoutExtension();
-            
-            processor.LoadFile (file);
-        }
-    }
-    
-    repaint();
-}
-
-void WaveThumbnail::filesClicked(const File& file)
-{
-//    for (auto file : files)
-//    {
-//        if (isInterestedInFileDrag (file))
-//        {
-            auto myFile = std::make_unique<File>(file);
-            mFileName = myFile->getFileNameWithoutExtension();
-            processor.LoadFile (file);
-        
-//    }
-    
-    repaint();
 }

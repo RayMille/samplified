@@ -24,12 +24,14 @@ SamplifiedAudioProcessor::SamplifiedAudioProcessor()
                        ), mAPVTS(*this, nullptr, "PARAMETERS", createParameters() )
 #endif
 {
+    LookAndFeel::setDefaultLookAndFeel(&samplifiedLookAndFeel);
+    
     ///// Directory Component Stuff /////
     mFormatManager.registerBasicFormats();
     
     fileFolder = File::getSpecialLocation(File::userHomeDirectory);
     int flags = FileBrowserComponent::openMode |
-    FileBrowserComponent::canSelectFiles | FileBrowserComponent::filenameBoxIsReadOnly;
+    FileBrowserComponent::canSelectFiles | FileBrowserComponent::useTreeView;
     m_wcFileFilter = new WildcardFileFilter("*.wav", "*", "Wav files");
     m_fileBrowser = new FileBrowserComponent(flags,fileFolder,m_wcFileFilter, NULL);
     /////////////////////////////////////
@@ -163,6 +165,20 @@ void SamplifiedAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
        updateADSR();
     }
     
+    MidiMessage m;
+    MidiBuffer::Iterator it { midiMessages };
+    int sample;
+    
+    while (it.getNextEvent(m, sample))
+    {
+        if (m.isNoteOn())
+            mIsNotePlayed = true;
+        else if (m.isNoteOff())
+            mIsNotePlayed = false;
+    }
+    
+    mSampleCount = mIsNotePlayed ? mSampleCount += buffer.getNumSamples() : 0;
+    
     mSampler.renderNextBlock (buffer, midiMessages, 0, buffer.getNumSamples());
 }
 
@@ -246,6 +262,7 @@ void SamplifiedAudioProcessor::LoadFile (const File& file)
     
     mSampler.addSound (new SamplerSound ("Sample", *mFormatReader, range, 60, 0.1, 0.1, 10.0));
     
+    updateWaveThumbnail();
     updateADSR();
 }
 
@@ -263,6 +280,10 @@ void SamplifiedAudioProcessor::updateADSR()
             sound->setEnvelopeParameters(mADSRParams);
         }
     }
+}
+
+void SamplifiedAudioProcessor::updateWaveThumbnail()
+{
 }
 
 AudioProcessorValueTreeState::ParameterLayout SamplifiedAudioProcessor::createParameters()

@@ -11,6 +11,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "SamplifiedLookAndFeel.h"
 
 //==============================================================================
 /**
@@ -64,15 +65,21 @@ public:
     AudioBuffer<float>& getWaveForm() {return mWaveForm; }
     
     void updateADSR();
+    void updateWaveThumbnail();
     
     ADSR::Parameters& getADSRParams() {return mADSRParams;}
     AudioProcessorValueTreeState& getAPVTS() { return mAPVTS; }
+    std::atomic<bool>& isNotePlayed() { return mIsNotePlayed; }
+    std::atomic<int>& getSampleCount() { return mSampleCount; }
+    
     
     //==============================================================================
     FileBrowserComponent* m_fileBrowser;
 
     //==============================================================================
     void loadNewSample(const File& sampleFile);
+    
+    SamplifiedLookAndFeel samplifiedLookAndFeel;
 
 private:
     Synthesiser mSampler;
@@ -89,6 +96,8 @@ private:
     void valueTreePropertyChanged (ValueTree& treeWhosePropertyHasChanged, const Identifier& property) override;
     
     std::atomic<bool> mShouldUpdate { false };
+    std::atomic<bool> mIsNotePlayed { false };
+    std::atomic<int> mSampleCount { 0 };
     
     //==========================Directory Component Stuff===========================
     OwnedArray<Synthesiser> synth;

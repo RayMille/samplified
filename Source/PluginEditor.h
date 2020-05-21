@@ -12,15 +12,15 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "WaveThumbnail.h"
 #include "ADSRComponent.h"
 #include "BackgroundComponent.h"
-#include "DirectoryComponent.h"
+#include "DisplayComponent.h"
 
 //==============================================================================
 /**
 */
-class SamplifiedAudioProcessorEditor  : public AudioProcessorEditor
+class SamplifiedAudioProcessorEditor  : public AudioProcessorEditor,
+                                        public Timer
 {
 public:
     SamplifiedAudioProcessorEditor (SamplifiedAudioProcessor&);
@@ -29,12 +29,12 @@ public:
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
+    void timerCallback() override;
     
 private:
-    WaveThumbnail mWaveThumbnail;
+    DisplayComponent mDisplayComponent;
     ADSRComponent mADSR;
     BackgroundComponent mBackground;
-    DirectoryComponent mDirectory;
     
     SamplifiedAudioProcessor& processor;
 

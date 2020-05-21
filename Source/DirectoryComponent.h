@@ -2,8 +2,8 @@
   ==============================================================================
 
     DirectoryComponent.h
-    Created: 9 Apr 2020 7:04:55pm
-    Author:  Johannes Koenders
+    Created: 16 Apr 2020 6:57:44pm
+    Author:  Camille Koenders
 
   ==============================================================================
 */
@@ -12,34 +12,32 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "WaveThumbnail.h"
+#include "FileWindowComponent.h"
 
 //==============================================================================
 /*
 */
-class DirectoryComponent    : public Component, public FileBrowserListener
+class DirectoryComponent    : public Component
+
 {
 public:
-    DirectoryComponent(SamplifiedAudioProcessor& p);
+    DirectoryComponent (SamplifiedAudioProcessor& p);
     ~DirectoryComponent();
 
     void paint (Graphics&) override;
     void resized() override;
-    
-    //==============================================================================
-    void selectionChanged () override;
-    void fileClicked (const File& file, const MouseEvent& e) override;
-    void fileDoubleClicked (const File& file) override;
-    void browserRootChanged (const File& newRoot) override;
 
 private:
+//    std::vector<float> mAudiopoints;
+//    bool mShouldBePainting { false };
+//
+//    String mFileName { "" };
+//
     SamplifiedAudioProcessor& processor;
     
-    AudioFormatManager formatManager;
-    std::unique_ptr<AudioFormatReaderSource> readerSource;
-    AudioTransportSource transportSource;
-    
-    WaveThumbnail mWaveThumbnail;
+    FileWindowComponent m_FileWindow;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DirectoryComponent)
 };
+
+

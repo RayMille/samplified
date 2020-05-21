@@ -22,12 +22,12 @@ class ADSRComponent    : public Component
 public:
     ADSRComponent (SamplifiedAudioProcessor& p);
     ~ADSRComponent();
-
     void paint (Graphics&) override;
     void resized() override;
 
 private:
     Slider mAttackSlider, mDecaySlider, mSustainSlider, mReleaseSlider;
+    //TextBox mAttackTextBox, mDecayTextBox, mSustainTextBox, mReleaseTextBox;
     Label mAttackLabel, mDecayLabel, mSustainLabel, mReleaseLabel;
     
     std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> mAttackAttachment;

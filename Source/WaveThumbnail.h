@@ -16,8 +16,7 @@
 //==============================================================================
 /*
 */
-class WaveThumbnail    : public Component,
-                         public FileDragAndDropTarget
+class WaveThumbnail    : public Component
 
 {
 public:
@@ -27,13 +26,8 @@ public:
     void paint (Graphics&) override;
     void resized() override;
     
-    bool isInterestedInFileDrag (const StringArray& files) override;
-    void filesDropped (const StringArray& files, int x, int y) override;
-    void filesClicked (const File& file);
-
 private:
     std::vector<float> mAudiopoints;
-    bool mShouldBePainting { false };
     
     String mFileName { "" };
     

@@ -5,9 +5,23 @@
               pluginManufacturer="KoendersAudio">
   <MAINGROUP id="znyszf" name="SAMPLIFIED">
     <GROUP id="{74764556-3F6E-B772-6924-AFE76362A71B}" name="Resources">
-      <FILE id="xumqJu" name="BACKGROUND.png" compile="0" resource="1" file="../PLUGIN/PHOTOSHOP/MOCKUPS/BACKGROUND.png"/>
+      <FILE id="ukWt5j" name="2.png" compile="1" resource="1" file="../KNOBANIMATION/2.png"
+            xcodeResource="1"/>
+      <FILE id="J408ss" name="PLUGIN14.png" compile="1" resource="1" file="../PLUGIN/PHOTOSHOP/MOCKUPS/PLUGIN14.png"
+            xcodeResource="1"/>
     </GROUP>
     <GROUP id="{28348884-7ABC-0066-1C4A-C5E010E47CD6}" name="Source">
+      <FILE id="YKqqQv" name="FilmStripKnob.h" compile="0" resource="0" file="Source/FilmStripKnob.h"/>
+      <FILE id="FtEjXq" name="FileWindowComponent.h" compile="0" resource="0"
+            file="Source/FileWindowComponent.h"/>
+      <FILE id="Bv4g1h" name="DirectoryComponent.cpp" compile="1" resource="0"
+            file="Source/DirectoryComponent.cpp"/>
+      <FILE id="znvdaS" name="DirectoryComponent.h" compile="0" resource="0"
+            file="Source/DirectoryComponent.h"/>
+      <FILE id="AfjDXg" name="DisplayComponent.cpp" compile="1" resource="0"
+            file="Source/DisplayComponent.cpp"/>
+      <FILE id="P2N7e2" name="DisplayComponent.h" compile="0" resource="0"
+            file="Source/DisplayComponent.h"/>
       <FILE id="PYsAkA" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="J7qEkU" name="PluginProcessor.h" compile="0" resource="0"
@@ -15,16 +29,16 @@
       <FILE id="dif0MB" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="luLv26" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="dwEgsS" name="SamplifiedLookAndFeel.h" compile="0" resource="0"
+            file="Source/SamplifiedLookAndFeel.h"/>
+      <FILE id="voufWc" name="SamplifiedLookAndFeel.cpp" compile="1" resource="0"
+            file="Source/SamplifiedLookAndFeel.cpp"/>
       <FILE id="hzoecO" name="WaveThumbnail.cpp" compile="1" resource="0"
             file="Source/WaveThumbnail.cpp"/>
       <FILE id="zJFAZ4" name="WaveThumbnail.h" compile="0" resource="0" file="Source/WaveThumbnail.h"/>
       <FILE id="ZpshXc" name="ADSRComponent.cpp" compile="1" resource="0"
             file="Source/ADSRComponent.cpp"/>
       <FILE id="Ptoscj" name="ADSRComponent.h" compile="0" resource="0" file="Source/ADSRComponent.h"/>
-      <FILE id="MYKyUU" name="DirectoryComponent.cpp" compile="1" resource="0"
-            file="Source/DirectoryComponent.cpp"/>
-      <FILE id="jAyzaw" name="DirectoryComponent.h" compile="0" resource="0"
-            file="Source/DirectoryComponent.h"/>
       <FILE id="aa94JV" name="BackgroundComponent.h" compile="0" resource="0"
             file="Source/BackgroundComponent.h"/>
     </GROUP>
