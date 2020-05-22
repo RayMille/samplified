@@ -14,7 +14,7 @@
 //==============================================================================
 DirectoryComponent::DirectoryComponent (SamplifiedAudioProcessor& p) : processor (p)
 {
-       
+
     fileFolder = File::getSpecialLocation(File::userHomeDirectory);
     int flags = FileBrowserComponent::openMode |
     FileBrowserComponent::canSelectFiles | FileBrowserComponent::useTreeView;
@@ -34,7 +34,7 @@ void DirectoryComponent::paint (Graphics& g)
 {
     addAndMakeVisible(m_fileBrowser);
     m_fileBrowser->setBounds(0,0,getWidth(), getHeight());
-    
+
     addAndMakeVisible(m_FileWindow);
     m_FileWindow.setBounds(0, getHeight()/8, getWidth(), getHeight());
     m_FileWindow.setInterceptsMouseClicks(false, true);
@@ -44,6 +44,5 @@ void DirectoryComponent::resized()
 {
     // This method is where you should set the bounds of any child
     // components that your component contains..
-    
-}
 
+}

@@ -16,22 +16,21 @@ class BackgroundComponent    : public Component
 public:
     BackgroundComponent()
     {
-        
+
     }
-    
+
     void paint (Graphics& g) override
     {
-        Image background = ImageCache::getFromMemory (BinaryData::PLUGIN12_png, (size_t) BinaryData::PLUGIN12_pngSize);
+        Image background = ImageCache::getFromMemory (BinaryData::PLUGIN14_png, (size_t) BinaryData::PLUGIN14_pngSize);
         g.drawImageWithin (background, 0, 0, getWidth(),getHeight(),RectanglePlacement::onlyReduceInSize,false);
     }
-    
+
     void resized() override
     {
     }
-    
+
 private:
-    
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BackgroundComponent)
 };
-

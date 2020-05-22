@@ -17,9 +17,9 @@ mWaveThumbnail(p),mDirectoryComponent(p), mVoiceSetting(p)
 {
     addAndMakeVisible(mDirectoryComponent);
     mDirectoryComponent.m_fileBrowser->addListener(this);
-    
+
     addAndMakeVisible(mVoiceSetting);
-     
+
     addAndMakeVisible(mWaveThumbnail);
 }
 
@@ -36,7 +36,7 @@ void DisplayComponent::paint (Graphics& g)
     float wDir = 0.34f;
     float wVoice = 0.17f;
     float wWave= 0.49f;
-    
+
     mDirectoryComponent.setBounds(0, 0, getWidth()*wDir, getHeight());
     mVoiceSetting.setBounds(getWidth()*wDir, 0, getWidth()*wVoice, getHeight());
     mWaveThumbnail.setBounds(getWidth()-getWidth()*wWave, 0, getWidth()*wWave, getHeight());
@@ -69,11 +69,11 @@ void DisplayComponent::filesDropped(const StringArray &files, int x, int y)
         {
             auto myFile = std::make_unique<File>(file);
             mFileName = myFile->getFileNameWithoutExtension();
-            
+
             processor.LoadFile (file);
         }
     }
-    
+
     repaint();
 }
 
@@ -102,4 +102,3 @@ void DisplayComponent::fileDoubleClicked (const File& file)
 void DisplayComponent::browserRootChanged (const File& newRoot)
 {
 }
-

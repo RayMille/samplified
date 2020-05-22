@@ -8,11 +8,14 @@
 
 namespace BinaryData
 {
-    extern const char*   PLUGIN12_png;
-    const int            PLUGIN12_pngSize = 645227;
+    extern const char*   _2_png;
+    const int            _2_pngSize = 9012462;
+
+    extern const char*   PLUGIN14_png;
+    const int            PLUGIN14_pngSize = 391311;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 1;
+    const int namedResourceListSize = 2;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
