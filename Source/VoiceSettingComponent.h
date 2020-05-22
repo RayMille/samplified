@@ -32,6 +32,8 @@ public:
     
     const Drawable* getDefaultDocumentFileImage();
     
+    
+    
 private:
     Label fileLabel;
     
@@ -45,6 +47,13 @@ private:
     Slider fineInput;
     
     std::unique_ptr<Drawable> documentImage;
+    
+    SamplifiedAudioProcessor& processor;
+    
+public:
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> mVoicesAttachment;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> mTranspAttachment;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> mFineAttachment;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VoiceSettingComponent)
 };

@@ -12,7 +12,7 @@
 #include "VoiceSettingComponent.h"
 
 //==============================================================================
-VoiceSettingComponent::VoiceSettingComponent (SamplifiedAudioProcessor& p)
+VoiceSettingComponent::VoiceSettingComponent (SamplifiedAudioProcessor& p) : processor (p)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
@@ -64,10 +64,6 @@ void VoiceSettingComponent::paint (Graphics& g)
     
     float otherLableSideMargin = getWidth()/7;
     float otherLableHeight = getHeight()/8;
-    float otherLableWidth = getWidth()/3;
-    
-    float imageHeight = getHeight()/5;
-    
     auto area = getLocalBounds();
     
     auto leftColoumn = getLocalBounds();
@@ -101,22 +97,30 @@ void VoiceSettingComponent::paint (Graphics& g)
     voiceLabel.setJustificationType (Justification::right);
     voiceLabel.setText("Voices", dontSendNotification);
     
+    mVoicesAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "VOICES", voiceInput);
+    
+    
     transpInput.setSliderStyle(juce::Slider::LinearBarVertical);
-    transpInput.setRange(0, 100,1);
+    transpInput.setRange(-24, 24, 0);
     transpInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
     
     transpLabel.setColour (Label::textColourId, Colours::white);
     transpLabel.setJustificationType (Justification::right);
     transpLabel.setText("Transp", dontSendNotification);
     
+    mTranspAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "TRANSP", transpInput);
+    
+    
     fineInput.setSliderStyle(juce::Slider::LinearBarVertical);
-    fineInput.setRange(-20, 20,1);
+    fineInput.setRange(-0.50f, 0.50f, 0);
     fineInput.setTextValueSuffix("c");
     fineInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
       
     fineLabel.setColour (Label::textColourId, Colours::white);
     fineLabel.setJustificationType (Justification::right);
     fineLabel.setText("Fine", dontSendNotification);
+    
+    mFineAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "FINE", fineInput);
     
     fileLabel.setBounds(area.removeFromTop(fileLableHeight + fileLableTopMargin));
     
