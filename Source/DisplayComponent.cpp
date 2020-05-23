@@ -84,7 +84,7 @@ void DisplayComponent::selectionChanged ()
 
 void DisplayComponent::fileClicked (const File& file, const MouseEvent& e)
 {
-    if(mDirectoryComponent.m_fileBrowser->currentFileIsValid()){
+    if(mDirectoryComponent.m_fileBrowser->currentFileIsValid() && file.existsAsFile()){
         auto myFile = std::make_unique<File>(file);
         mFileName = myFile->getFileNameWithoutExtension();
         processor.LoadFile (file);

@@ -108,7 +108,7 @@ void SamplifiedAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
 {
     updateVoices();
     mSampler.setCurrentPlaybackSampleRate (sampleRate);
-    updateADSR();
+    updateADSRV();
 }
 
 void SamplifiedAudioProcessor::releaseResources()
@@ -159,7 +159,7 @@ void SamplifiedAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
 
     if (mShouldUpdate)
     {
-       updateADSR();
+       updateADSRV();
     }
 
     MidiMessage m;
@@ -172,14 +172,14 @@ void SamplifiedAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
     {
         if (m.isNoteOn()){
             mIsNotePlayed = true;
+            
+            uint8 newVel = (uint8) volumeVal;
+          //  m.setNoteNumber(m.getNoteNumber()+transpositionAmount);
+            m = MidiMessage::noteOn(m.getChannel(), m.getNoteNumber(), newVel);
 
         }else if (m.isNoteOff()){
+           // m.setNoteNumber(m.getNoteNumber()+transpositionAmount);
             mIsNotePlayed = false;
-        }
-
-        if (m.isNoteOnOrOff())
-        {
-            m.setNoteNumber(m.getNoteNumber()+transpositionAmount);
         }
 
         output.addEvent(m, sample);
@@ -242,9 +242,12 @@ void SamplifiedAudioProcessor::LoadFile()
 void SamplifiedAudioProcessor::LoadFile (const String& path)
 {
     mSampler.clearSounds();
-
+    
+    
     auto file = File (path);
     mFormatReader = mFormatManager.createReaderFor (file);
+
+    
 
     auto sampleLength = static_cast<int>(mFormatReader->lengthInSamples);
 
@@ -257,7 +260,7 @@ void SamplifiedAudioProcessor::LoadFile (const String& path)
     updateVoices();
     mSampler.addSound (new SamplerSound ("Sample", *mFormatReader, range, 60, 0.1, 0.1, 10.0));
 
-    updateADSR();
+    updateADSRV();
 }
 
 
@@ -265,7 +268,8 @@ void SamplifiedAudioProcessor::LoadFile (const File& file)
 {
     mSampler.clearSounds();
     updateVoices();
-
+    
+    
     mFormatReader = mFormatManager.createReaderFor (file);
 
     auto sampleLength = static_cast<int>(mFormatReader->lengthInSamples);
@@ -280,15 +284,16 @@ void SamplifiedAudioProcessor::LoadFile (const File& file)
 
 
     updateWaveThumbnail();
-    updateADSR();
+    updateADSRV();
 }
 
-void SamplifiedAudioProcessor::updateADSR()
+void SamplifiedAudioProcessor::updateADSRV()
 {
     mADSRParams.attack = mAPVTS.getRawParameterValue ("ATTACK")->load();
     mADSRParams.decay = mAPVTS.getRawParameterValue ("DECAY")->load();
     mADSRParams.sustain = mAPVTS.getRawParameterValue ("SUSTAIN")->load();
     mADSRParams.release = mAPVTS.getRawParameterValue ("RELEASE")->load();
+    volumeVal = mAPVTS.getRawParameterValue ("VOLUME")->load();
 
     for (int i = 0; i < mSampler.getNumSounds(); ++i)
     {
@@ -330,6 +335,7 @@ AudioProcessorValueTreeState::ParameterLayout SamplifiedAudioProcessor::createPa
     parameters.push_back(std::make_unique<AudioParameterInt>("VOICES", "Voices", 1, 32, 1));
     parameters.push_back(std::make_unique<AudioParameterInt>("TRANSP", "Transp", -24, 24, 0));
     parameters.push_back(std::make_unique<AudioParameterFloat>("FINE", "Fine", -0.50f, 0.50f, 0));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("VOLUME", "Volume", 0.0, 127.0, 1.0));
 
     return { parameters.begin(), parameters.end() };
 }

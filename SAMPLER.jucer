@@ -39,6 +39,10 @@
             file="Source/VoiceSettingComponent.h"/>
       <FILE id="ZpshXc" name="ADSRComponent.cpp" compile="1" resource="0"
             file="Source/ADSRComponent.cpp"/>
+      <FILE id="K5TYgW" name="VolumeComponent.cpp" compile="1" resource="0"
+            file="Source/VolumeComponent.cpp"/>
+      <FILE id="VW5sGU" name="VolumeComponent.h" compile="0" resource="0"
+            file="Source/VolumeComponent.h"/>
       <FILE id="Ptoscj" name="ADSRComponent.h" compile="0" resource="0" file="Source/ADSRComponent.h"/>
       <FILE id="aa94JV" name="BackgroundComponent.h" compile="0" resource="0"
             file="Source/BackgroundComponent.h"/>

@@ -64,7 +64,7 @@ public:
     int getNumSamplerSounds() {return mSampler.getNumSounds(); }
     AudioBuffer<float>& getWaveForm() {return mWaveForm; }
 
-    void updateADSR();
+    void updateADSRV();
     void updateWaveThumbnail();
     void updateVoices();
 
@@ -89,6 +89,8 @@ private:
     AudioBuffer<float> mWaveForm;
 
     ADSR::Parameters mADSRParams;
+    
+    std::atomic<float> volumeVal;
 
     AudioFormatManager mFormatManager;
     AudioFormatReader* mFormatReader { nullptr };
@@ -102,7 +104,7 @@ private:
     std::atomic<bool> mIsNotePlayed { false };
     std::atomic<int> mSampleCount { 0 };
 
-    std::atomic<int> transpositionAmount { 0 };
+    std::atomic<float> transpositionAmount { 0 };
 
     juce::MidiBuffer output;
 

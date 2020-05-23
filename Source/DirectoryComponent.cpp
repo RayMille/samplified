@@ -36,7 +36,7 @@ void DirectoryComponent::paint (Graphics& g)
     m_fileBrowser->setBounds(0,0,getWidth(), getHeight());
 
     addAndMakeVisible(m_FileWindow);
-    m_FileWindow.setBounds(0, getHeight()/8, getWidth(), getHeight());
+    m_FileWindow.setBounds(0, getHeight()/8, getWidth(), getHeight()-getHeight()/8);
     m_FileWindow.setInterceptsMouseClicks(false, true);
 }
 
