@@ -9,43 +9,22 @@
 */
 
 #pragma once
+#include <JuceHeader.h>
 
 class FilmStripKnob : public Slider
 {
 public:
-    FilmStripKnob(Image image, const int numFrames, const bool stripIsHorizontal, int index)
-    : Slider(juce::String(index)),
-    filmStrip(Image = ImageCache::getFromMemory (BinaryData::2_png, (size_t) BinaryData::2_pngSize);),
-    numFrames_(136),
-    isVertical_(stripIsVertical)
-    {
-        setTextBoxStyle(NoTextBox, 0, 0, 0);
-        setSliderStyle(RotaryVerticalDrag);
-        frameHeight = filmStrip.getHeight() / numFrames_;
-        frameWidth = filmStrip.getWidth();
-        setRange(0.0f, 1.0f, 0.001f);
+    FilmStripKnob(const void* knob_png, const int knob_pngSize, const int numFrames, const bool stripIsHorizontal, int index);
         
-        getProperties().set(Identifier("index"), index);
-    }
+    void paint(Graphics& g) override;
     
-    void paint(Graphics& g) override
-    {
-        int value = (int)((getValue() - getMinimum()) / (getMaximum() - getMinimum()) * (numFrames_ - 1));
-        if(isHorizontal_)
-        {
-            g.drawImage(filmStrip, 0, 0, getWidth(), getHeight(),
-                        value * frameWidth, 0, frameWidth, frameHeight);
-        }
-        else
-        {
-            g.drawImage(filmStrip, 0, 0, getWidth(), getHeight(),
-                        0, value * frameHeight, frameWidth, frameHeight);
-        }
-    }
+    int getFrameWidth();
+    
+    int getFrameHeight();
     
 private:
     Image filmStrip;
     const int numFrames_;
-    const bool isVertical_;
+    const bool isHorizontal_;
     int frameWidth, frameHeight;
 };

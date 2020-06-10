@@ -73,6 +73,12 @@ public:
     std::atomic<bool>& isNotePlayed() { return mIsNotePlayed; }
     std::atomic<int>& getSampleCount() { return mSampleCount; }
     
+    int panPosition { 64 };
+
+
+
+
+    //==============================================================================
     void loadNewSample(const File& sampleFile);
     
     SamplifiedLookAndFeel samplifiedLookAndFeel;

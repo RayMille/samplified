@@ -12,23 +12,15 @@
 #include "VolumeComponent.h"
 
 //==============================================================================
-VolumeComponent::VolumeComponent (SamplifiedAudioProcessor& p) : processor (p)
+VolumeComponent::VolumeComponent (SamplifiedAudioProcessor& p) : processor (p),
+mVolumeSlider (BinaryData::FILMSTRIP1_100FR_VERT_270DEG_png, (size_t) BinaryData::FILMSTRIP1_100FR_VERT_270DEG_pngSize, 100, true, 2)
 {
+    
     //AttackSlider
     mVolumeSlider.setSliderStyle (Slider::SliderStyle::RotaryVerticalDrag);
-  
+
     mVolumeSlider.setTextBoxStyle (Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
-    mVolumeSlider.setColour (Slider::ColourIds::thumbColourId, Colours::dimgrey);
-    mVolumeSlider.setColour (Slider::ColourIds::rotarySliderOutlineColourId, Colours::transparentBlack);
-    mVolumeSlider.setColour (Slider::ColourIds::rotarySliderFillColourId, Colours::transparentBlack);
-//    //mAttackSlider.setRange (0.0f, 5.0f, 0.01f);
     addAndMakeVisible (mVolumeSlider);
-//
-//    mVolumeLabel.setFont (14.0f);
-//    //mAttackLabel.setText ("A", NotificationType::dontSendNotification);
-//    mVolumeLabel.setColour (Label::textColourId, Colours::white);
-//    mVolumeLabel.setJustificationType(Justification::centred);
-//    mVolumeLabel.attachToComponent (&mVolumeSlider, false);
 
     mVolumeAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "VOLUME", mVolumeSlider);
 

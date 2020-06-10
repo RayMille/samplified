@@ -13,14 +13,14 @@
 
 //==============================================================================
 DisplayComponent::DisplayComponent (SamplifiedAudioProcessor& p) : processor (p),
-mWaveThumbnail(p),mDirectoryComponent(p), mVoiceSetting(p)
+mWaveWindow(p),mDirectoryComponent(p), mVoiceSetting(p)
 {
     addAndMakeVisible(mDirectoryComponent);
     mDirectoryComponent.m_fileBrowser->addListener(this);
 
     addAndMakeVisible(mVoiceSetting);
 
-    addAndMakeVisible(mWaveThumbnail);
+    addAndMakeVisible(mWaveWindow);
 }
 
 DisplayComponent::~DisplayComponent()
@@ -39,7 +39,7 @@ void DisplayComponent::paint (Graphics& g)
     
     mDirectoryComponent.setBounds(0, 0, getWidth()*wDir, getHeight());
     mVoiceSetting.setBounds(getWidth()*wDir, 0, getWidth()*wVoice, getHeight());
-    mWaveThumbnail.setBounds(getWidth()-getWidth()*wWave, 0, getWidth()*wWave, getHeight());
+    mWaveWindow.setBounds(getWidth()-getWidth()*wWave, 0, getWidth()*wWave, getHeight());
 }
 
 void DisplayComponent::resized()

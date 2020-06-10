@@ -173,12 +173,20 @@ void SamplifiedAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
             mIsNotePlayed = true;
             
             uint8 newVel = (uint8) volumeVal;
-          //  m.setNoteNumber(m.getNoteNumber()+transpositionAmount);
+            m.setNoteNumber(m.getNoteNumber()+transpositionAmount);
             m = MidiMessage::noteOn(m.getChannel(), m.getNoteNumber(), newVel);
 
         }else if (m.isNoteOff()){
-           // m.setNoteNumber(m.getNoteNumber()+transpositionAmount);
+            m.setNoteNumber(m.getNoteNumber()+transpositionAmount);
             mIsNotePlayed = false;
+        }
+       
+        if(m.isController()){
+            auto a = m.getControllerValue();
+            if(m.getControllerValue() == 11)
+            {
+                panPosition = (int) m.getControllerValue();
+            }
         }
 
         output.addEvent(m, sample);
@@ -187,6 +195,8 @@ void SamplifiedAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
     if(output.isEmpty()){
           output = midiMessages;
     }
+    
+    
 
     mSampleCount = mIsNotePlayed ? mSampleCount += buffer.getNumSamples() : 0;
 
