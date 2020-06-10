@@ -12,7 +12,7 @@
 #include "VoiceSettingComponent.h"
 
 //==============================================================================
-VoiceSettingComponent::VoiceSettingComponent (SamplifiedAudioProcessor& p)
+VoiceSettingComponent::VoiceSettingComponent (SamplifiedAudioProcessor& p) : processor (p)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
@@ -41,7 +41,7 @@ const Drawable* VoiceSettingComponent::getDefaultDocumentFileImage()
 {
     if (documentImage == nullptr)
         documentImage = createDrawableFromSVG (R"svgdata(
-                                               <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.81 85.88"><defs><style>.cls-1{fill:#ff0019;}</style></defs><title>WAVE</title><path class="cls-1" d="M48,105c3.95,0,8.69.8,12.53-.23,2.56-.68,3.62-2.44,4.52-4.75.82-2.1,2.65-5.5,2.66-7.71,0-.24.4-.74.32-1-.29-.84-2.51-.83-2.85,0-.14.34.4,1.42.51,1.78l2.13,7.54L71.3,113c.64,2.28,4.29,2.49,4.82,0L83.6,77.69H78.77L89.8,126c.68,3,4.6,1.93,4.91-.67l7.79-64.93-4.91.67,11.1,81c.33,2.4,4.47,2.38,4.82,0l9.69-66.49h-4.82l12.47,40.76c.57,1.87,3.64,2.67,4.57.6,1.39-3.1,2.48-6.8,4.32-9.63,2.09-3.2,5.7-2.28,9.24-2.28,3.22,0,3.22-5,0-5-4.4,0-9.95-1-12.75,3.18-2.21,3.32-3.49,7.56-5.13,11.2l4.57.6L123.2,74.24c-.66-2.15-4.45-2.59-4.82,0l-9.69,66.49h4.82l-11.1-80.95c-.42-3-4.61-1.86-4.91.66l-7.79,64.93,4.91-.66-11-48.35c-.54-2.36-4.32-2.41-4.83,0L71.3,111.68h4.82L72.37,98.42c-.78-2.73-1.38-9.81-4.7-11-4.88-1.68-6,7.53-7.1,10.24s-2.17,2.31-5,2.31H48c-3.21,0-3.22,5,0,5Z" transform="translate(-45.58 -57.97)"/></svg>
+                                               <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.81 85.88"><defs><style>.cls-1{fill:#ffa300;}</style></defs><path class="cls-1" d="M2.42,47c4,0,8.69.8,12.53-.23,2.56-.68,3.62-2.44,4.52-4.75.82-2.1,2.65-5.5,2.66-7.71,0-.24.4-.74.32-1-.29-.84-2.51-.83-2.85,0-.14.34.4,1.42.51,1.78l2.13,7.54L25.72,55c.64,2.28,4.29,2.49,4.82,0L38,19.72H33.19L44.22,68c.68,3,4.6,1.93,4.91-.67L56.92,2.43,52,3.1l11.1,81c.33,2.4,4.47,2.38,4.82,0l9.69-66.49H72.8L85.27,58.37c.57,1.87,3.64,2.67,4.57.6,1.39-3.1,2.48-6.8,4.32-9.63,2.09-3.2,5.7-2.28,9.24-2.28,3.22,0,3.22-5,0-5-4.4,0-10-1-12.75,3.18-2.21,3.32-3.49,7.56-5.13,11.2l4.57.6L77.62,16.27c-.66-2.15-4.45-2.59-4.82,0L63.11,82.76h4.82L56.83,1.81c-.42-3-4.61-1.86-4.91.66L44.13,67.4,49,66.74,38,18.39c-.54-2.36-4.32-2.41-4.83,0L25.72,53.71h4.82L26.79,40.45c-.78-2.73-1.38-9.81-4.7-11-4.88-1.68-6,7.53-7.1,10.24S12.82,42,10,42H2.42c-3.21,0-3.22,5,0,5Z" transform="translate(-0.01 -0.02)"/></svg>
                                                //<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" baseProfile="full" width="480px" height="360px" viewBox="0 0 480 360" preserveAspectRatio="xMidYMid meet" id="svg_document" style="zoom: 1;"><!-- Created with macSVG - https://macsvg.org/ - https://github.com/dsward2/macsvg/ --><title id="svg_document_title">Untitled.svg</title><defs id="svg_document_defs"></defs><g id="main_group"></g><path stroke="#a40006" id="path2" stroke-width="10px" d="M187,180 C187,58 204,321 207,204 C210,87 214,270 224,194 C234,118 240,150 240,205 C240,260 257,166 257,166 " fill="none" transform=""></path></svg>
                                                )svgdata");
 
@@ -64,10 +64,6 @@ void VoiceSettingComponent::paint (Graphics& g)
     
     float otherLableSideMargin = getWidth()/7;
     float otherLableHeight = getHeight()/8;
-    float otherLableWidth = getWidth()/3;
-    
-    float imageHeight = getHeight()/5;
-    
     auto area = getLocalBounds();
     
     auto leftColoumn = getLocalBounds();
@@ -101,22 +97,30 @@ void VoiceSettingComponent::paint (Graphics& g)
     voiceLabel.setJustificationType (Justification::right);
     voiceLabel.setText("Voices", dontSendNotification);
     
+    mVoicesAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "VOICES", voiceInput);
+    
+    
     transpInput.setSliderStyle(juce::Slider::LinearBarVertical);
-    transpInput.setRange(0, 100,1);
+    transpInput.setRange(-24, 24, 0);
     transpInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
     
     transpLabel.setColour (Label::textColourId, Colours::white);
     transpLabel.setJustificationType (Justification::right);
     transpLabel.setText("Transp", dontSendNotification);
     
+    mTranspAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "TRANSP", transpInput);
+    
+    
     fineInput.setSliderStyle(juce::Slider::LinearBarVertical);
-    fineInput.setRange(-20, 20,1);
+    fineInput.setRange(-0.50f, 0.50f, 0);
     fineInput.setTextValueSuffix("c");
     fineInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
       
     fineLabel.setColour (Label::textColourId, Colours::white);
     fineLabel.setJustificationType (Justification::right);
     fineLabel.setText("Fine", dontSendNotification);
+    
+    mFineAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "FINE", fineInput);
     
     fileLabel.setBounds(area.removeFromTop(fileLableHeight + fileLableTopMargin));
     

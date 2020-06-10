@@ -15,6 +15,7 @@
 #include "ADSRComponent.h"
 #include "BackgroundComponent.h"
 #include "DisplayComponent.h"
+#include "VolumeComponent.h"
 
 //==============================================================================
 /**
@@ -35,6 +36,7 @@ private:
     DisplayComponent mDisplayComponent;
     ADSRComponent mADSR;
     BackgroundComponent mBackground;
+    VolumeComponent mVolume;
     
     SamplifiedAudioProcessor& processor;
 

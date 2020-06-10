@@ -27,9 +27,8 @@ SamplifiedAudioProcessor::SamplifiedAudioProcessor()
     LookAndFeel::setDefaultLookAndFeel(&samplifiedLookAndFeel);
  
     mFormatManager.registerBasicFormats();
-    
     mAPVTS.state.addListener (this);
-    
+
     for (int i = 0; i < mNumVoices; i++)
     {
         mSampler.addVoice (new SamplerVoice());
@@ -106,8 +105,9 @@ void SamplifiedAudioProcessor::changeProgramName (int index, const String& newNa
 //==============================================================================
 void SamplifiedAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    updateVoices();
     mSampler.setCurrentPlaybackSampleRate (sampleRate);
-    updateADSR();
+    updateADSRV();
 }
 
 void SamplifiedAudioProcessor::releaseResources()
@@ -145,30 +145,53 @@ void SamplifiedAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
     ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
-    
+
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
-    
+
+    if (mSouldUpdateVoices)
+    {
+        updateVoices();
+        mSouldUpdateVoices = false;
+
+    }
+
     if (mShouldUpdate)
     {
-       updateADSR();
+       updateADSRV();
     }
-    
+
     MidiMessage m;
     MidiBuffer::Iterator it { midiMessages };
     int sample;
-    
+
+    output.clear();
+
     while (it.getNextEvent(m, sample))
     {
-        if (m.isNoteOn())
+        if (m.isNoteOn()){
             mIsNotePlayed = true;
-        else if (m.isNoteOff())
+            
+            uint8 newVel = (uint8) volumeVal;
+          //  m.setNoteNumber(m.getNoteNumber()+transpositionAmount);
+            m = MidiMessage::noteOn(m.getChannel(), m.getNoteNumber(), newVel);
+
+        }else if (m.isNoteOff()){
+           // m.setNoteNumber(m.getNoteNumber()+transpositionAmount);
             mIsNotePlayed = false;
+        }
+
+        output.addEvent(m, sample);
     }
-    
+
+    if(output.isEmpty()){
+          output = midiMessages;
+    }
+
     mSampleCount = mIsNotePlayed ? mSampleCount += buffer.getNumSamples() : 0;
-    
-    mSampler.renderNextBlock (buffer, midiMessages, 0, buffer.getNumSamples());
+
+    mSampler.renderNextBlock (buffer, output, 0, buffer.getNumSamples());
+
 }
 
 //==============================================================================
@@ -199,69 +222,78 @@ void SamplifiedAudioProcessor::setStateInformation (const void* data, int sizeIn
 void SamplifiedAudioProcessor::LoadFile()
 {
     mSampler.clearSounds();
-    
+
     FileChooser chooser { "Please load file" };
-    
+
     if (chooser.browseForFileToOpen())
     {
         auto file = chooser.getResult();
         mFormatReader = mFormatManager.createReaderFor (file);
     }
-    
+
     BigInteger range;
     range.setRange(0, 128, true);
-    
+
     mSampler.addSound (new SamplerSound ("Sample", *mFormatReader, range, 60, 0.1, 0.1, 10.0));
-    
+
 }
 
 void SamplifiedAudioProcessor::LoadFile (const String& path)
 {
     mSampler.clearSounds();
     
+    
     auto file = File (path);
     mFormatReader = mFormatManager.createReaderFor (file);
+
     
+
     auto sampleLength = static_cast<int>(mFormatReader->lengthInSamples);
-    
+
     mWaveForm.setSize(1, sampleLength);
     mFormatReader ->read (&mWaveForm, 0, sampleLength, 0, true, false);
-    
+
     BigInteger range;
     range.setRange(0, 128, true);
-    
+
+    updateVoices();
     mSampler.addSound (new SamplerSound ("Sample", *mFormatReader, range, 60, 0.1, 0.1, 10.0));
-    
-    updateADSR();
+
+    updateADSRV();
 }
+
 
 void SamplifiedAudioProcessor::LoadFile (const File& file)
 {
     mSampler.clearSounds();
+    updateVoices();
+    
     
     mFormatReader = mFormatManager.createReaderFor (file);
-    
+
     auto sampleLength = static_cast<int>(mFormatReader->lengthInSamples);
-    
+
     mWaveForm.setSize(1, sampleLength);
     mFormatReader ->read (&mWaveForm, 0, sampleLength, 0, true, false);
-    
+
     BigInteger range;
     range.setRange(0, 128, true);
-    
+
     mSampler.addSound (new SamplerSound ("Sample", *mFormatReader, range, 60, 0.1, 0.1, 10.0));
-    
+
+
     updateWaveThumbnail();
-    updateADSR();
+    updateADSRV();
 }
 
-void SamplifiedAudioProcessor::updateADSR()
+void SamplifiedAudioProcessor::updateADSRV()
 {
     mADSRParams.attack = mAPVTS.getRawParameterValue ("ATTACK")->load();
     mADSRParams.decay = mAPVTS.getRawParameterValue ("DECAY")->load();
     mADSRParams.sustain = mAPVTS.getRawParameterValue ("SUSTAIN")->load();
     mADSRParams.release = mAPVTS.getRawParameterValue ("RELEASE")->load();
-    
+    volumeVal = mAPVTS.getRawParameterValue ("VOLUME")->load();
+
     for (int i = 0; i < mSampler.getNumSounds(); ++i)
     {
         if (auto sound = dynamic_cast<SamplerSound*>(mSampler.getSound(i).get()))
@@ -271,6 +303,22 @@ void SamplifiedAudioProcessor::updateADSR()
     }
 }
 
+void SamplifiedAudioProcessor::updateVoices()
+{
+    auto slicerVoiceValue = mAPVTS.getRawParameterValue ("VOICES")->load();
+    auto slicerTranspValue = mAPVTS.getRawParameterValue ("TRANSP")->load();
+    auto slicerFineValue = mAPVTS.getRawParameterValue ("FINE")->load();
+
+    transpositionAmount = slicerTranspValue + slicerFineValue;
+
+    mSampler.clearVoices();
+    for (int i = 0; i < slicerVoiceValue; i++)
+    {
+        mSampler.addVoice (new SamplerVoice());
+    }
+
+}
+
 void SamplifiedAudioProcessor::updateWaveThumbnail()
 {
 }
@@ -278,18 +326,23 @@ void SamplifiedAudioProcessor::updateWaveThumbnail()
 AudioProcessorValueTreeState::ParameterLayout SamplifiedAudioProcessor::createParameters()
 {
     std::vector<std::unique_ptr<RangedAudioParameter>> parameters;
-    
+
     parameters.push_back (std::make_unique<AudioParameterFloat>("ATTACK", "Attack", 0.0f, 5.0f, 0.0f));
     parameters.push_back (std::make_unique<AudioParameterFloat>("DECAY", "Decay", 0.0f, 3.0f, 2.0f));
     parameters.push_back (std::make_unique<AudioParameterFloat>("SUSTAIN", "Sustain", 0.0f, 1.0f, 1.0f));
     parameters.push_back (std::make_unique<AudioParameterFloat>("RELEASE", "Release", 0.0f, 5.0f, 2.0f));
-    
+    parameters.push_back(std::make_unique<AudioParameterInt>("VOICES", "Voices", 1, 32, 1));
+    parameters.push_back(std::make_unique<AudioParameterInt>("TRANSP", "Transp", -24, 24, 0));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("FINE", "Fine", -0.50f, 0.50f, 0));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("VOLUME", "Volume", 0.0, 127.0, 1.0));
+
     return { parameters.begin(), parameters.end() };
 }
 
 void SamplifiedAudioProcessor::valueTreePropertyChanged (ValueTree& treeWhosePropertyHasChanged, const Identifier& property)
 {
     mShouldUpdate = true;
+    mSouldUpdateVoices = true;
 }
 
 //==============================================================================
@@ -307,14 +360,14 @@ void SamplifiedAudioProcessor::loadNewSample (const File& sampleFile)
     auto* soundBuffer = sampleFile.createInputStream();
     String format = sampleFile.getFileExtension();
     std::unique_ptr<AudioFormatReader> formatReader (mFormatManager.findFormatForFileExtension (format )->createReaderFor (soundBuffer, true));
-    
+
     BigInteger range;
     range.setRange(0, 128, true);
-    
+
     SynthesiserSound::Ptr newSound = new SamplerSound ("Voice", *formatReader, range, 0x40, 0.0, 0.0, 10.0);
 
     sound = newSound;
-    
+
     mSampler.addSound (sound);
 
 }

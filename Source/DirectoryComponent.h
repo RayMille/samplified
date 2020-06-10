@@ -32,14 +32,12 @@ public:
 
 private:
     SamplifiedAudioProcessor& processor;
-    
+
     FileGradientComponent m_FileWindow;
-    
+
     //==============================================================================
     File fileFolder;
     WildcardFileFilter* m_wcFileFilter;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DirectoryComponent)
 };
-
-

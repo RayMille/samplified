@@ -15,11 +15,11 @@ SamplifiedLookAndFeel :: SamplifiedLookAndFeel()
     {
         setColour(ListBox::backgroundColourId, Colours::black);
         setColour(ListBox::outlineColourId, Colours::black);
-        
+
         setColour(DirectoryContentsDisplayComponent::textColourId, Colours::white);
         setColour(DirectoryContentsDisplayComponent::highlightColourId, Colours::black);
         setColour(DirectoryContentsDisplayComponent::highlightedTextColourId, Colours::white);
-        
+
         setColour(ComboBox::outlineColourId, Colours::black);
         setColour(ComboBox::textColourId, Colours::white);
         setColour(ComboBox::backgroundColourId, Colours::black);
@@ -30,17 +30,16 @@ SamplifiedLookAndFeel :: SamplifiedLookAndFeel()
         setColour(PopupMenu::headerTextColourId,              Colours::white);
         setColour(PopupMenu::highlightedTextColourId,         Colours::white);
         setColour(PopupMenu::highlightedBackgroundColourId,   Colours::darkgrey);
-        
+
         setColour(FileBrowserComponent::currentPathBoxBackgroundColourId, Colours::black);
         setColour(FileBrowserComponent::currentPathBoxTextColourId, Colours::white);
         setColour(FileBrowserComponent::currentPathBoxArrowColourId, Colours::orange);
-        
+
         setColour(ScrollBar::thumbColourId, Colours::orange.withAlpha(0.4f));
-        
+
         setColour(TextButton::buttonColourId, Colours::black);
-        
+
         treeviewPlusMinusBoxColour = Colours::orange;
-                
     }
 
 static std::unique_ptr<Drawable> createDrawableFromSVG (const char* data)
@@ -89,12 +88,12 @@ void SamplifiedLookAndFeel::drawFileBrowserRow (Graphics& g, int width, int heig
     const int x = 32;
     g.setColour (Colours::black);
 
-  
+
     if (auto* d = isDirectory ? getDefaultFolderImage()
                               : getDefaultDocumentFileImage())
         d->drawWithin (g, Rectangle<float> (5.0f, 3.0f, 17.0f, 17.0f),
                        RectanglePlacement::centred | RectanglePlacement::onlyReduceInSize, 1.0f);
-    
+
     if (isItemSelected)
         g.setColour (fileListComp != nullptr ? fileListComp->findColour (DirectoryContentsDisplayComponent::highlightedTextColourId)
                                              : findColour (DirectoryContentsDisplayComponent::highlightedTextColourId));
@@ -146,7 +145,7 @@ Button* SamplifiedLookAndFeel::createFileBrowserGoUpButton()
                            10, 10,
                            5,  0);
     arrowPath = arrowPath.createPathWithRoundedCorners(3);
-    
+
     DrawablePath arrowImage;
     arrowImage.setPath (arrowPath);
     arrowImage.setFill (findColour(FileBrowserComponent::currentPathBoxArrowColourId));
@@ -164,7 +163,7 @@ void SamplifiedLookAndFeel::layoutFileBrowserComponent (FileBrowserComponent& br
                                                  TextEditor* filenameBox,
                                                  Button* goUpButton)
 {
-    
+
     const int x = 8;
     auto w = browserComp.getWidth() - x - x;
 
@@ -185,7 +184,7 @@ void SamplifiedLookAndFeel::layoutFileBrowserComponent (FileBrowserComponent& br
     currentPathBox->setBounds (x, y, w - upButtonWidth - 6, controlsHeight);
     currentPathBox->hidePopup();
 
-    
+
     goUpButton->setBounds (x + w - upButtonWidth, y, upButtonWidth, controlsHeight);
 
     y += controlsHeight + 4;
@@ -201,7 +200,7 @@ void SamplifiedLookAndFeel::layoutFileBrowserComponent (FileBrowserComponent& br
 void SamplifiedLookAndFeel::drawComboBox (Graphics& g, int width, int height, const bool isMouseButtonDown,
                                    int buttonX, int buttonY, int buttonW, int buttonH, ComboBox& box)
 {
-    
+
     g.fillAll (findColour (ComboBox::backgroundColourId));
 
        if (box.isEnabled() && box.hasKeyboardFocus (false))
@@ -225,17 +224,17 @@ void SamplifiedLookAndFeel::drawComboBox (Graphics& g, int width, int height, co
            p.addTriangle (buttonX + buttonW * 0.5f, buttonY + buttonH * (0.40f + arrowH),
                           buttonX + buttonW * (1.0f - arrowX), buttonY + buttonH * 0.26f,
                           buttonX + buttonW * arrowX,buttonY + buttonH * 0.26f);
-           
+
            //buttonX + 5, buttonY + 10,
 //                          buttonX , buttonY,
 //                          buttonX + 10,buttonY );
            p = p.createPathWithRoundedCorners(3);
-           
+
 
            g.setColour (findColour (ComboBox::arrowColourId));
            g.fillPath (p);
        }
-    
+
 }
 
 
@@ -252,26 +251,26 @@ void SamplifiedLookAndFeel::drawTreeviewPlusMinusBox (Graphics& g, const Rectang
 Slider::SliderLayout SamplifiedLookAndFeel::getSliderLayout (Slider& slider)
 {
     // 1. compute the actually visible textBox size from the slider textBox size and some additional constraints
-    
+
     int minXSpace = 0;
     int minYSpace = 0;
-    
+
     auto textBoxPos = slider.getTextBoxPosition();
-    
+
     if (textBoxPos == Slider::TextBoxLeft || textBoxPos == Slider::TextBoxRight)
         minXSpace = 30;
     else
         minYSpace = 15;
-    
+
     auto localBounds = slider.getLocalBounds();
-    
+
     auto textBoxWidth  = jmax (0, jmin (slider.getTextBoxWidth(),  localBounds.getWidth() - minXSpace));
     auto textBoxHeight = jmax (0, jmin (slider.getTextBoxHeight(), localBounds.getHeight() - minYSpace));
-    
+
     Slider::SliderLayout layout;
-    
+
     // 2. set the textBox bounds
-    
+
     if (textBoxPos != Slider::NoTextBox)
     {
         if (slider.isBar())
@@ -282,21 +281,21 @@ Slider::SliderLayout SamplifiedLookAndFeel::getSliderLayout (Slider& slider)
         {
             layout.textBoxBounds.setWidth (textBoxWidth);
             layout.textBoxBounds.setHeight (textBoxHeight);
-            
+
             if (textBoxPos == Slider::TextBoxLeft)           layout.textBoxBounds.setX (0);
             else if (textBoxPos == Slider::TextBoxRight)     layout.textBoxBounds.setX (localBounds.getWidth() - textBoxWidth);
             else /* above or below -> centre horizontally */ layout.textBoxBounds.setX ((localBounds.getWidth() - textBoxWidth) / 2);
-            
+
             //if (textBoxPos == Slider::TextBoxAbove)          layout.textBoxBounds.setY (0);
             layout.textBoxBounds.setY (localBounds.getHeight() - textBoxHeight);
             //else /* left or right -> centre vertically */    layout.textBoxBounds.setY ((localBounds.getHeight() - textBoxHeight) / 2);
         }
     }
-    
+
     // 3. set the slider bounds
-    
+
     layout.sliderBounds = localBounds;
-    
+
     if (slider.isBar())
     {
         layout.sliderBounds.reduce (1, 1);   // bar border
@@ -304,16 +303,15 @@ Slider::SliderLayout SamplifiedLookAndFeel::getSliderLayout (Slider& slider)
     else
     {
         layout.sliderBounds.removeFromBottom (textBoxHeight + 9);
-        
+
         const int thumbIndent = getSliderThumbRadius (slider);
-        
+
         if (slider.isHorizontal())    layout.sliderBounds.reduce (thumbIndent, 0);
         else if (slider.isVertical()) layout.sliderBounds.reduce (0, thumbIndent);
     }
-    
+
     return layout;
 }
-
 
 Label* SamplifiedLookAndFeel::createSliderTextBox (Slider& slider){
 
