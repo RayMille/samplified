@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "FilmStripKnob.h"
 
 
 //==============================================================================
@@ -24,12 +25,13 @@ public:
     void resized() override;
 
 private:
-    Slider mVolumeSlider;
-    Label mVolumeLabel;
     
     std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> mVolumeAttachment;
     
     SamplifiedAudioProcessor& processor;
+    
+    FilmStripKnob mVolumeSlider;
+    Label mVolumeLabel;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VolumeComponent)
 };

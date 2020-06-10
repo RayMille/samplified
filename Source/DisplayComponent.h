@@ -13,7 +13,7 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "DirectoryComponent.h"
-#include "WaveThumbnail.h"
+#include "WaveWindow.h"
 #include "VoiceSettingComponent.h"
 
 //==============================================================================
@@ -50,7 +50,7 @@ private:
 
     SamplifiedAudioProcessor& processor;
 
-    WaveThumbnail mWaveThumbnail;
+    WaveWindow mWaveWindow;
     DirectoryComponent mDirectoryComponent;
     VoiceSettingComponent mVoiceSetting;
 

@@ -26,13 +26,6 @@ WaveThumbnail::~WaveThumbnail()
 // This function draws the wave in the screen
 void WaveThumbnail::paint (Graphics& g)
 {
-    g.fillAll(Colours::transparentBlack.darker());
-
-    auto waveform = processor.getWaveForm();
-
-    if (waveform.getNumSamples() > 0)
-
-    {
         Path p;
         mAudiopoints.clear();
 
@@ -71,13 +64,6 @@ void WaveThumbnail::paint (Graphics& g)
 
         g.setColour(Colours::white.withAlpha(0.1f));
         g.fillRect(0, 0, playHeadPosition, getHeight());
-    }
-    else
-    {
-        g.setColour(Colours::white);
-        g.setFont(20.0f);
-        g.drawFittedText("SELECT OR DROP FILE", getLocalBounds(), Justification::centred, 1);
-    }
 }
 
 void WaveThumbnail::resized()

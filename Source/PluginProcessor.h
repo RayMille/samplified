@@ -72,6 +72,8 @@ public:
     AudioProcessorValueTreeState& getAPVTS() { return mAPVTS; }
     std::atomic<bool>& isNotePlayed() { return mIsNotePlayed; }
     std::atomic<int>& getSampleCount() { return mSampleCount; }
+    
+    int panPosition { 64 };
 
 
 
