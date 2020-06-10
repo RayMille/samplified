@@ -13,11 +13,8 @@
 
 //==============================================================================
 DisplayComponent::DisplayComponent (SamplifiedAudioProcessor& p) : processor (p),
-mWaveWindow(p),mDirectoryComponent(p), mVoiceSetting(p)
+mWaveWindow(p), mVoiceSetting(p)
 {
-    addAndMakeVisible(mDirectoryComponent);
-    mDirectoryComponent.m_fileBrowser->addListener(this);
-
     addAndMakeVisible(mVoiceSetting);
 
     addAndMakeVisible(mWaveWindow);
@@ -33,13 +30,11 @@ void DisplayComponent::paint (Graphics& g)
     // Width of screen components in percentage
     // Adjust these values to change porpotions of elements
     // Should add up to 1.0f
-    float wDir = 0.25f;
-    float wVoice = 0.28f;
-    float wWave= 0.47f;
+    float wVoice = 0.33f;
+    float wWave= 0.66f;
     
-    mDirectoryComponent.setBounds(0, 0, getWidth()*wDir, getHeight());
-    mVoiceSetting.setBounds(getWidth()*wDir, 0, getWidth()*wVoice, getHeight());
-    mWaveWindow.setBounds(getWidth()-getWidth()*wWave, 0, getWidth()*wWave, getHeight());
+    mVoiceSetting.setBounds(0, 0, getWidth()*wVoice, getHeight());
+    mWaveWindow.setBounds(getWidth()*wVoice, 0, getWidth()*wWave, getHeight());
 }
 
 void DisplayComponent::resized()
@@ -47,58 +42,4 @@ void DisplayComponent::resized()
     // This method is where you should set the bounds of any child
     // components that your component contains..
 
-}
-
-bool DisplayComponent::isInterestedInFileDrag (const StringArray& files)
-{
-    for (auto file : files)
-    {
-        if (file.contains(".wav") || file.contains(".mp3") || file.contains(".aif"))
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-void DisplayComponent::filesDropped(const StringArray &files, int x, int y)
-{
-    for (auto file : files)
-    {
-        if (isInterestedInFileDrag (file))
-        {
-            auto myFile = std::make_unique<File>(file);
-            mFileName = myFile->getFileNameWithoutExtension();
-
-            processor.LoadFile (file);
-        }
-    }
-
-    repaint();
-}
-
-//==============================================================================
-void DisplayComponent::selectionChanged ()
-{
-}
-
-void DisplayComponent::fileClicked (const File& file, const MouseEvent& e)
-{
-    if(mDirectoryComponent.m_fileBrowser->currentFileIsValid() && file.existsAsFile()){
-        auto myFile = std::make_unique<File>(file);
-        mFileName = myFile->getFileNameWithoutExtension();
-        processor.LoadFile (file);
-        mVoiceSetting.setFileName(mFileName);
-    }
-
-    repaint();
-
-}
-
-void DisplayComponent::fileDoubleClicked (const File& file)
-{
-}
-
-void DisplayComponent::browserRootChanged (const File& newRoot)
-{
 }
