@@ -5,9 +5,8 @@
               pluginManufacturer="KoendersAudio">
   <MAINGROUP id="znyszf" name="SAMPLIFIED">
     <GROUP id="{74764556-3F6E-B772-6924-AFE76362A71B}" name="Resources">
-      <FILE id="ukWt5j" name="2.png" compile="1" resource="1" file="../KNOBANIMATION/2.png"
-            xcodeResource="1"/>
-      <FILE id="HstKOK" name="PLUGIN14.png" compile="0" resource="1" file="Resources/PLUGIN14.png"/>
+      <FILE id="yQEMKH" name="BACKGROUND12.png" compile="1" resource="1"
+            file="../PLUGIN/PHOTOSHOP/MOCKUPS/BACKGROUND12.png" xcodeResource="1"/>
     </GROUP>
     <GROUP id="{28348884-7ABC-0066-1C4A-C5E010E47CD6}" name="Source">
       <FILE id="YKqqQv" name="FilmStripKnob.h" compile="0" resource="0" file="Source/FilmStripKnob.h"/>

@@ -20,7 +20,7 @@ SamplifiedAudioProcessorEditor::SamplifiedAudioProcessorEditor (SamplifiedAudioP
     addAndMakeVisible (mADSR);
     
     startTimerHz (30);
-    setSize (913.5f, 396);
+    setSize (960, 339);
 }
 
 SamplifiedAudioProcessorEditor::~SamplifiedAudioProcessorEditor()

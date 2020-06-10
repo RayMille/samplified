@@ -33,9 +33,9 @@ void DisplayComponent::paint (Graphics& g)
     // Width of screen components in percentage
     // Adjust these values to change porpotions of elements
     // Should add up to 1.0f
-    float wDir = 0.34f;
-    float wVoice = 0.17f;
-    float wWave= 0.49f;
+    float wDir = 0.25f;
+    float wVoice = 0.28f;
+    float wWave= 0.47f;
     
     mDirectoryComponent.setBounds(0, 0, getWidth()*wDir, getHeight());
     mVoiceSetting.setBounds(getWidth()*wDir, 0, getWidth()*wVoice, getHeight());
