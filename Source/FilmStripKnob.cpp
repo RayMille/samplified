@@ -17,8 +17,6 @@ FilmStripKnob::FilmStripKnob (const void* knob_png, const int knob_pngSize, cons
     numFrames_(numFrames),
     isHorizontal_(stripIsHorizontal)
 {
-      //setTextBoxStyle(NoTextBox, 0, 0, 0);
-      //setSliderStyle(RotaryVerticalDrag);
       if (isHorizontal_) {
             frameHeight = filmStrip.getHeight();
             frameWidth = filmStrip.getWidth() / numFrames_;
@@ -27,9 +25,6 @@ FilmStripKnob::FilmStripKnob (const void* knob_png, const int knob_pngSize, cons
             frameHeight = filmStrip.getHeight() / numFrames_;
             frameWidth = filmStrip.getWidth();
       }
-      //setRange(0.0f, 1.0f, 0.001f);
-      
-     // getProperties().set(Identifier("index"), index);
 }
       
 void FilmStripKnob::paint(Graphics& g)

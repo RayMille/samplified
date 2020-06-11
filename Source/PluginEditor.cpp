@@ -44,15 +44,17 @@ void SamplifiedAudioProcessorEditor::resized()
     float diffFromTop = getHeight()/20;
     float diffFromSides = getWidth()/50;
     float gap = getWidth()/30;
-    float widthDirectory = getWidth()/4;
+    float widthDirectory = getWidth()/3.9;
     float heightWaveWindow = getHeight()/2;
     
-    mDirectoryComponent.setBounds(diffFromSides , diffFromTop, widthDirectory, getHeight()-2*diffFromTop);
+    mDirectoryComponent.setBounds(diffFromSides+10, diffFromTop+10, widthDirectory-20, getHeight()-2*diffFromTop-40);
     mDisplayComponent.setBounds (widthDirectory + gap + diffFromSides, diffFromTop, getWidth()-2*diffFromSides-gap-widthDirectory, heightWaveWindow);
-    mADSR.setBoundsRelative (-0.3f, 0.6f, 1.3f, 0.4f);
+    float aSDRDiameter = 61;
+    float sizeBetweenADSR = 50;
+    mADSR.setBounds(1.8*getWidth()/3+2, getHeight()-aSDRDiameter-37, aSDRDiameter*4+3*sizeBetweenADSR, aSDRDiameter);
     mBackground.setBounds(0,0,getWidth(),getHeight());
-    int mVolumeHeight = 110;
-    mVolume.setBounds(widthDirectory + gap + diffFromSides, getHeight()-mVolumeHeight-2, 110, mVolumeHeight);
+    float volumeDiameter = 78;
+    mVolume.setBounds(widthDirectory + gap + diffFromSides+4, getHeight()-volumeDiameter-28, volumeDiameter, volumeDiameter);
 }
 
 void SamplifiedAudioProcessorEditor::timerCallback()

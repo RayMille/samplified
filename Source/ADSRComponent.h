@@ -12,6 +12,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "FilmStripKnob.h"
 
 
 //==============================================================================
@@ -26,7 +27,8 @@ public:
     void resized() override;
 
 private:
-    Slider mAttackSlider, mDecaySlider, mSustainSlider, mReleaseSlider;
+    
+    FilmStripKnob mAttackSlider, mDecaySlider, mSustainSlider, mReleaseSlider;
     //TextBox mAttackTextBox, mDecayTextBox, mSustainTextBox, mReleaseTextBox;
     Label mAttackLabel, mDecayLabel, mSustainLabel, mReleaseLabel;
     

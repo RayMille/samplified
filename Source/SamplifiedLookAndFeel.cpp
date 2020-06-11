@@ -13,16 +13,14 @@
 //==============================================================================
 SamplifiedLookAndFeel :: SamplifiedLookAndFeel()
     {
-        setColour(ListBox::backgroundColourId, Colours::black);
-        setColour(ListBox::outlineColourId, Colours::black);
 
         setColour(DirectoryContentsDisplayComponent::textColourId, Colours::white);
         setColour(DirectoryContentsDisplayComponent::highlightColourId, Colours::black);
         setColour(DirectoryContentsDisplayComponent::highlightedTextColourId, Colours::white);
 
-        setColour(ComboBox::outlineColourId, Colours::black);
+        setColour(ComboBox::outlineColourId, Colours::transparentBlack);
         setColour(ComboBox::textColourId, Colours::white);
-        setColour(ComboBox::backgroundColourId, Colours::black);
+        setColour(ComboBox::backgroundColourId, Colours::transparentBlack);
         setColour(ComboBox::arrowColourId, Colours::orange);
         
         setColour(PopupMenu::backgroundColourId,              Colours::black);
@@ -31,13 +29,13 @@ SamplifiedLookAndFeel :: SamplifiedLookAndFeel()
         setColour(PopupMenu::highlightedTextColourId,         Colours::white);
         setColour(PopupMenu::highlightedBackgroundColourId,   Colours::darkgrey);
 
-        setColour(FileBrowserComponent::currentPathBoxBackgroundColourId, Colours::black);
+        setColour(FileBrowserComponent::currentPathBoxBackgroundColourId, Colours::pink);
         setColour(FileBrowserComponent::currentPathBoxTextColourId, Colours::white);
         setColour(FileBrowserComponent::currentPathBoxArrowColourId, Colours::orange);
 
         setColour(ScrollBar::thumbColourId, Colours::orange.withAlpha(0.4f));
 
-        setColour(TextButton::buttonColourId, Colours::black);
+        setColour(TextButton::buttonColourId, Colours::transparentBlack);
 
         treeviewPlusMinusBoxColour = Colours::orange;
     }
@@ -101,7 +99,7 @@ void SamplifiedLookAndFeel::drawFileBrowserRow (Graphics& g, int width, int heig
         g.setColour (fileListComp != nullptr ? fileListComp->findColour (DirectoryContentsDisplayComponent::textColourId)
                                              : findColour (DirectoryContentsDisplayComponent::textColourId));
 
-    g.setFont (height * 0.7f);
+    g.setFont (height * 0.6f);
 
     if (width > 450 && ! isDirectory)
     {
@@ -191,7 +189,7 @@ void SamplifiedLookAndFeel::layoutFileBrowserComponent (FileBrowserComponent& br
 
     if (auto listAsComp = dynamic_cast<Component*> (fileListComponent))
     {
-        listAsComp->setBounds (x, y, w, browserComp.getHeight() - y);
+        listAsComp->setBounds (x+15, y+15, w-15, browserComp.getHeight() - y);
         y = listAsComp->getBottom() + 4;
     }
 }
