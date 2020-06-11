@@ -48,7 +48,7 @@ void SamplifiedAudioProcessorEditor::resized()
     float heightWaveWindow = getHeight()/2;
     
     mDirectoryComponent.setBounds(diffFromSides+10, diffFromTop+10, widthDirectory-20, getHeight()-2*diffFromTop-40);
-    mDisplayComponent.setBounds (widthDirectory + gap + diffFromSides, diffFromTop, getWidth()-2*diffFromSides-gap-widthDirectory, heightWaveWindow);
+    mDisplayComponent.setBounds (widthDirectory + gap + diffFromSides+10, diffFromTop+10, getWidth()-2*diffFromSides-gap-widthDirectory, heightWaveWindow-10);
     float aSDRDiameter = 61;
     float sizeBetweenADSR = 50;
     mADSR.setBounds(1.8*getWidth()/3+2, getHeight()-aSDRDiameter-37, aSDRDiameter*4+3*sizeBetweenADSR, aSDRDiameter);

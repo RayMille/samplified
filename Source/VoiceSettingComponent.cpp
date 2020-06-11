@@ -80,11 +80,11 @@ void VoiceSettingComponent::paint (Graphics& g)
     
     g.fillAll(Colours::transparentBlack.darker());
     
-    g.setColour (Colours::white);
-    g.drawLine(lineSideMargin, getHeight()*lineTopBottomMargin, lineSideMargin, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
-    g.drawLine(getWidth()-lineSideMargin, getHeight()*lineTopBottomMargin, getWidth()-lineSideMargin, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
+//    g.setColour (Colour (128,128,128));
+//    g.drawLine(lineSideMargin, getHeight()*lineTopBottomMargin, lineSideMargin, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
+//    g.drawLine(getWidth()-lineSideMargin, getHeight()*lineTopBottomMargin, getWidth()-lineSideMargin, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
     
-    fileLabel.setColour (Label::textColourId, Colours::white);
+    fileLabel.setColour (Label::textColourId, Colour (128,128,128));
     fileLabel.setJustificationType (Justification::centred);
     fileLabel.setText(this->fileName, dontSendNotification);
 
@@ -93,7 +93,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     voiceInput.setRange(1, 32,1);
     voiceInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
     
-    voiceLabel.setColour (Label::textColourId, Colours::white);
+    voiceLabel.setColour (Label::textColourId, Colour (128,128,128));
     voiceLabel.setJustificationType (Justification::right);
     voiceLabel.setText("Voices", dontSendNotification);
     
@@ -104,7 +104,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     transpInput.setRange(-24, 24, 0);
     transpInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
     
-    transpLabel.setColour (Label::textColourId, Colours::white);
+    transpLabel.setColour (Label::textColourId, Colour (128,128,128));
     transpLabel.setJustificationType (Justification::right);
     transpLabel.setText("Transp", dontSendNotification);
     
@@ -116,7 +116,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     fineInput.setTextValueSuffix("c");
     fineInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
       
-    fineLabel.setColour (Label::textColourId, Colours::white);
+    fineLabel.setColour (Label::textColourId, Colour (128,128,128));
     fineLabel.setJustificationType (Justification::right);
     fineLabel.setText("Fine", dontSendNotification);
     
@@ -135,7 +135,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     
     
     auto* d = getDefaultDocumentFileImage();
-    d->drawWithin (g, Rectangle<float> (2*getWidth()/5,getHeight()-getHeight()/5,getWidth()/5,getHeight()/5),
+    d->drawWithin (g, Rectangle<float> (2*getWidth()/4.5,getHeight()-getHeight()/6,getWidth()/6,getHeight()/6),
                        RectanglePlacement::centred | RectanglePlacement::onlyReduceInSize, 1.0f);
     
 

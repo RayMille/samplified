@@ -28,7 +28,7 @@ InComponent::~InComponent()
 void InComponent::paint (Graphics& g)
 {
     float labelY = 3*(getHeight()/7);
-    label.setColour (Label::textColourId, Colours::white);
+    label.setColour (Label::textColourId, Colour (128,128,128));
     label.setText("In", dontSendNotification);
     label.setBounds(0, labelY, getWidth()/10, getHeight()/7);
     
