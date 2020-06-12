@@ -90,6 +90,7 @@ ADSRComponent::~ADSRComponent()
 
 void ADSRComponent::paint (Graphics& g)
 {
+    g.fillAll(Colours::purple.withAlpha(0.1f));
 }
 
 void ADSRComponent::resized()
@@ -98,7 +99,7 @@ void ADSRComponent::resized()
     const auto startY = 0;
     const auto dialWidth = getHeight();
     const auto dialHeight = getHeight();
-    const auto distance = getHeight()-27.5f;
+    const auto distance = getHeight()/1.8;//33.5
 
     mAttackSlider.setBounds(startX, startY, dialWidth, dialHeight);
     mDecaySlider.setBounds(startX + dialWidth+distance, startY, dialWidth, dialHeight);

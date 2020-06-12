@@ -32,6 +32,8 @@ VolumeComponent::~VolumeComponent()
 
 void VolumeComponent::paint (Graphics& g)
 {
+    g.fillAll(Colours::red.withAlpha(0.5f));
+
     mVolumeSlider.setBounds(0, 0, getWidth(), getHeight());
 }
 

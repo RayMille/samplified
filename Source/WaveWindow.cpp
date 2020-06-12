@@ -30,7 +30,7 @@ WaveWindow::~WaveWindow()
 // This function draws the wave in the screen
 void WaveWindow::paint (Graphics& g)
 {
-    g.fillAll(Colours::transparentBlack.darker());
+    g.fillAll(Colours::green.withAlpha(0.6f));
 
       auto waveform = processor.getWaveForm();
 

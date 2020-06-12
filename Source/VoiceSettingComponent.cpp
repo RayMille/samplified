@@ -55,14 +55,11 @@ const Drawable* VoiceSettingComponent::getDefaultDocumentFileImage()
 // This function draws the wave in the screen
 void VoiceSettingComponent::paint (Graphics& g)
 {
-    float lineThickness = 0.6f;
-    float lineTopBottomMargin = 0.05f;
-    float lineSideMargin = 3;
     
     float fileLableTopMargin = getHeight()/10;
     float fileLableHeight = getHeight()/4;
     
-    float otherLableSideMargin = getWidth()/7;
+    float otherLableSideMargin = getWidth()/6;
     float otherLableHeight = getHeight()/8;
     auto area = getLocalBounds();
     
@@ -71,14 +68,14 @@ void VoiceSettingComponent::paint (Graphics& g)
     leftColoumn.removeFromTop(fileLableHeight + fileLableTopMargin);
     
     auto rightColoumn = getLocalBounds();
-    rightColoumn.removeFromLeft(getWidth()/2+3);
+    rightColoumn.removeFromLeft(getWidth()/2);
     rightColoumn.removeFromRight(otherLableSideMargin);
     rightColoumn.removeFromTop(fileLableHeight + fileLableTopMargin);
     
 //    auto imageArea = getLocalBounds();
 //    imageArea.removeFromBottom(imageHeight);//.reduce(20, 0);
     
-    g.fillAll(Colours::transparentBlack.darker());
+    g.fillAll(Colours::red.withAlpha(0.2f));
     
 //    g.setColour (Colour (128,128,128));
 //    g.drawLine(lineSideMargin, getHeight()*lineTopBottomMargin, lineSideMargin, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);

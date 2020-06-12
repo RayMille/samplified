@@ -25,7 +25,7 @@ SamplifiedAudioProcessor::SamplifiedAudioProcessor()
 #endif
 {
     LookAndFeel::setDefaultLookAndFeel(&samplifiedLookAndFeel);
- 
+     
     mFormatManager.registerBasicFormats();
     mAPVTS.state.addListener (this);
 
@@ -153,7 +153,6 @@ void SamplifiedAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
     {
         updateVoices();
         mSouldUpdateVoices = false;
-
     }
 
     if (mShouldUpdate)
@@ -182,7 +181,6 @@ void SamplifiedAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
         }
        
         if(m.isController()){
-            auto a = m.getControllerValue();
             if(m.getControllerValue() == 11)
             {
                 panPosition = (int) m.getControllerValue();

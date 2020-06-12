@@ -31,6 +31,7 @@ DirectoryComponent::~DirectoryComponent()
 // This function draws the wave in the screen
 void DirectoryComponent::paint (Graphics& g)
 {
+    g.fillAll(Colours::yellow);
     addAndMakeVisible(m_fileBrowser);
     m_fileBrowser->setBounds(0,0,getWidth(), getHeight());
 
