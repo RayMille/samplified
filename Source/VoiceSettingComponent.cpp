@@ -94,7 +94,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     voiceInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
     
     voiceLabel.setColour (Label::textColourId, Colour (128,128,128));
-    voiceLabel.setJustificationType (Justification::right);
+    voiceLabel.setJustificationType (Justification::centred);
     voiceLabel.setText("Voices", dontSendNotification);
     
     mVoicesAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "VOICES", voiceInput);
@@ -105,7 +105,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     transpInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
     
     transpLabel.setColour (Label::textColourId, Colour (128,128,128));
-    transpLabel.setJustificationType (Justification::right);
+    transpLabel.setJustificationType (Justification::centred);
     transpLabel.setText("Transp", dontSendNotification);
     
     mTranspAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "TRANSP", transpInput);
@@ -117,7 +117,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     fineInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
       
     fineLabel.setColour (Label::textColourId, Colour (128,128,128));
-    fineLabel.setJustificationType (Justification::right);
+    fineLabel.setJustificationType (Justification::centred);
     fineLabel.setText("Fine", dontSendNotification);
     
     mFineAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "FINE", fineInput);
@@ -125,13 +125,13 @@ void VoiceSettingComponent::paint (Graphics& g)
     fileLabel.setBounds(area.removeFromTop(fileLableHeight + fileLableTopMargin));
     
     voiceLabel.setBounds(leftColoumn.removeFromTop(otherLableHeight));
-    voiceInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,2));
+    voiceInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,1));
     
     transpLabel.setBounds(leftColoumn.removeFromTop(otherLableHeight));
-    transpInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,2));
+    transpInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,1));
     
     fineLabel.setBounds(leftColoumn.removeFromTop(otherLableHeight));
-    fineInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,2));
+    fineInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,1));
     
     
     auto* d = getDefaultDocumentFileImage();

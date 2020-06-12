@@ -21,7 +21,7 @@ public:
 
     void paint (Graphics& g) override
     {
-        Image background = ImageCache::getFromMemory (BinaryData::BACKGROUND12_png, (size_t) BinaryData::BACKGROUND12_pngSize);
+        Image background = ImageCache::getFromMemory (BinaryData::BACKGROUND15_png, (size_t) BinaryData::BACKGROUND15_pngSize);
         g.drawImageWithin (background, 0, 0, getWidth(),getHeight(),RectanglePlacement::onlyReduceInSize,false);
     }
 

@@ -8,8 +8,8 @@
 
 namespace BinaryData
 {
-    extern const char*   BACKGROUND12_png;
-    const int            BACKGROUND12_pngSize = 2725597;
+    extern const char*   BACKGROUND15_png;
+    const int            BACKGROUND15_pngSize = 2784540;
 
     extern const char*   FILMSTRIP1_100FR_VERT_270DEG_png;
     const int            FILMSTRIP1_100FR_VERT_270DEG_pngSize = 1073711;

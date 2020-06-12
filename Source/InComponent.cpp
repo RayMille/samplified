@@ -16,7 +16,7 @@ InComponent::InComponent (SamplifiedAudioProcessor& p) :  processor (p)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
-    addAndMakeVisible(label);
+addAndMakeVisible(label);
 
 }
 
