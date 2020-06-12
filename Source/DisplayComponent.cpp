@@ -13,7 +13,7 @@
 
 //==============================================================================
 DisplayComponent::DisplayComponent (SamplifiedAudioProcessor& p) : processor (p),
-mWaveWindow(p), mVoiceSetting(p)
+mVoiceSetting(p), mWaveWindow(p)
 {
     addAndMakeVisible(mVoiceSetting);
 
@@ -27,11 +27,12 @@ DisplayComponent::~DisplayComponent()
 // This function draws the wave in the screen
 void DisplayComponent::paint (Graphics& g)
 {
+
     // Width of screen components in percentage
     // Adjust these values to change porpotions of elements
     // Should add up to 1.0f
-    float wVoice = 0.27f;
-    float wWave= 0.73f;
+    float wVoice = 0.32f;
+    float wWave= 0.68f;
     
     mVoiceSetting.setBounds(0, 0, getWidth()*wVoice, getHeight());
     mWaveWindow.setBounds(getWidth()*wVoice, 0, getWidth()*wWave, getHeight());

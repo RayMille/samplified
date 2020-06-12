@@ -44,6 +44,8 @@ public:
     void fileDoubleClicked (const File& file) override;
     void browserRootChanged (const File& newRoot) override;
     
+    ComponentBoundsConstrainer m_constrainer;
+    
 private:
     DisplayComponent mDisplayComponent;
     DirectoryComponent mDirectoryComponent;
