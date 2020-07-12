@@ -56,32 +56,29 @@ const Drawable* VoiceSettingComponent::getDefaultDocumentFileImage()
 void VoiceSettingComponent::paint (Graphics& g)
 {
     
-    float fileLableTopMargin = getHeight()/10;
-    float fileLableHeight = getHeight()/4;
-    
-    float otherLableSideMargin = getWidth()/6;
-    float otherLableHeight = getHeight()/8;
+    float widthIcon = getWidth()/8;
+    float heightIcon = getWidth()/8;
+    float fileLableTopMargin = getHeight()/12;
+    float fileLableHeight = getHeight()/6;
+    float otherLableSideMargin = getWidth()/5;
+    float otherLableSideMarginLeft = getWidth()/4;
+    float otherLableHeight = (getHeight()-fileLableTopMargin*3-fileLableHeight-heightIcon)/3;
     auto area = getLocalBounds();
     
     auto leftColoumn = getLocalBounds();
     leftColoumn.removeFromRight(getWidth()/2);
-    leftColoumn.removeFromTop(fileLableHeight + fileLableTopMargin);
+    leftColoumn.removeFromLeft(otherLableSideMarginLeft);
+    leftColoumn.removeFromTop(fileLableHeight + 1.5*fileLableTopMargin);
     
     auto rightColoumn = getLocalBounds();
     rightColoumn.removeFromLeft(getWidth()/2);
     rightColoumn.removeFromRight(otherLableSideMargin);
-    rightColoumn.removeFromTop(fileLableHeight + fileLableTopMargin);
+    rightColoumn.removeFromTop(fileLableHeight + 1.5*fileLableTopMargin);
     
-//    auto imageArea = getLocalBounds();
-//    imageArea.removeFromBottom(imageHeight);//.reduce(20, 0);
+    //-----------Nicht rauslöschen für Layouten -------///
+    //g.fillAll(Colours::red.withAlpha(0.2f));
     
-    g.fillAll(Colours::red.withAlpha(0.2f));
-    
-//    g.setColour (Colour (128,128,128));
-//    g.drawLine(lineSideMargin, getHeight()*lineTopBottomMargin, lineSideMargin, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
-//    g.drawLine(getWidth()-lineSideMargin, getHeight()*lineTopBottomMargin, getWidth()-lineSideMargin, getHeight()-getHeight()*lineTopBottomMargin,lineThickness);
-    
-    fileLabel.setColour (Label::textColourId, Colour (128,128,128));
+    fileLabel.setColour (Label::textColourId, Colour (102,102,102));
     fileLabel.setJustificationType (Justification::centred);
     fileLabel.setText(this->fileName, dontSendNotification);
 
@@ -90,8 +87,8 @@ void VoiceSettingComponent::paint (Graphics& g)
     voiceInput.setRange(1, 32,1);
     voiceInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
     
-    voiceLabel.setColour (Label::textColourId, Colour (128,128,128));
-    voiceLabel.setJustificationType (Justification::right);
+    voiceLabel.setColour (Label::textColourId, Colour (102,102,102));
+    voiceLabel.setJustificationType (Justification::left);
     voiceLabel.setText("Voices", dontSendNotification);
     
     mVoicesAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "VOICES", voiceInput);
@@ -101,8 +98,8 @@ void VoiceSettingComponent::paint (Graphics& g)
     transpInput.setRange(-24, 24, 0);
     transpInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
     
-    transpLabel.setColour (Label::textColourId, Colour (128,128,128));
-    transpLabel.setJustificationType (Justification::right);
+    transpLabel.setColour (Label::textColourId, Colour (102,102,102));
+    transpLabel.setJustificationType (Justification::left);
     transpLabel.setText("Transp", dontSendNotification);
     
     mTranspAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "TRANSP", transpInput);
@@ -113,26 +110,28 @@ void VoiceSettingComponent::paint (Graphics& g)
     fineInput.setTextValueSuffix("c");
     fineInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
       
-    fineLabel.setColour (Label::textColourId, Colour (128,128,128));
-    fineLabel.setJustificationType (Justification::right);
+    fineLabel.setColour (Label::textColourId, Colour (102,102,102));
+    fineLabel.setJustificationType (Justification::left);
     fineLabel.setText("Fine", dontSendNotification);
     
     mFineAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "FINE", fineInput);
     
-    fileLabel.setBounds(area.removeFromTop(fileLableHeight + fileLableTopMargin));
+    area.removeFromTop(fileLableTopMargin);
+    fileLabel.setBounds(area.removeFromTop(fileLableHeight).reduced(20,0));
     
     voiceLabel.setBounds(leftColoumn.removeFromTop(otherLableHeight));
-    voiceInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,2));
+    ///.reduced(width reduction, height reduction)
+    voiceInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(7,4));
     
     transpLabel.setBounds(leftColoumn.removeFromTop(otherLableHeight));
-    transpInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,2));
+    transpInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(7,4));
     
     fineLabel.setBounds(leftColoumn.removeFromTop(otherLableHeight));
-    fineInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(0,2));
+    fineInput.setBounds(rightColoumn.removeFromTop(otherLableHeight).reduced(7,4));
     
     
     auto* d = getDefaultDocumentFileImage();
-    d->drawWithin (g, Rectangle<float> (2*getWidth()/4.5,getHeight()-getHeight()/6,getWidth()/6,getHeight()/6),
+    d->drawWithin (g, Rectangle<float> (getWidth()/2-widthIcon/2,getHeight()-fileLableTopMargin-heightIcon,widthIcon,heightIcon),
                        RectanglePlacement::centred | RectanglePlacement::onlyReduceInSize, 1.0f);
     
 

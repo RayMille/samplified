@@ -28,11 +28,13 @@ mVolumeSlider (BinaryData::FILMSTRIP1_100FR_VERT_270DEG_png, (size_t) BinaryData
 
 VolumeComponent::~VolumeComponent()
 {
+    
 }
 
 void VolumeComponent::paint (Graphics& g)
 {
-    g.fillAll(Colours::red.withAlpha(0.5f));
+    //-----------Nicht rauslöschen für Layouten -------///
+    //g.fillAll(Colours::red.withAlpha(0.5f));
 
     mVolumeSlider.setBounds(0, 0, getWidth(), getHeight());
 }

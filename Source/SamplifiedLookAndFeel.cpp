@@ -36,6 +36,11 @@ SamplifiedLookAndFeel :: SamplifiedLookAndFeel()
         setColour(ScrollBar::thumbColourId, Colours::orange.withAlpha(0.4f));
 
         setColour(TextButton::buttonColourId, Colours::transparentBlack);
+        
+        setColour(Slider::trackColourId, Colour (199, 199, 199).withAlpha(0.f));
+        
+        // Farbe Zahlen in Voice Boxen
+        setColour(Slider::textBoxTextColourId, Colour (102,102,102));
 
         treeviewPlusMinusBoxColour = Colours::orange;
     }
@@ -223,9 +228,6 @@ void SamplifiedLookAndFeel::drawComboBox (Graphics& g, int width, int height, co
                           buttonX + buttonW * (1.0f - arrowX), buttonY + buttonH * 0.26f,
                           buttonX + buttonW * arrowX,buttonY + buttonH * 0.26f);
 
-           //buttonX + 5, buttonY + 10,
-//                          buttonX , buttonY,
-//                          buttonX + 10,buttonY );
            p = p.createPathWithRoundedCorners(3);
 
 
@@ -319,13 +321,12 @@ Label* SamplifiedLookAndFeel::createSliderTextBox (Slider& slider){
                                                                                || slider.getSliderStyle() == Slider::LinearBarVertical))
     {
         l->setColour (Label::textColourId, Colours::black.withAlpha (0.7f));
-        //l->setColour (Label::textColourId, Colours::lightgrey);
-        //l->setColour (Label::outlineColourId, Colours::transparentWhite);
     }
 
     return l;
 }
 
+/// Voices Buttons
 void SamplifiedLookAndFeel::drawLabel (Graphics& g, Label& label)
 {
     g.fillAll (label.findColour (Label::backgroundColourId));
@@ -351,5 +352,5 @@ void SamplifiedLookAndFeel::drawLabel (Graphics& g, Label& label)
         g.setColour (label.findColour (Label::outlineColourId));
     }
 
-    g.drawRoundedRectangle( 0, 0, label.getWidth(), label.getHeight(), 7, 1  );
+    g.drawRoundedRectangle( 1, 1, label.getWidth()-2, label.getHeight()-2, 3, 1  );
 }

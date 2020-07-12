@@ -15,6 +15,7 @@ class FilmStripKnob : public Slider
 {
 public:
     FilmStripKnob(const void* knob_png, const int knob_pngSize, const int numFrames, const bool stripIsHorizontal, int index);
+    ~FilmStripKnob();
         
     void paint(Graphics& g) override;
     

@@ -30,7 +30,6 @@ mSustainSlider (BinaryData::FILMSTRIP1_100FR_VERT_270DEG_png, (size_t) BinaryDat
     mAttackLabel.setFont (14.0f);
     mAttackLabel.setColour (Label::textColourId, Colours::white);
     mAttackLabel.setJustificationType(Justification::centred);
-    //mAttackLabel.attachToComponent (&mAttackSlider, false);
 
     mAttackAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "ATTACK", mAttackSlider);
 
@@ -45,7 +44,6 @@ mSustainSlider (BinaryData::FILMSTRIP1_100FR_VERT_270DEG_png, (size_t) BinaryDat
     mDecayLabel.setFont (14.0f);
     mDecayLabel.setColour (Label::textColourId, Colours::white);
     mDecayLabel.setJustificationType(Justification::centred);
-    //mDecayLabel.attachToComponent (&mDecaySlider, false);
 
     mDecayAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "DECAY", mDecaySlider);
 
@@ -59,10 +57,8 @@ mSustainSlider (BinaryData::FILMSTRIP1_100FR_VERT_270DEG_png, (size_t) BinaryDat
     addAndMakeVisible (mSustainSlider);
 
     mSustainLabel.setFont (14.0f);
-    //mSustainLabel.setText ("S", NotificationType::dontSendNotification);
     mSustainLabel.setColour (Label::textColourId, Colours::white);
     mSustainLabel.setJustificationType(Justification::centred);
-    //mSustainLabel.attachToComponent (&mSustainSlider, false);
 
     mSustainAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "SUSTAIN", mSustainSlider);
 
@@ -78,7 +74,6 @@ mSustainSlider (BinaryData::FILMSTRIP1_100FR_VERT_270DEG_png, (size_t) BinaryDat
     mReleaseLabel.setFont (14.0f);
     mReleaseLabel.setColour (Label::textColourId, Colours::white);
     mReleaseLabel.setJustificationType(Justification::centred);
-    //mReleaseLabel.attachToComponent (&mReleaseSlider, false);
 
     mReleaseAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "RELEASE", mReleaseSlider);
 
@@ -90,7 +85,7 @@ ADSRComponent::~ADSRComponent()
 
 void ADSRComponent::paint (Graphics& g)
 {
-    g.fillAll(Colours::purple.withAlpha(0.1f));
+    //g.fillAll(Colours::purple.withAlpha(0.1f));
 }
 
 void ADSRComponent::resized()

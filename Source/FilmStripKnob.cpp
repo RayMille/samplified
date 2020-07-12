@@ -26,6 +26,9 @@ FilmStripKnob::FilmStripKnob (const void* knob_png, const int knob_pngSize, cons
             frameWidth = filmStrip.getWidth();
       }
 }
+
+FilmStripKnob::~FilmStripKnob(){
+}
       
 void FilmStripKnob::paint(Graphics& g)
 {
