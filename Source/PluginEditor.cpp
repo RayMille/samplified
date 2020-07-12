@@ -27,6 +27,7 @@ SamplifiedAudioProcessorEditor::SamplifiedAudioProcessorEditor (SamplifiedAudioP
 
     setResizable(true, true);
     setConstrainer(&m_constrainer);
+    //this->setResizable(true,true);
     
     addAndMakeVisible (mBackground);
     addAndMakeVisible(mDirectoryComponent);
@@ -47,7 +48,7 @@ SamplifiedAudioProcessorEditor::~SamplifiedAudioProcessorEditor()
 //==============================================================================
 void SamplifiedAudioProcessorEditor::paint (Graphics& g)
 {
-   
+    //g.fillAll (Colours::black);
 }
 
 void SamplifiedAudioProcessorEditor::resized()

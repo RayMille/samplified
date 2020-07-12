@@ -12,10 +12,10 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "VolumeComponent.h"
 #include "ADSRComponent.h"
 #include "BackgroundComponent.h"
 #include "DisplayComponent.h"
-#include "VolumeComponent.h"
 
 //==============================================================================
 /**
@@ -47,11 +47,11 @@ public:
     ComponentBoundsConstrainer m_constrainer;
     
 private:
+    VolumeComponent mVolume;
     DisplayComponent mDisplayComponent;
     DirectoryComponent mDirectoryComponent;
     ADSRComponent mADSR;
     BackgroundComponent mBackground;
-    VolumeComponent mVolume;
     
     String mFileName { "" };
     
