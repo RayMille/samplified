@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="vrI4yi" name="SAMPLIFIED" projectType="audioplug" jucerVersion="5.4.7"
-              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
-              pluginManufacturer="KoendersAudio">
+<JUCERPROJECT id="vrI4yi" name="SAMPLIFIED" projectType="audioplug" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginManufacturer="KoendersAudio" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="znyszf" name="SAMPLIFIED">
     <GROUP id="{74764556-3F6E-B772-6924-AFE76362A71B}" name="Resources">
       <FILE id="JNPkLo" name="BACKGROUND12.png" compile="0" resource="1"

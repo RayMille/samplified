@@ -13,8 +13,8 @@
 
 //==============================================================================
 SamplifiedAudioProcessorEditor::SamplifiedAudioProcessorEditor (SamplifiedAudioProcessor& p)
-    : AudioProcessorEditor (&p), mDisplayComponent (p), mADSR (p), mVolume(p), processor (p),
-      mDirectoryComponent(p), mVoiceSetting(p)
+    : AudioProcessorEditor (&p), mVolume(p), mDisplayComponent (p),
+      mDirectoryComponent(p), mADSR (p), mVoiceSetting(p), processor (p)
 {
     double initialWidth = 960.0;
     double initialHeight = 339.0;

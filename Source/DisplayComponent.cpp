@@ -12,8 +12,8 @@
 #include "DisplayComponent.h"
 
 //==============================================================================
-DisplayComponent::DisplayComponent (SamplifiedAudioProcessor& p) : processor (p),
-mVoiceSetting(p), mWaveWindow(p)
+DisplayComponent::DisplayComponent (SamplifiedAudioProcessor& p) :
+mVoiceSetting(p), processor (p), mWaveWindow(p)
 {
     addAndMakeVisible(mVoiceSetting);
 

@@ -63,6 +63,8 @@ public:
 
     int getNumSamplerSounds() {return mSampler.getNumSounds(); }
     AudioBuffer<float>& getWaveForm() {return mWaveForm; }
+    auto getSampleDuration() {return mDuration; }
+    
 
     void updateADSRV();
     void updateWaveThumbnail();
@@ -83,12 +85,13 @@ public:
     
     SamplifiedLookAndFeel samplifiedLookAndFeel;
     
+    ADSR::Parameters mADSRParams;
+    
 private:
     Synthesiser mSampler;
     int mNumVoices { 1 };
     AudioBuffer<float> mWaveForm;
-
-    ADSR::Parameters mADSRParams;
+    float mDuration = 0;
     
     std::atomic<float> volumeVal;
 

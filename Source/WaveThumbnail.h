@@ -26,7 +26,10 @@ public:
     void paint (Graphics&) override;
     void resized() override;
     
+    float calculateSustainWidth(float sumOtherWidths);
+    
 private:
+    
     std::vector<float> mAudiopoints;
     
     String mFileName { "" };

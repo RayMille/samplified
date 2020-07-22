@@ -259,6 +259,7 @@ void SamplifiedAudioProcessor::LoadFile (const String& path)
     auto sampleLength = static_cast<int>(mFormatReader->lengthInSamples);
 
     mWaveForm.setSize(1, sampleLength);
+    mDuration = (float) mFormatReader->lengthInSamples / mFormatReader->sampleRate;
     mFormatReader ->read (&mWaveForm, 0, sampleLength, 0, true, false);
 
     BigInteger range;
@@ -283,6 +284,7 @@ void SamplifiedAudioProcessor::LoadFile (const File& file)
 
     mWaveForm.setSize(1, sampleLength);
     mFormatReader ->read (&mWaveForm, 0, sampleLength, 0, true, false);
+    mDuration = (float) mFormatReader->lengthInSamples / mFormatReader->sampleRate;
 
     BigInteger range;
     range.setRange(0, 128, true);
@@ -335,10 +337,10 @@ AudioProcessorValueTreeState::ParameterLayout SamplifiedAudioProcessor::createPa
 {
     std::vector<std::unique_ptr<RangedAudioParameter>> parameters;
 
-    parameters.push_back (std::make_unique<AudioParameterFloat>("ATTACK", "Attack", 0.0f, 5.0f, 0.0f));
-    parameters.push_back (std::make_unique<AudioParameterFloat>("DECAY", "Decay", 0.0f, 3.0f, 2.0f));
-    parameters.push_back (std::make_unique<AudioParameterFloat>("SUSTAIN", "Sustain", 0.0f, 1.0f, 1.0f));
-    parameters.push_back (std::make_unique<AudioParameterFloat>("RELEASE", "Release", 0.0f, 5.0f, 2.0f));
+    parameters.push_back (std::make_unique<AudioParameterFloat>("ATTACK", "Attack", 0.0f, 5.0f, 0.8f));
+    parameters.push_back (std::make_unique<AudioParameterFloat>("DECAY", "Decay", 0.0f, 3.0f, 0.5f));
+    parameters.push_back (std::make_unique<AudioParameterFloat>("SUSTAIN", "Sustain", 0.0f, 1.0f, 0.7f));
+    parameters.push_back (std::make_unique<AudioParameterFloat>("RELEASE", "Release", 0.0f, 5.0f, 0.5f));
     parameters.push_back(std::make_unique<AudioParameterInt>("VOICES", "Voices", 1, 32, 1));
     parameters.push_back(std::make_unique<AudioParameterInt>("TRANSP", "Transp", -24, 24, 0));
     parameters.push_back(std::make_unique<AudioParameterFloat>("FINE", "Fine", -0.50f, 0.50f, 0));
@@ -365,14 +367,13 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 // Loads new Sample after File Click
 void SamplifiedAudioProcessor::loadNewSample (const File& sampleFile)
 {
-    auto* soundBuffer = sampleFile.createInputStream();
     String format = sampleFile.getFileExtension();
-    std::unique_ptr<AudioFormatReader> formatReader (mFormatManager.findFormatForFileExtension (format )->createReaderFor (soundBuffer, true));
+    mFormatReader = mFormatManager.createReaderFor (sampleFile);
 
     BigInteger range;
     range.setRange(0, 128, true);
 
-    SynthesiserSound::Ptr newSound = new SamplerSound ("Voice", *formatReader, range, 0x40, 0.0, 0.0, 10.0);
+    SynthesiserSound::Ptr newSound = new SamplerSound ("Voice", *mFormatReader, range, 0x40, 0.0, 0.0, 10.0);
 
     sound = newSound;
 
