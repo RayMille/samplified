@@ -60,7 +60,7 @@ void SamplifiedAudioProcessorEditor::resized()
     float gap = getWidth()/28;
     float widthDirectory = getWidth()/3.9;
     float heightWaveWindow = getHeight()/1.9;
-    float volumeDiameter = getHeight()/4.3; //78
+    float volumeDiameter = getHeight()/4.2; //78
     float diffFromBottomVolume = getHeight()/12; //28
     float aSDRDiameter = getHeight()/5.5; //61
     float diffLeftADSR = 1.81*getWidth()/3;//578
