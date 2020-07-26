@@ -344,7 +344,7 @@ AudioProcessorValueTreeState::ParameterLayout SamplifiedAudioProcessor::createPa
     parameters.push_back(std::make_unique<AudioParameterInt>("VOICES", "Voices", 1, 32, 1));
     parameters.push_back(std::make_unique<AudioParameterInt>("TRANSP", "Transp", -24, 24, 0));
     parameters.push_back(std::make_unique<AudioParameterFloat>("FINE", "Fine", -0.50f, 0.50f, 0));
-    parameters.push_back(std::make_unique<AudioParameterFloat>("VOLUME", "Volume", 0.0, 127.0, 1.0));
+    parameters.push_back(std::make_unique<AudioParameterFloat>("VOLUME", "Volume", 0.0, 127.0, 60.0));
 
     return { parameters.begin(), parameters.end() };
 }

@@ -38,7 +38,7 @@ void WaveWindow::paint (Graphics& g)
       if (waveform.getNumSamples() > 0)
       {
          // mInComponent.setBounds(getWidth()/5, 0, 3*getWidth()/5, getHeight()/3);
-          mWaveThumbnail.setBounds(getWidth()/6, getHeight()/5, 4*getWidth()/6, 3*getHeight()/5);
+          mWaveThumbnail.setBounds(getWidth()/20, getHeight()/7.4, 18*getWidth()/20, 7.8*getHeight()/10);
          // mOutComponent.setBounds(getWidth()/5, 2*(getHeight()/3), 3*getWidth()/5, getHeight()/3);
       }
       else

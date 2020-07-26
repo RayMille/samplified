@@ -72,7 +72,6 @@ void WaveThumbnail::paint (Graphics& g)
     
     float duration = processor.getSampleDuration();
     auto lengthTimeRatio = getWidth()/duration; //weight per s
-    auto adsr = processor.mADSRParams;
     
     auto attackWidth = params.attack*lengthTimeRatio;
     auto decayWidth = params.decay*lengthTimeRatio;
@@ -83,11 +82,11 @@ void WaveThumbnail::paint (Graphics& g)
     g.setColour(Colour (102,102,102));
     
     Path w;
-    w.startNewSubPath(0, getHeight());
+    w.startNewSubPath(1, getHeight());
     w.lineTo(attackWidth, 0);
     w.lineTo(attackWidth + decayWidth, sustainHeight);
     w.lineTo(attackWidth + decayWidth + sustainWidth, sustainHeight);
-    w.lineTo(getWidth(),getHeight());
+    w.lineTo(getWidth()-1,getHeight());
     
     Path roundedPath = w.createPathWithRoundedCorners(10.0f);
     g.strokePath(roundedPath, PathStrokeType(1));
