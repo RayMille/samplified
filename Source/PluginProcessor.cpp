@@ -338,10 +338,10 @@ AudioProcessorValueTreeState::ParameterLayout SamplifiedAudioProcessor::createPa
 {
     std::vector<std::unique_ptr<RangedAudioParameter>> parameters;
 
-    parameters.push_back (std::make_unique<AudioParameterFloat>("ATTACK", "Attack", 0.0f, 5.0f, 0.8f));
-    parameters.push_back (std::make_unique<AudioParameterFloat>("DECAY", "Decay", 0.0f, 3.0f, 0.5f));
+    parameters.push_back (std::make_unique<AudioParameterFloat>("ATTACK", "Attack", NormalisableRange<float>(0.0f, 5.0f, 0, 0.2f), 0.0f));
+    parameters.push_back (std::make_unique<AudioParameterFloat>("DECAY", "Decay", NormalisableRange<float>(0.0f, 3.0f, 0, 0.2f), 0.5f));
     parameters.push_back (std::make_unique<AudioParameterFloat>("SUSTAIN", "Sustain", 0.0f, 1.0f, 0.7f));
-    parameters.push_back (std::make_unique<AudioParameterFloat>("RELEASE", "Release", 0.0f, 5.0f, 0.5f));
+    parameters.push_back (std::make_unique<AudioParameterFloat>("RELEASE", "Release", NormalisableRange<float>(0.0f, 5.0f, 0, 0.2f), 0.5f));
     parameters.push_back(std::make_unique<AudioParameterInt>("VOICES", "Voices", 1, 32, 1));
     parameters.push_back(std::make_unique<AudioParameterInt>("TRANSP", "Transp", -24, 24, 0));
     parameters.push_back(std::make_unique<AudioParameterFloat>("FINE", "Fine", -0.50f, 0.50f, 0));

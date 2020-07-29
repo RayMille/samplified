@@ -19,7 +19,7 @@ mSustainSlider (BinaryData::FILMSTRIP1_100FR_VERT_270DEG_png, (size_t) BinaryDat
 mReleaseSlider (BinaryData::FILMSTRIP1_100FR_VERT_270DEG_png, (size_t) BinaryData::FILMSTRIP1_100FR_VERT_270DEG_pngSize, 100, true, 2),
 processor (p)
 {
-    //AttackSlider
+    ///-------------------------------------------- AttackSlider --------------------------------------------
     mAttackSlider.setSliderStyle (Slider::SliderStyle::RotaryVerticalDrag);
   
     mAttackSlider.setTextBoxStyle (Slider::NoTextBox, true, 50, 14);
@@ -34,7 +34,7 @@ processor (p)
 
     mAttackAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "ATTACK", mAttackSlider);
 
-    //DecaySlider
+    ///--------------------------------------------DecaySlider--------------------------------------------
     mDecaySlider.setSliderStyle (Slider::SliderStyle::RotaryVerticalDrag);
     mDecaySlider.setTextBoxStyle (Slider::NoTextBox, true, 50, 14);
     mDecaySlider.setColour (Slider::ColourIds::thumbColourId, Colours::dimgrey);
@@ -49,7 +49,7 @@ processor (p)
     mDecayAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "DECAY", mDecaySlider);
 
 
-    //SustainSlider
+    ///--------------------------------------------SustainSlider--------------------------------------------
     mSustainSlider.setSliderStyle (Slider::SliderStyle::RotaryVerticalDrag);
     mSustainSlider.setTextBoxStyle (Slider::NoTextBox, true, 50, 14);
     mSustainSlider.setColour (Slider::ColourIds::thumbColourId, Colours::dimgrey);
@@ -64,7 +64,7 @@ processor (p)
     mSustainAttachment = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.getAPVTS(), "SUSTAIN", mSustainSlider);
 
 
-    //ReleaseSlider
+    ///--------------------------------------------ReleaseSlider--------------------------------------------
     mReleaseSlider.setSliderStyle (Slider::SliderStyle::RotaryVerticalDrag);
     mReleaseSlider.setTextBoxStyle (Slider::NoTextBox, true, 50, 14);
     mReleaseSlider.setColour (Slider::ColourIds::thumbColourId, Colours::dimgrey);
