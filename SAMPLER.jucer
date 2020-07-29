@@ -4,6 +4,7 @@
               pluginManufacturer="KoendersAudio" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="znyszf" name="SAMPLIFIED">
     <GROUP id="{74764556-3F6E-B772-6924-AFE76362A71B}" name="Resources">
+      <FILE id="ajZ2SX" name="COOLVETICA.ttf" compile="0" resource="1" file="Resources/COOLVETICA.ttf"/>
       <FILE id="JNPkLo" name="BACKGROUND12.png" compile="0" resource="1"
             file="Resources/BACKGROUND12.png"/>
       <FILE id="OTnrqN" name="FILMSTRIP1_100FR_VERT_270DEG.png" compile="0"

@@ -15,7 +15,8 @@ SamplifiedLookAndFeel :: SamplifiedLookAndFeel()
     {
 
         setColour(DirectoryContentsDisplayComponent::textColourId, Colours::white);
-        setColour(DirectoryContentsDisplayComponent::highlightColourId, Colours::black);
+        // Farbe beim klicken einer Datei
+        setColour(DirectoryContentsDisplayComponent::highlightColourId, Colours::transparentBlack);
         setColour(DirectoryContentsDisplayComponent::highlightedTextColourId, Colours::white);
 
         setColour(ComboBox::outlineColourId, Colours::transparentBlack);
@@ -40,9 +41,11 @@ SamplifiedLookAndFeel :: SamplifiedLookAndFeel()
         setColour(Slider::trackColourId, Colour (199, 199, 199).withAlpha(0.f));
         
         // Farbe Zahlen in Voice Boxen
-        setColour(Slider::textBoxTextColourId, Colour (102,102,102));
+        setColour(Slider::textBoxTextColourId, Colour (127,127,127));
 
         treeviewPlusMinusBoxColour = Colours::orange;
+        
+        
     }
 
 static std::unique_ptr<Drawable> createDrawableFromSVG (const char* data)
@@ -353,4 +356,11 @@ void SamplifiedLookAndFeel::drawLabel (Graphics& g, Label& label)
     }
 
     g.drawRoundedRectangle( 1, 1, label.getWidth()-2, label.getHeight()-2, 3, 1  );
+}
+
+const Font& SamplifiedLookAndFeel::getCoolvetica()
+{
+    static Font coolvetica (Font (Typeface::createSystemTypefaceFor (BinaryData::COOLVETICA_ttf,
+                                                                BinaryData::COOLVETICA_ttfSize)));
+    return coolvetica;
 }

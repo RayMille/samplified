@@ -79,7 +79,7 @@ void WaveThumbnail::paint (Graphics& g)
     auto releaseWidth = params.release*lengthTimeRatio;
     auto sustainWidth = calculateSustainWidth(decayWidth+attackWidth+releaseWidth);
     
-    g.setColour(Colour (102,102,102));
+    g.setColour(Colour (122,121,121));
     
     Path w;
     w.startNewSubPath(1, getHeight());

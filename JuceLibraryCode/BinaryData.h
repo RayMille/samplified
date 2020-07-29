@@ -8,6 +8,9 @@
 
 namespace BinaryData
 {
+    extern const char*   COOLVETICA_ttf;
+    const int            COOLVETICA_ttfSize = 189520;
+
     extern const char*   BACKGROUND12_png;
     const int            BACKGROUND12_pngSize = 2725597;
 
@@ -15,7 +18,7 @@ namespace BinaryData
     const int            FILMSTRIP1_100FR_VERT_270DEG_pngSize = 1073711;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 2;
+    const int namedResourceListSize = 3;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

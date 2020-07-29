@@ -39,6 +39,8 @@ public:
     Colour treeviewPlusMinusBoxColour;
     
     void drawLabel (Graphics& g, Label& label) override;
+    
+    static const Font& getCoolvetica();
 
 private:
     std::unique_ptr<Drawable> folderImage, documentImage;

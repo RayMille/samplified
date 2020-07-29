@@ -65,6 +65,8 @@ void VoiceSettingComponent::paint (Graphics& g)
     float otherLableHeight = (getHeight()-fileLableTopMargin*3-fileLableHeight-heightIcon)/3;
     auto area = getLocalBounds();
     
+    auto lableColor = Colour (127,127,127);
+    
     auto leftColoumn = getLocalBounds();
     leftColoumn.removeFromRight(getWidth()/2);
     leftColoumn.removeFromLeft(otherLableSideMarginLeft);
@@ -78,7 +80,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     //-----------Nicht rauslöschen für Layouten -------///
     //g.fillAll(Colours::red.withAlpha(0.2f));
     
-    fileLabel.setColour (Label::textColourId, Colour (102,102,102));
+    fileLabel.setColour (Label::textColourId, lableColor);
     fileLabel.setJustificationType (Justification::centred);
     fileLabel.setText(this->fileName, dontSendNotification);
 
@@ -87,7 +89,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     voiceInput.setRange(1, 32,1);
     voiceInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
     
-    voiceLabel.setColour (Label::textColourId, Colour (102,102,102));
+    voiceLabel.setColour (Label::textColourId, lableColor);
     voiceLabel.setJustificationType (Justification::left);
     voiceLabel.setText("Voices", dontSendNotification);
     
@@ -98,7 +100,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     transpInput.setRange(-24, 24, 0);
     transpInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
     
-    transpLabel.setColour (Label::textColourId, Colour (102,102,102));
+    transpLabel.setColour (Label::textColourId, lableColor);
     transpLabel.setJustificationType (Justification::left);
     transpLabel.setText("Transp", dontSendNotification);
     
@@ -110,7 +112,7 @@ void VoiceSettingComponent::paint (Graphics& g)
     fineInput.setTextValueSuffix("c");
     fineInput.setTextBoxStyle (Slider::TextBoxLeft, false, 1, otherLableHeight);
       
-    fineLabel.setColour (Label::textColourId, Colour (102,102,102));
+    fineLabel.setColour (Label::textColourId, lableColor);
     fineLabel.setJustificationType (Justification::left);
     fineLabel.setText("Fine", dontSendNotification);
     

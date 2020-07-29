@@ -25,6 +25,7 @@ SamplifiedAudioProcessor::SamplifiedAudioProcessor()
 #endif
 {
     LookAndFeel::setDefaultLookAndFeel(&samplifiedLookAndFeel);
+    LookAndFeel::getDefaultLookAndFeel().setDefaultSansSerifTypefaceName(SamplifiedLookAndFeel::getCoolvetica().getTypefaceName());
      
     mFormatManager.registerBasicFormats();
     mAPVTS.state.addListener (this);
