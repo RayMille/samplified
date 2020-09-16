@@ -378,48 +378,48 @@ const Font& SamplifiedLookAndFeel::getCoolvetica()
 
 void SamplifiedLookAndFeel::drawTooltip (Graphics& g, const String& text, int width, int height)
 {
-    if(text.equalsIgnoreCase("VOICES") || text.equalsIgnoreCase("ATTAK")){
+    if(text.equalsIgnoreCase("VOICES") || text.equalsIgnoreCase("ATTAK") || text.equalsIgnoreCase("RELEASE") || text.equalsIgnoreCase("DECAY") || text.equalsIgnoreCase("SUSTAIN") ){
         const Image firstToolTipImage = (getFirstToolTipImage(text));
-        const Image secondToolTipImage = (getSecondToolTipImage(text));
+      //  const Image secondToolTipImage = (getSecondToolTipImage(text));
         
         auto w1 = firstToolTipImage.getWidth();
-        auto w2 = secondToolTipImage.getWidth();
-        auto sizeBetweenWindows = 5;
+      //  auto w2 = secondToolTipImage.getWidth();
+      //  auto sizeBetweenWindows = 5;
         
-        Rectangle<int> bounds (w1, height);
-        Rectangle<int> boundsSW (w1 + sizeBetweenWindows, 0, w2, height);
-        auto cornerSize = 5.0f;
+        //Rectangle<int> bounds (w1, height);
+       // Rectangle<int> boundsSW (w1 + sizeBetweenWindows, 0, w2, height);
+        //auto cornerSize = 5.0f;
 
-        g.setColour (findColour (TooltipWindow::backgroundColourId));
-        g.fillRoundedRectangle (bounds.toFloat(), cornerSize);
-        g.fillRoundedRectangle (boundsSW.toFloat(), cornerSize);
+//        g.setColour (findColour (TooltipWindow::backgroundColourId));
+//        g.fillRoundedRectangle (bounds.toFloat(), cornerSize);
+//        g.fillRoundedRectangle (boundsSW.toFloat(), cornerSize);
+//
+//        g.setColour (findColour (TooltipWindow::outlineColourId));
+//        g.drawRoundedRectangle (bounds.toFloat().reduced (0.5f, 0.5f), cornerSize, 1.0f);
+//        g.drawRoundedRectangle (boundsSW.toFloat().reduced (0.5f, 0.5f), cornerSize, 1.0f);
 
-        g.setColour (findColour (TooltipWindow::outlineColourId));
-        g.drawRoundedRectangle (bounds.toFloat().reduced (0.5f, 0.5f), cornerSize, 1.0f);
-        g.drawRoundedRectangle (boundsSW.toFloat().reduced (0.5f, 0.5f), cornerSize, 1.0f);
+       // int cornerReduction = 0;
+        g.drawImageWithin (firstToolTipImage, 0, 0, firstToolTipImage.getWidth(), firstToolTipImage.getHeight(), RectanglePlacement::centred,false);
 
-        int cornerReduction = 0;
-        g.drawImageWithin (firstToolTipImage, cornerReduction, cornerReduction, firstToolTipImage.getWidth() - 2*cornerReduction, firstToolTipImage.getHeight() - 2*cornerReduction, RectanglePlacement::stretchToFit,false);
-
-        auto newX = firstToolTipImage.getWidth() + cornerReduction + sizeBetweenWindows;
-        g.drawImageWithin (secondToolTipImage, newX, cornerReduction, secondToolTipImage.getWidth() - 2*cornerReduction, secondToolTipImage.getHeight() - 2*cornerReduction, RectanglePlacement::stretchToFit,false);
+//        auto newX = firstToolTipImage.getWidth() + cornerReduction + sizeBetweenWindows;
+//        g.drawImageWithin (secondToolTipImage, newX, cornerReduction, secondToolTipImage.getWidth() - 2*cornerReduction, secondToolTipImage.getHeight() - 2*cornerReduction, RectanglePlacement::stretchToFit,false);
     }
 }
 
 
 Rectangle<int> SamplifiedLookAndFeel::getTooltipBounds (const String& tipText, Point<int> screenPos, Rectangle<int> parentArea)
 {
-    if(tipText.equalsIgnoreCase("VOICES") || tipText.equalsIgnoreCase("ATTAK")){
+    if(tipText.equalsIgnoreCase("VOICES") || tipText.equalsIgnoreCase("ATTAK") || tipText.equalsIgnoreCase("RELEASE") || tipText.equalsIgnoreCase("DECAY") || tipText.equalsIgnoreCase("SUSTAIN")){
         // Layout Tooltip Window
         const Image ftI = (getFirstToolTipImage (tipText));
-        const Image stI = (getSecondToolTipImage (tipText));
+      //  const Image stI = (getSecondToolTipImage (tipText));
 
         auto ftIW = ftI.getWidth();
-        auto sizeBetweenWindows = 5;
-        auto w = (int) (stI.getWidth() + ftIW) + sizeBetweenWindows;
+       // auto sizeBetweenWindows = 5;
+        auto w = (int) (ftIW); //+ sizeBetweenWindows;
         auto h = (int) (ftI.getHeight());
 
-        return Rectangle<int> (screenPos.x > parentArea.getCentreX() ? screenPos.x - (w - ftIW): screenPos.x - ftIW,
+        return Rectangle<int> (screenPos.x > parentArea.getCentreX() ? screenPos.x - (w - 24): screenPos.x - 24,
                                screenPos.y > parentArea.getCentreY() ? screenPos.y - (h + 6)  : screenPos.y + 6,
                                w, h)
                  .constrainedWithin (parentArea);
@@ -430,31 +430,49 @@ Rectangle<int> SamplifiedLookAndFeel::getTooltipBounds (const String& tipText, P
 Image SamplifiedLookAndFeel::getFirstToolTipImage (const String& text) noexcept
 {
     Image firstPicture;
+    float ratio;
     if(text.equalsIgnoreCase("VOICES")){
-        firstPicture = ImageCache::getFromMemory (BinaryData::VOICESTT_jpg, (size_t)
-                                                      BinaryData::VOICESTT_jpgSize);
-        firstPicture = firstPicture.rescaled(180, 120);
+        firstPicture = ImageCache::getFromMemory (BinaryData::LEARN_VOICES_png, (size_t)
+                                                      BinaryData::LEARN_VOICES_pngSize);
+        ratio = firstPicture.getWidth()/firstPicture.getHeight();
+        firstPicture = firstPicture.rescaled(100.0*ratio, 100.0);
+    } else if (text.equalsIgnoreCase("SUSTAIN")) {
+        firstPicture = ImageCache::getFromMemory (BinaryData::LEARN_SUSTAIN_png, (size_t)
+                                                      BinaryData::LEARN_SUSTAIN_pngSize);
+        ratio = firstPicture.getWidth()/firstPicture.getHeight();
+        firstPicture = firstPicture.rescaled(100*ratio, 100);
+    } else if (text.equalsIgnoreCase("RELEASE")) {
+        firstPicture = ImageCache::getFromMemory (BinaryData::LEARN_RELEASE_png, (size_t)
+                                                      BinaryData::LEARN_RELEASE_pngSize);
+        ratio = firstPicture.getWidth()/firstPicture.getHeight();
+        firstPicture = firstPicture.rescaled(100*ratio, 100);
+    } else if (text.equalsIgnoreCase("DECAY")) {
+        firstPicture = ImageCache::getFromMemory (BinaryData::LEARN_DECAY_png, (size_t)
+                                                      BinaryData::LEARN_DECAY_pngSize);
+        ratio = firstPicture.getWidth()/firstPicture.getHeight();
+        firstPicture = firstPicture.rescaled(100*ratio, 100);
     } else {
-        firstPicture = ImageCache::getFromMemory (BinaryData::ATTAKTT_jpg, (size_t)
-                                                      BinaryData::ATTAKTT_jpgSize);
-        firstPicture = firstPicture.rescaled(120, 120);
+        firstPicture = ImageCache::getFromMemory (BinaryData::LEARN_ATTACK_png, (size_t)
+                                                      BinaryData::LEARN_ATTACK_pngSize);
+        ratio = firstPicture.getWidth()/firstPicture.getHeight();
+        firstPicture = firstPicture.rescaled(100.0f*ratio, 100.0f);
     }
     
     return firstPicture;
 }
 
-Image SamplifiedLookAndFeel::getSecondToolTipImage (const String& text) noexcept
-{
-    Image secondPicture;
-    if(text.equalsIgnoreCase("VOICES")){
-        secondPicture = ImageCache::getFromMemory (BinaryData::VOICEPT_jpg, (size_t)
-                                                      BinaryData::VOICEPT_jpgSize);
-        secondPicture = secondPicture.rescaled(400, 120);
-    } else {
-        secondPicture = ImageCache::getFromMemory (BinaryData::ATTAKPT_jpg, (size_t)
-                                                      BinaryData::ATTAKPT_jpgSize);
-        secondPicture = secondPicture.rescaled(400, 120);
-    }
-    
-    return secondPicture;
-}
+//Image SamplifiedLookAndFeel::getSecondToolTipImage (const String& text) noexcept
+//{
+//    Image secondPicture;
+//    if(text.equalsIgnoreCase("VOICES")){
+//        secondPicture = ImageCache::getFromMemory (BinaryData::VOICEPT_jpg, (size_t)
+//                                                      BinaryData::VOICEPT_jpgSize);
+//        secondPicture = secondPicture.rescaled(400, 120);
+//    } else {
+//        secondPicture = ImageCache::getFromMemory (BinaryData::ATTAKPT_jpg, (size_t)
+//                                                      BinaryData::ATTAKPT_jpgSize);
+//        secondPicture = secondPicture.rescaled(400, 120);
+//    }
+//
+//    return secondPicture;
+//}

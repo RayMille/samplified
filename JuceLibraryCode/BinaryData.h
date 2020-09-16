@@ -8,35 +8,32 @@
 
 namespace BinaryData
 {
-    extern const char*   VOICESTT_jpg;
-    const int            VOICESTT_jpgSize = 22980;
-
     extern const char*   COOLVETICA_ttf;
     const int            COOLVETICA_ttfSize = 189520;
 
     extern const char*   LEARN_ATTACK_png;
-    const int            LEARN_ATTACK_pngSize = 33635;
-
-    extern const char*   VOICEPT_jpg;
-    const int            VOICEPT_jpgSize = 22703;
+    const int            LEARN_ATTACK_pngSize = 24782;
 
     extern const char*   BACKGROUND12_png;
     const int            BACKGROUND12_pngSize = 2725597;
 
+    extern const char*   LEARN_SUSTAIN_png;
+    const int            LEARN_SUSTAIN_pngSize = 24581;
+
     extern const char*   LEARN_VOICES_png;
-    const int            LEARN_VOICES_pngSize = 22535;
+    const int            LEARN_VOICES_pngSize = 13807;
 
-    extern const char*   ATTAKPT_jpg;
-    const int            ATTAKPT_jpgSize = 27414;
+    extern const char*   LEARN_DECAY_png;
+    const int            LEARN_DECAY_pngSize = 24248;
 
-    extern const char*   ATTAKTT_jpg;
-    const int            ATTAKTT_jpgSize = 18253;
+    extern const char*   LEARN_RELEASE_png;
+    const int            LEARN_RELEASE_pngSize = 25426;
 
     extern const char*   FILMSTRIP1_100FR_VERT_270DEG_png;
     const int            FILMSTRIP1_100FR_VERT_270DEG_pngSize = 1073711;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 9;
+    const int namedResourceListSize = 8;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

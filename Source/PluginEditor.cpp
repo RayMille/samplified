@@ -152,11 +152,17 @@ void SamplifiedAudioProcessorEditor::buttonClicked (juce::Button* button)
     {
         mVolume.setTooltip("VOLUME");
         mADSR.mAttackSlider.setTooltip("ATTAK");
+        mADSR.mDecaySlider.setTooltip("DECAY");
+        mADSR.mReleaseSlider.setTooltip("RELEASE");
+        mADSR.mSustainSlider.setTooltip("SUSTAIN");
         mDisplayComponent.mVoiceSetting.voiceLabel.setTooltip("VOICES");
         
     }else{
         mVolume.setTooltip("");
         mADSR.mAttackSlider.setTooltip("");
+        mADSR.mDecaySlider.setTooltip("");
+        mADSR.mReleaseSlider.setTooltip("");
+        mADSR.mSustainSlider.setTooltip("");
         mDisplayComponent.mVoiceSetting.voiceLabel.setTooltip("");
     }
 }
