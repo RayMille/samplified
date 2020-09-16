@@ -32,9 +32,6 @@ public:
     
     const Drawable* getDefaultDocumentFileImage();
     
-    
-    
-private:
     Label fileLabel;
     
     Label voiceLabel;
@@ -46,6 +43,7 @@ private:
     Label fineLabel;
     Slider fineInput;
     
+private:
     std::unique_ptr<Drawable> documentImage;
     
     SamplifiedAudioProcessor& processor;

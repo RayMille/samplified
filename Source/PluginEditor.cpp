@@ -10,6 +10,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "FileGradientComponent.h"
 
 //==============================================================================
 SamplifiedAudioProcessorEditor::SamplifiedAudioProcessorEditor (SamplifiedAudioProcessor& p)
@@ -20,24 +21,28 @@ SamplifiedAudioProcessorEditor::SamplifiedAudioProcessorEditor (SamplifiedAudioP
     double initialHeight = 339.0;
 
     startTimerHz (30);
-   
+
     double ratio = initialWidth/initialHeight;
     m_constrainer.setSizeLimits(500, 500 / ratio, 2000, 2000 / ratio);
     m_constrainer.setFixedAspectRatio(ratio);
 
     setResizable(true, true);
     setConstrainer(&m_constrainer);
-    //this->setResizable(true,true);
+    this->setResizable(true,true);
     
+    addAndMakeVisible(tooltipWindow);
     addAndMakeVisible (mBackground);
     addAndMakeVisible(mDirectoryComponent);
     addAndMakeVisible (mDisplayComponent);
     addAndMakeVisible (mADSR);
     addAndMakeVisible (mVolume);
+    addAndMakeVisible(learnModeButton);
+    learnModeButton.addListener (this);
     
     mDirectoryComponent.m_fileBrowser->addListener(this);
     
     setSize (960, 960/ratio);
+    
 }
 
 SamplifiedAudioProcessorEditor::~SamplifiedAudioProcessorEditor()
@@ -72,6 +77,14 @@ void SamplifiedAudioProcessorEditor::resized()
     mDisplayComponent.setBounds (widthDirectory + gap + diffFromLeft, diffFromTopWaveWindow, getWidth()-diffFromLeft-gap-widthDirectory-diffFromRight, heightWaveWindow);
     mVolume.setBounds(widthDirectory + gap + diffFromLeft, getHeight()-volumeDiameter-diffFromBottomVolume, volumeDiameter, volumeDiameter);
     mADSR.setBounds(diffLeftADSR, getHeight()-aSDRDiameter-diffBottomADSR, aSDRDiameter*4+3*sizeBetweenADSR, aSDRDiameter);
+    
+    auto xDisplay = widthDirectory + gap + diffFromLeft;
+    auto yDisplay = diffFromTopWaveWindow;
+    auto wDisplay = getWidth()-diffFromLeft-gap-widthDirectory-diffFromRight;
+    auto hDisplay = heightWaveWindow;
+    learnModeButton.setBounds(xDisplay+wDisplay - 50, yDisplay + hDisplay -20, 50, 20);
+    learnModeButton.setButtonText("LEARN MODE");
+    learnModeButton.setClickingTogglesState(true);
 }
 
 void SamplifiedAudioProcessorEditor::timerCallback()
@@ -131,5 +144,20 @@ void SamplifiedAudioProcessorEditor::fileDoubleClicked (const File& file)
 
 void SamplifiedAudioProcessorEditor::browserRootChanged (const File& newRoot)
 {
+}
+
+void SamplifiedAudioProcessorEditor::buttonClicked (juce::Button* button)
+{
+    if(learnModeButton.getToggleState())
+    {
+        mVolume.setTooltip("VOLUME");
+        mADSR.mAttackSlider.setTooltip("ATTAK");
+        mDisplayComponent.mVoiceSetting.voiceLabel.setTooltip("VOICES");
+        
+    }else{
+        mVolume.setTooltip("");
+        mADSR.mAttackSlider.setTooltip("");
+        mDisplayComponent.mVoiceSetting.voiceLabel.setTooltip("");
+    }
 }
 

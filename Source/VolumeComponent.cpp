@@ -44,3 +44,8 @@ void VolumeComponent::resized()
     
 }
 
+void VolumeComponent::setTooltip(const String& newTooltip)
+{
+    mVolumeSlider.setTooltip(newTooltip);
+}
+

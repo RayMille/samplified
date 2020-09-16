@@ -11,6 +11,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "FilmStripKnob.h"
 
 class SamplifiedLookAndFeel    : public LookAndFeel_V4
 
@@ -41,6 +42,14 @@ public:
     void drawLabel (Graphics& g, Label& label) override;
     
     static const Font& getCoolvetica();
+    
+    void drawTooltip (Graphics& g, const String& text, int width, int height) override;
+    
+    Rectangle<int> getTooltipBounds (const String& tipText, Point<int> screenPos, Rectangle<int> parentArea) override;
+    
+    Image getFirstToolTipImage (const String& text) noexcept;
+    
+    Image getSecondToolTipImage (const String& text) noexcept;
 
 private:
     std::unique_ptr<Drawable> folderImage, documentImage;

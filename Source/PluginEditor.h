@@ -16,14 +16,16 @@
 #include "ADSRComponent.h"
 #include "BackgroundComponent.h"
 #include "DisplayComponent.h"
+#include "FileGradientComponent.h"
 
 //==============================================================================
 /**
 */
 class SamplifiedAudioProcessorEditor  : public AudioProcessorEditor,
                                         public Timer,
+                                        public Button::Listener,
                                         public FileDragAndDropTarget,
-                                        public FileBrowserListener
+                                        public FileBrowserListener//, public SettableTooltipClient
 {
 public:
     SamplifiedAudioProcessorEditor (SamplifiedAudioProcessor&);
@@ -46,6 +48,10 @@ public:
     
     ComponentBoundsConstrainer m_constrainer;
     
+    TextButton learnModeButton;
+    
+   
+    
 private:
     VolumeComponent mVolume;
     DisplayComponent mDisplayComponent;
@@ -58,6 +64,12 @@ private:
     VoiceSettingComponent mVoiceSetting;
 
     SamplifiedAudioProcessor& processor;
+    
+    SharedResourcePointer<TooltipWindow> tooltipWindow;
+    
+    FileGradientComponent mFielGradienTestVariable;
+    
+    void buttonClicked (juce::Button* button) override;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SamplifiedAudioProcessorEditor)
 };

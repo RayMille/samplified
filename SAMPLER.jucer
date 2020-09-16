@@ -4,9 +4,17 @@
               pluginManufacturer="KoendersAudio" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="znyszf" name="SAMPLIFIED">
     <GROUP id="{74764556-3F6E-B772-6924-AFE76362A71B}" name="Resources">
+      <FILE id="lecQ73" name="VOICESTT.jpg" compile="0" resource="1" file="Resources/VOICESTT.jpg"/>
       <FILE id="ajZ2SX" name="COOLVETICA.ttf" compile="0" resource="1" file="Resources/COOLVETICA.ttf"/>
+      <FILE id="FJfhk7" name="LEARN_ATTACK.png" compile="0" resource="1"
+            file="Resources/LEARN_ATTACK.png"/>
+      <FILE id="PsAEsG" name="VOICEPT.jpg" compile="0" resource="1" file="Resources/VOICEPT.jpg"/>
       <FILE id="JNPkLo" name="BACKGROUND12.png" compile="0" resource="1"
             file="Resources/BACKGROUND12.png"/>
+      <FILE id="iwmvSV" name="LEARN_VOICES.png" compile="0" resource="1"
+            file="Resources/LEARN_VOICES.png"/>
+      <FILE id="lnOw65" name="ATTAKPT.jpg" compile="0" resource="1" file="Resources/ATTAKPT.jpg"/>
+      <FILE id="JHUOhm" name="ATTAKTT.jpg" compile="0" resource="1" file="Resources/ATTAKTT.jpg"/>
       <FILE id="OTnrqN" name="FILMSTRIP1_100FR_VERT_270DEG.png" compile="0"
             resource="1" file="Resources/FILMSTRIP1_100FR_VERT_270DEG.png"/>
     </GROUP>
@@ -28,6 +36,8 @@
         <FILE id="P2N7e2" name="DisplayComponent.h" compile="0" resource="0"
               file="Source/DisplayComponent.h"/>
         <GROUP id="{AF20A9F0-0AF0-D174-2812-0723C1E2DD33}" name="Directory">
+          <FILE id="JSCeqY" name="FileBrowserComponentWithTooltip.h" compile="0"
+                resource="0" file="Source/FileBrowserComponentWithTooltip.h"/>
           <FILE id="FtEjXq" name="FileGradientComponent.h" compile="0" resource="0"
                 file="Source/FileGradientComponent.h"/>
           <FILE id="Bv4g1h" name="DirectoryComponent.cpp" compile="1" resource="0"

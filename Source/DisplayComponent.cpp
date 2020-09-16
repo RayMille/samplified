@@ -44,3 +44,4 @@ void DisplayComponent::resized()
     // components that your component contains..
 
 }
+
